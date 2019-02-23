@@ -1,101 +1,336 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
+<!doctype html>
+
+
+
   
-  <title>2018年常总结 | 车子的个人博客</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="关于年初的坑 java编程思想线程部分放弃了.java虚拟机也看完了,另外看完了重构和大话设计模式. 对mac系统基本熟练应用 算是攒了三万块钱. 一年工作没有考虑换工作,但是没有多少积累. 每个月存了1000给父母的钱,已经给了7000,剩下的不出意外过年给家里. 想法有改变,依然在用信用卡,但是没有之前的压力了,能够控制好,今后一般使用信用卡是常态. 还了银行的一屁股债  其余年初挖的坑,均没">
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="关于年初的坑 java编程思想线程部分放弃了.java虚拟机也看完了,另外看完了重构和大话设计模式. 对mac系统基本熟练应用 算是攒了三万块钱. 一年工作没有考虑换工作,但是没有多少积累. 每个月存了1000给父母的钱,已经给了7000,剩下的不出意外过年给家里. 想法有改变,依然在用信用卡,但是没有之前的压力了,能够控制好,今后一般使用信用卡是常态. 还了银行的一屁股债  其余年初挖的坑,均没">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2018年常总结">
 <meta property="og:url" content="http://yoursite.com/2019/01/15/2018年常总结/index.html">
 <meta property="og:site_name" content="车子的个人博客">
 <meta property="og:description" content="关于年初的坑 java编程思想线程部分放弃了.java虚拟机也看完了,另外看完了重构和大话设计模式. 对mac系统基本熟练应用 算是攒了三万块钱. 一年工作没有考虑换工作,但是没有多少积累. 每个月存了1000给父母的钱,已经给了7000,剩下的不出意外过年给家里. 想法有改变,依然在用信用卡,但是没有之前的压力了,能够控制好,今后一般使用信用卡是常态. 还了银行的一屁股债  其余年初挖的坑,均没">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2019-01-15T15:50:57.916Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2018年常总结">
 <meta name="twitter:description" content="关于年初的坑 java编程思想线程部分放弃了.java虚拟机也看完了,另外看完了重构和大话设计模式. 对mac系统基本熟练应用 算是攒了三万块钱. 一年工作没有考虑换工作,但是没有多少积累. 每个月存了1000给父母的钱,已经给了7000,剩下的不出意外过年给家里. 想法有改变,依然在用信用卡,但是没有之前的压力了,能够控制好,今后一般使用信用卡是常态. 还了银行的一屁股债  其余年初挖的坑,均没">
-  
-    <link rel="alternate" href="/atom.xml" title="车子的个人博客" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/plugin/bganimation/bg.css">
-  
 
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/15/2018年常总结/"/>
+
+
+
+
+
+  <title> 2018年常总结 | 车子的个人博客 </title>
 </head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <div class="outer">
-        <div class="widget-wrap mobile-header">
-  <h3 class="widget-title"></h3>
-  <div class="widget">
-    <img class="avatar" src="/images/header.jpg">
-    <h2 class="author">车子</h2>
-    <h3 class="description">个人玩耍</h3>
-    <div class="count-box">
-      <a href="/archives"><div><strong>7</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>6</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>5</strong><br>标签</div></a>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">车子的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
     </div>
-    <ul class="blog-link">
-     
-          <a href="/" title="Home">
-            <li>主页</li>
-          </a>
-        
-          <a href="/archives" title="Archives">
-            <li>归档</li>
-          </a>
-        
-          <a href="/categories" title="Categories">
-            <li>分类</li>
-          </a>
-        
-          <a href="/tags" title="Tags">
-            <li>标签</li>
-          </a>
-        
-    </ul>
+      
+        <p class="site-subtitle">一个丰富的人生比正确的人生更有意义</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
   </div>
 </div>
 
-        <section id="main"><article id="dreft-2018年常总结" class="wow slideInRight article article-type-dreft" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/15/2018年常总结/" class="article-date">
-  <time class="post-time" datetime="2019-01-15T13:31:09.000Z" itemprop="datePublished">
-    <span class="post-month">1月</span><br/>
-    <span class="post-day">15</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      2018年常总结
-    </h1>
+<nav class="site-nav">
   
 
-        <div>
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/15/2018年常总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="车子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/paladin.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="车子的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                2018年常总结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-15T21:31:09+08:00">
+                2019-01-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
           
           
+
+          
+
+          
+
+          
+
         </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
       
         <h1 id="关于年初的坑"><a href="#关于年初的坑" class="headerlink" title="关于年初的坑"></a>关于年初的坑</h1><ul>
 <li>java编程思想线程部分放弃了.java虚拟机也看完了,另外看完了重构和大话设计模式.</li>
@@ -207,187 +442,344 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/15/2018年常总结/" data-id="cjr8k4d850004bys6qkbnz5vg" class="article-share-link">分享</a>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/03/java中的classpath路径问题/" rel="next" title="Classpath问题">
+                <i class="fa fa-chevron-left"></i> Classpath问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/23/设计模式总结/" rel="prev" title="设计模式总结">
+                设计模式总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
       
       
     </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2019/01/23/设计模式总结/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          设计模式总结
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2018/03/03/java中的classpath路径问题/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">Classpath问题</div>
-    </a>
-  
-</nav>
-
-  
-</article>
+  </article>
 
 
 
-</section>
-        
-          <aside id="sidebar">
-  
-    <div class="widget-wrap">
-  <h3 class="widget-title"></h3>
-  <div class="widget">
-    <h1 class="blog-title">车子的个人博客</h1>
-    <h2 class="blog-subtitle">博客搭建中</h2>
-    <ul class="blog-link">
-     
-          <a href="/" title="Home">
-            <li>主页</li>
-          </a>
-        
-          <a href="/archives" title="Archives">
-            <li>归档</li>
-          </a>
-        
-          <a href="/categories" title="Categories">
-            <li>分类</li>
-          </a>
-        
-          <a href="/tags" title="Tags">
-            <li>标签</li>
-          </a>
-        
-    </ul>
-  </div>
-</div>
-
-  
-    <div class="widget-wrap">
-  <h3 class="widget-title"></h3>
-  <div class="widget">
-    <img class="avatar" src="/images/header.jpg">
-    <h2 class="author">车子</h2>
-    <h3 class="description">个人玩耍</h3>
-    <div class="count-box">
-      <a href="/archives"><div><strong>7</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>6</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>5</strong><br>标签</div></a>
-    </div>
-
-
-
-    <div class="social-link">
-      
-        <a class="hvr-bounce-in" href="http://github.com/ytche" target="_blank" title="Github">
-          Github
-        </a>
-      
-    </div>
-
-    <div class="friend-link">
-      <h2>友情链接</h2>
-      
-        <a class="hvr-bounce-in" href="http://blog.shanamaid.top/" target="_blank" title="ShanaMaid">
-          ShanaMaid
-        </a>
+    <div class="post-spread">
       
     </div>
   </div>
-</div>
 
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy;2018 - 2019 车子<br>
-      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
-      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
-      
-    </div>
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
     
   </div>
-</footer>
-    </div>
-    
-
-<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
-<script>
-new WOW().init();
-</script>   
 
 
-  <link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
-  <script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-  <link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
-  <script src="/plugin/galmenu/GalMenu.js"></script>
-  <div class="GalMenu GalDropDown">
-      <div class="circle" id="gal">
-        <div class="ring">
-          
-            <a href="/" title="" class="menuItem">首页</a>
-          
-            <a href="/tags" title="" class="menuItem">标签</a>
-          
-            <a href="/categories" title="" class="menuItem">分类</a>
-          
-            <a href="/archives" title="" class="menuItem">归档</a>
-          
-            <a href="/xxxxxxxxx" title="" class="menuItem">xxx</a>
-          
-            <a href="/xxxxxxx" title="" class="menuItem">xxxx</a>
-          
         </div>
         
-          <audio id="audio" src="#"></audio>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/paladin.png"
+               alt="车子" />
+          <p class="site-author-name" itemprop="name">车子</p>
+           
+              <p class="site-description motion-element" itemprop="description">严重拖延症患者</p>
+          
+        </div>
+        <nav class="site-state motion-element">
         
-      </div> 
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#关于年初的坑"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x5173;&#x4E8E;&#x5E74;&#x521D;&#x7684;&#x5751;" class="headerlink" title="&#x5173;&#x4E8E;&#x5E74;&#x521D;&#x7684;&#x5751;"></a>&#x5173;&#x4E8E;&#x5E74;&#x521D;&#x7684;&#x5751;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#18年的其他回顾"><span class="nav-number">2.</span> <span class="nav-text"><a href="#18&#x5E74;&#x7684;&#x5176;&#x4ED6;&#x56DE;&#x987E;" class="headerlink" title="18&#x5E74;&#x7684;&#x5176;&#x4ED6;&#x56DE;&#x987E;"></a>18&#x5E74;&#x7684;&#x5176;&#x4ED6;&#x56DE;&#x987E;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#勉强拼凑的收获"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#&#x52C9;&#x5F3A;&#x62FC;&#x51D1;&#x7684;&#x6536;&#x83B7;" class="headerlink" title="&#x52C9;&#x5F3A;&#x62FC;&#x51D1;&#x7684;&#x6536;&#x83B7;"></a>&#x52C9;&#x5F3A;&#x62FC;&#x51D1;&#x7684;&#x6536;&#x83B7;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不足"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#&#x4E0D;&#x8DB3;" class="headerlink" title="&#x4E0D;&#x8DB3;"></a>&#x4E0D;&#x8DB3;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于工作"><span class="nav-number">2.3.</span> <span class="nav-text"><a href="#&#x5173;&#x4E8E;&#x5DE5;&#x4F5C;" class="headerlink" title="&#x5173;&#x4E8E;&#x5DE5;&#x4F5C;."></a>&#x5173;&#x4E8E;&#x5DE5;&#x4F5C;.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于游戏"><span class="nav-number">2.4.</span> <span class="nav-text"><a href="#&#x5173;&#x4E8E;&#x6E38;&#x620F;" class="headerlink" title="&#x5173;&#x4E8E;&#x6E38;&#x620F;"></a>&#x5173;&#x4E8E;&#x6E38;&#x620F;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于学习"><span class="nav-number">2.5.</span> <span class="nav-text"><a href="#&#x5173;&#x4E8E;&#x5B66;&#x4E60;" class="headerlink" title="&#x5173;&#x4E8E;&#x5B66;&#x4E60;"></a>&#x5173;&#x4E8E;&#x5B66;&#x4E60;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于身体和健康"><span class="nav-number">2.6.</span> <span class="nav-text"><a href="#&#x5173;&#x4E8E;&#x8EAB;&#x4F53;&#x548C;&#x5065;&#x5EB7;" class="headerlink" title="&#x5173;&#x4E8E;&#x8EAB;&#x4F53;&#x548C;&#x5065;&#x5EB7;"></a>&#x5173;&#x4E8E;&#x8EAB;&#x4F53;&#x548C;&#x5065;&#x5EB7;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于父母和姐姐"><span class="nav-number">2.7.</span> <span class="nav-text"><a href="#&#x5173;&#x4E8E;&#x7236;&#x6BCD;&#x548C;&#x59D0;&#x59D0;" class="headerlink" title="&#x5173;&#x4E8E;&#x7236;&#x6BCD;&#x548C;&#x59D0;&#x59D0;"></a>&#x5173;&#x4E8E;&#x7236;&#x6BCD;&#x548C;&#x59D0;&#x59D0;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于经济"><span class="nav-number">2.8.</span> <span class="nav-text"><a href="#&#x5173;&#x4E8E;&#x7ECF;&#x6D4E;" class="headerlink" title="&#x5173;&#x4E8E;&#x7ECF;&#x6D4E;"></a>&#x5173;&#x4E8E;&#x7ECF;&#x6D4E;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于其他"><span class="nav-number">2.9.</span> <span class="nav-text"><a href="#&#x5173;&#x4E8E;&#x5176;&#x4ED6;" class="headerlink" title="&#x5173;&#x4E8E;&#x5176;&#x4ED6;"></a>&#x5173;&#x4E8E;&#x5176;&#x4ED6;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2019年挖坑"><span class="nav-number">3.</span> <span class="nav-text"><a href="#2019&#x5E74;&#x6316;&#x5751;" class="headerlink" title="2019&#x5E74;&#x6316;&#x5751;."></a>2019&#x5E74;&#x6316;&#x5751;.</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#硬性坑"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#&#x786C;&#x6027;&#x5751;" class="headerlink" title="&#x786C;&#x6027;&#x5751;"></a>&#x786C;&#x6027;&#x5751;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软性坑"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#&#x8F6F;&#x6027;&#x5751;" class="headerlink" title="&#x8F6F;&#x6027;&#x5751;"></a>&#x8F6F;&#x6027;&#x5751;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结一下"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x603B;&#x7ED3;&#x4E00;&#x4E0B;" class="headerlink" title="&#x603B;&#x7ED3;&#x4E00;&#x4E0B;"></a>&#x603B;&#x7ED3;&#x4E00;&#x4E0B;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">车子</span>
 </div>
-<div id="overlay" style="opacity: 1; cursor: pointer;"></div>
-  <script type="text/javascript">var items = document.querySelectorAll('.menuItem');
-    for (var i = 0,
-    l = items.length; i < l; i++) {
-      items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
-      items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
-    }</script>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
 <script type="text/javascript">
-  $(document).ready(function() {
-    $('body').GalMenu({
-      'menu': 'GalDropDown'
-    })
-  });
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
 </script>
 
-  <section class="hidden-xs"> 
-  <ul class="cb-slideshow"> 
-    <li><span>苟利</span></li> 
-    <li><span>国家</span></li> 
-    <li><span>生死以</span></li> 
-    <li><span>岂能</span></li> 
-    <li><span>祸福</span></li> 
-    <li><span>趋避之</span></li> 
-  </ul>
-</section>
-<script src="/js/script.js"></script>
 
 
 
-  </div>
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
 </body>
 </html>
