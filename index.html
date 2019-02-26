@@ -173,7 +173,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">一个丰富的人生比正确的人生更有意义</p>
+        <p class="site-subtitle">以自己喜欢的方式去度过一生</p>
       
   </div>
 
@@ -998,13 +998,13 @@
       
         
           
-            <h1 id="java中的classpath路径问题"><a href="#java中的classpath路径问题" class="headerlink" title="java中的classpath路径问题"></a>java中的classpath路径问题</h1><p>最近项目中有个调别的同事接口的地址频繁变更,就修改到配置文件中,方便部署以后修改.<br>config文件放在项目的resource文件夹下,resource文件夹下的文件在打包的时候会自动copy到项目的classPath目录下.<br><img src="http://p5028a34g.bkt.clouddn.com/java/class%E8%B7%AF%E5%BE%84%E9%85%8D%E7%BD%AE/resource%E6%96%87%E4%BB%B6%E5%A4%B9.png" alt="resource文件夹下添加config文件"><br>写完以后在在单元测试中测试:</p>
+            <h1 id="java中的classpath路径问题"><a href="#java中的classpath路径问题" class="headerlink" title="java中的classpath路径问题"></a>java中的classpath路径问题</h1><p>最近项目中有个调别的同事接口的地址频繁变更,就修改到配置文件中,方便部署以后修改.<br>config文件放在项目的resource文件夹下,resource文件夹下的文件在打包的时候会自动copy到项目的classPath目录下.<br><img src="http://img.bigbear.site/java/class%E8%B7%AF%E5%BE%84%E9%85%8D%E7%BD%AE/resource%E6%96%87%E4%BB%B6%E5%A4%B9.png" alt="resource文件夹下添加config文件"><br>写完以后在在单元测试中测试:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span>  <span class="title">testGetProperty</span><span class="params">()</span></span>&#123;</span><br><span class="line">       String value=FileUtil.getPropertyByName(<span class="string">"rest.url"</span>,<span class="string">""</span>,<span class="string">"config"</span> +</span><br><span class="line">               <span class="string">".properties"</span>);</span><br><span class="line">       System.out.println(value);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<p>提示找不到配置文件.<br>查了一下想起来,maven管理的项目,单元测试的时候文件也需要放到test文件夹下的resource里<br>于是把resource文件夹copy到了test下.<br><img src="http://p5028a34g.bkt.clouddn.com/java/class%E8%B7%AF%E5%BE%84%E9%85%8D%E7%BD%AE/test%E6%96%87%E4%BB%B6%E5%A4%B9.png" alt="test下添加resource文件夹"><br>测试,还是提示找不到配置文件,不得其姐,于是google一下,看到了如下病理解释:<br><img src="http://p5028a34g.bkt.clouddn.com/java/class%E8%B7%AF%E5%BE%84%E9%85%8D%E7%BD%AE/stackoverflow.png" alt="classPath路径问题"><br><a href="https://stackoverflow.com/questions/2865533/classpath-trouble-using-junit-with-both-eclipse-and-maven" target="_blank" rel="noopener">stackoverflow原问题地址</a></p>
+<p>提示找不到配置文件.<br>查了一下想起来,maven管理的项目,单元测试的时候文件也需要放到test文件夹下的resource里<br>于是把resource文件夹copy到了test下.<br><img src="http://img.bigbear.site/java/class%E8%B7%AF%E5%BE%84%E9%85%8D%E7%BD%AE/test%E6%96%87%E4%BB%B6%E5%A4%B9.png" alt="test下添加resource文件夹"><br>测试,还是提示找不到配置文件,不得其姐,于是google一下,看到了如下病理解释:<br><img src="http://img.bigbear.site/java/class%E8%B7%AF%E5%BE%84%E9%85%8D%E7%BD%AE/stackoverflow.png" alt="classPath路径问题"><br><a href="https://stackoverflow.com/questions/2865533/classpath-trouble-using-junit-with-both-eclipse-and-maven" target="_blank" rel="noopener">stackoverflow原问题地址</a></p>
 <p>按照回答的阐述,getResourceAsStream(“config.xml”)会在文件所处包内查找配置文件,如果要找到classpath下的文件的话,应该加上”/“才能定位到classpath根目录,于是修改了一下单元测试方法,加上了”/“,</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span>  <span class="title">testGetProperty</span><span class="params">()</span></span>&#123;</span><br><span class="line">       String value=FileUtil.getPropertyByName(<span class="string">"rest.url"</span>,<span class="string">""</span>,<span class="string">"/config"</span> +</span><br><span class="line">               <span class="string">".properties"</span>);</span><br><span class="line">       System.out.println(value);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <p>测试通过.</p>
-<p>出于怀疑精神,决定去查一下是否真像回答中的一样没有”/“的时候会在包下找文件路径,于是把配置文件copy到了编译后的class所在包的文件夹下,并把”/“去掉:<br><img src="http://p5028a34g.bkt.clouddn.com/java/class%E8%B7%AF%E5%BE%84%E9%85%8D%E7%BD%AE/test-class%E6%B7%BB%E5%8A%A0%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png" alt="target/test-class文件夹下添加配置文件"><br>运行测试<br><img src="http://p5028a34g.bkt.clouddn.com/java/class%E8%B7%AF%E5%BE%84%E9%85%8D%E7%BD%AE/testsuccess.png" alt="测试成功"><br>通过,歪果仁诚不欺我</p>
+<p>出于怀疑精神,决定去查一下是否真像回答中的一样没有”/“的时候会在包下找文件路径,于是把配置文件copy到了编译后的class所在包的文件夹下,并把”/“去掉:<br><img src="http://img.bigbear.site/java/class%E8%B7%AF%E5%BE%84%E9%85%8D%E7%BD%AE/test-class%E6%B7%BB%E5%8A%A0%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png" alt="target/test-class文件夹下添加配置文件"><br>运行测试<br><img src="http://img.bigbear.site/java/class%E8%B7%AF%E5%BE%84%E9%85%8D%E7%BD%AE/testsuccess.png" alt="测试成功"><br>通过,歪果仁诚不欺我</p>
 
           
         
@@ -1765,7 +1765,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1774,7 +1774,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
