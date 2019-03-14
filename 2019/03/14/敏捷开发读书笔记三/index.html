@@ -1,0 +1,790 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="敏捷开发," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="第七章 什么是敏捷设计 软件项目的设计是一个抽象的概念.它和程序的概括形状/结构以及每一个模块/类和方法的详细形状和结构有关.可以用不同的媒介去描述他,但是他最终体现为源代码.源代码就是设计. 敏捷设计是一个过程,而不是一个事件.它是一个持续的应用原则/模式以及实践来改进软件的结构和可读性的过程.它致力于保持系统设计在任何时间都能尽可能得简单/干净和富有表现力.  实际上满足工程设计标准的唯一软">
+<meta name="keywords" content="敏捷开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="敏捷开发读书笔记三">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/敏捷开发读书笔记三/index.html">
+<meta property="og:site_name" content="车子的个人博客">
+<meta property="og:description" content="第七章 什么是敏捷设计 软件项目的设计是一个抽象的概念.它和程序的概括形状/结构以及每一个模块/类和方法的详细形状和结构有关.可以用不同的媒介去描述他,但是他最终体现为源代码.源代码就是设计. 敏捷设计是一个过程,而不是一个事件.它是一个持续的应用原则/模式以及实践来改进软件的结构和可读性的过程.它致力于保持系统设计在任何时间都能尽可能得简单/干净和富有表现力.  实际上满足工程设计标准的唯一软">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-14T14:48:04.536Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="敏捷开发读书笔记三">
+<meta name="twitter:description" content="第七章 什么是敏捷设计 软件项目的设计是一个抽象的概念.它和程序的概括形状/结构以及每一个模块/类和方法的详细形状和结构有关.可以用不同的媒介去描述他,但是他最终体现为源代码.源代码就是设计. 敏捷设计是一个过程,而不是一个事件.它是一个持续的应用原则/模式以及实践来改进软件的结构和可读性的过程.它致力于保持系统设计在任何时间都能尽可能得简单/干净和富有表现力.  实际上满足工程设计标准的唯一软">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/敏捷开发读书笔记三/"/>
+
+
+
+
+
+  <title> 敏捷开发读书笔记三 | 车子的个人博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">车子的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">以自己喜欢的方式去度过一生</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/敏捷开发读书笔记三/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="车子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/paladin.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="车子的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                敏捷开发读书笔记三
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T22:48:04+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/敏捷软件开发/" itemprop="url" rel="index">
+                    <span itemprop="name">敏捷软件开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="第七章-什么是敏捷设计"><a href="#第七章-什么是敏捷设计" class="headerlink" title="第七章 什么是敏捷设计"></a>第七章 什么是敏捷设计</h1><ul>
+<li>软件项目的设计是一个抽象的概念.它和程序的概括形状/结构以及每一个模块/类和方法的详细形状和结构有关.可以用不同的媒介去描述他,但是他最终体现为源代码.源代码就是设计.</li>
+<li><p>敏捷设计是一个过程,而不是一个事件.它是一个持续的应用原则/模式以及实践来改进软件的结构和可读性的过程.它致力于保持系统设计在任何时间都能尽可能得简单/干净和富有表现力.</p>
+</li>
+<li><p>实际上满足工程设计标准的唯一软件文档,就是源代码清单.–Jack Reeves</p>
+</li>
+<li>UML图只描绘了设计的一些部分,但是它并不是设计.</li>
+<li>敏捷开发人员对待软件设计的态度要像外科医生对待消毒过程的态度是一样的.</li>
+<li>设计需要保持干净/简单,并且由于源代码是设计最重要的展示,所以它同样需要保持干净.职业特性要求我们,作为软件开发人员,不能忍受代码腐化.</li>
+</ul>
+<h2 id="软件腐化的坏味道"><a href="#软件腐化的坏味道" class="headerlink" title="软件腐化的坏味道"></a>软件腐化的坏味道</h2><ol>
+<li>僵化性(Rigidity):很难对系统进行改动,每个改动都会迫使许多对系统其它部分的其它改动.</li>
+<li>脆弱性(Fragility):对系统的改动会导致系统中和改动的地方在概念上无关的许多地方出现问题.</li>
+<li>牢固性(Immobility):很难解开系统的纠结,使之成为一些可在其它系统中重用的组件.</li>
+<li><p>粘滞性(Visosity):做正确的事情比做错误的事情要困难.</p>
+<ul>
+<li>粘滞性有两种形式:软件的粘滞性和环境的粘滞性</li>
+</ul>
+</li>
+<li><p>不必要的复杂性(Needless Complexity):设计中含有不具有任何直接好处的基础结构.</p>
+</li>
+<li>不必要的重复(NeedLess Repetition):设计中包含有重复结构,而该重复的结构本可以使用单一的抽象进行统一.</li>
+<li>晦涩性(Opacity):很难阅读/理解.没有很好的表现意图.<ul>
+<li>开发人员必须站在代码阅读者的位置.</li>
+</ul>
+</li>
+</ol>
+<h2 id="软件腐化的原因"><a href="#软件腐化的原因" class="headerlink" title="软件腐化的原因"></a>软件腐化的原因</h2><ul>
+<li>变化而又改动急迫的需求/修改人员对原设计思路不熟悉/以上变化的日积月累</li>
+<li>我们需要意识到,需求是项目中最不稳定的要素.大多数软件项目中最不稳定的东西就是需求.需求处在一个持续变动的状态之中.</li>
+<li>如果设计因为持续/大量的需求变化而失败,就表明设计和实践本身是有缺陷的.</li>
+</ul>
+<h2 id="敏捷团队不允许代码腐坏"><a href="#敏捷团队不允许代码腐坏" class="headerlink" title="敏捷团队不允许代码腐坏"></a>敏捷团队不允许代码腐坏</h2><p>敏捷团队依靠变化来获取活力.团队几乎不进行预先设计,不需要一个成熟的初始设计.团队更愿意保持系统设计尽可能的干净/简单,并使用许多的单元测试和验收测试作为支援.</p>
+<p>团队在开始设计的时候以最简单的方法编写.直到需求最终明确变化时,他们才修改模块的设计,是之对该变化保持弹性.</p>
+<h2 id="敏捷开发人员如何知道做什么"><a href="#敏捷开发人员如何知道做什么" class="headerlink" title="敏捷开发人员如何知道做什么."></a>敏捷开发人员如何知道做什么.</h2><ul>
+<li>遵循敏捷实践去发现问题(一二章内容)</li>
+<li>应用设计原则去诊断问题(单一职责/里式替换/依赖倒转/开闭/接口隔离)</li>
+<li>应用适当的设计模式去解决问题.</li>
+</ul>
+<h1 id="第八章-单一职责原则-SRP"><a href="#第八章-单一职责原则-SRP" class="headerlink" title="第八章 单一职责原则(SRP)"></a>第八章 单一职责原则(SRP)</h1><blockquote>
+<p><strong>单一职责原则</strong>:就一个类而言,应该仅有一个引起它变化的原因.</p>
+</blockquote>
+<ul>
+<li>如果一个类承担过多的职责,那么引起它变化的原因就会有多个.多个职责在一个类中后合在一起会导致脆弱(fragile)的设计.在发生变化的时候可能会遭受意想不到的破坏.</li>
+<li>什么是职责?在SRP中,我们把职责定义为”变化的原因”.如果你能够想到多于一个的动机去改变一个类,那么这个类就具有多于一个的职责.</li>
+<li>每一个职责都是一个变化的轴线. 该变化会反应为类的职责的变化.变化的轴线仅当变化实际发生时才具有真正的意义.如果没有征兆,那么去应用SRP或者其他原则都是不明智的.</li>
+<li>SRP是所有原则中最简单的之一,也是最难正确运用的之一.我们会自然地把职责结合在一起.软件设计真正要做的许多内容,就是发现职责并把这些职责相互分离.</li>
+</ul>
+<h1 id="第九章-开放-关闭原则-OCP"><a href="#第九章-开放-关闭原则-OCP" class="headerlink" title="第九章 开放-关闭原则(OCP)"></a>第九章 开放-关闭原则(OCP)</h1><blockquote>
+<p><strong>开放-关闭原则</strong>:软件实体(类,模块,函数等等)应该是可以扩展的,但是不可以修改.</p>
+</blockquote>
+<ul>
+<li><p>如果程序中因为一处修改就发生连锁反应,那么它的设计就有僵化性的坏味道.OCP建议在发生变化的时候,对系统的设计进行重构,确保以后在进行同样的改动的时候能够只增加新的代码,而不需要做更多的修改.</p>
+</li>
+<li><p>STARTEGY(策略)模式和TEMPLATE METHOD(模板方法)模式是实现OCP常用的方法.</p>
+</li>
+<li><p>无论模块多么封闭,都存在一些无法对之封闭的变化.设计人员必须对于他设计的模块应该对那种变化封闭做出选择.</p>
+</li>
+<li><p>封闭建立在抽象的基础上.</p>
+</li>
+<li><p>OCP的应用应该限定在可能发生的变化上(原因:OCP的代价是昂贵的,正确的抽象需要花费开发时间和精力,抽象也会增加系统的复杂性,开发人员有能力处理的抽象是有限的)</p>
+</li>
+<li><p>什么时候考虑/适合应用OCP</p>
+<blockquote>
+<p>变化真正发生的时候.</p>
+<ul>
+<li><strong>只受一次愚弄</strong>.最初编写代码的时候,假设变化是不发生的.当变化发生的时候,重构系统,创建抽象隔离以后的同类变化.</li>
+<li><strong>刺激变化</strong>.通过编写测试/短迭代周期/首先开发重要特性/尽早的经常的发布软件.</li>
+</ul>
+</blockquote>
+</li>
+<li><p>遵循OCP原则可以带来面向对象技术所生成的巨大好处(灵活性,可重用性和可维护性)</p>
+</li>
+<li>抽象应该针对程序中频繁变化的那部分.</li>
+<li>拒绝不成熟的抽象和抽象本身一样重要.</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/敏捷开发/" rel="tag"># 敏捷开发</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/10/敏捷开发读书笔记二/" rel="next" title="敏捷开发读书笔记二">
+                <i class="fa fa-chevron-left"></i> 敏捷开发读书笔记二
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/paladin.png"
+               alt="车子" />
+          <p class="site-author-name" itemprop="name">车子</p>
+           
+              <p class="site-description motion-element" itemprop="description">严重拖延症患者</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第七章-什么是敏捷设计"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x7B2C;&#x4E03;&#x7AE0;-&#x4EC0;&#x4E48;&#x662F;&#x654F;&#x6377;&#x8BBE;&#x8BA1;" class="headerlink" title="&#x7B2C;&#x4E03;&#x7AE0; &#x4EC0;&#x4E48;&#x662F;&#x654F;&#x6377;&#x8BBE;&#x8BA1;"></a>&#x7B2C;&#x4E03;&#x7AE0; &#x4EC0;&#x4E48;&#x662F;&#x654F;&#x6377;&#x8BBE;&#x8BA1;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#软件腐化的坏味道"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#&#x8F6F;&#x4EF6;&#x8150;&#x5316;&#x7684;&#x574F;&#x5473;&#x9053;" class="headerlink" title="&#x8F6F;&#x4EF6;&#x8150;&#x5316;&#x7684;&#x574F;&#x5473;&#x9053;"></a>&#x8F6F;&#x4EF6;&#x8150;&#x5316;&#x7684;&#x574F;&#x5473;&#x9053;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软件腐化的原因"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#&#x8F6F;&#x4EF6;&#x8150;&#x5316;&#x7684;&#x539F;&#x56E0;" class="headerlink" title="&#x8F6F;&#x4EF6;&#x8150;&#x5316;&#x7684;&#x539F;&#x56E0;"></a>&#x8F6F;&#x4EF6;&#x8150;&#x5316;&#x7684;&#x539F;&#x56E0;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#敏捷团队不允许代码腐坏"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#&#x654F;&#x6377;&#x56E2;&#x961F;&#x4E0D;&#x5141;&#x8BB8;&#x4EE3;&#x7801;&#x8150;&#x574F;" class="headerlink" title="&#x654F;&#x6377;&#x56E2;&#x961F;&#x4E0D;&#x5141;&#x8BB8;&#x4EE3;&#x7801;&#x8150;&#x574F;"></a>&#x654F;&#x6377;&#x56E2;&#x961F;&#x4E0D;&#x5141;&#x8BB8;&#x4EE3;&#x7801;&#x8150;&#x574F;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#敏捷开发人员如何知道做什么"><span class="nav-number">1.4.</span> <span class="nav-text"><a href="#&#x654F;&#x6377;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x5982;&#x4F55;&#x77E5;&#x9053;&#x505A;&#x4EC0;&#x4E48;" class="headerlink" title="&#x654F;&#x6377;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x5982;&#x4F55;&#x77E5;&#x9053;&#x505A;&#x4EC0;&#x4E48;."></a>&#x654F;&#x6377;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x5982;&#x4F55;&#x77E5;&#x9053;&#x505A;&#x4EC0;&#x4E48;.</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第八章-单一职责原则-SRP"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x7B2C;&#x516B;&#x7AE0;-&#x5355;&#x4E00;&#x804C;&#x8D23;&#x539F;&#x5219;-SRP" class="headerlink" title="&#x7B2C;&#x516B;&#x7AE0; &#x5355;&#x4E00;&#x804C;&#x8D23;&#x539F;&#x5219;(SRP)"></a>&#x7B2C;&#x516B;&#x7AE0; &#x5355;&#x4E00;&#x804C;&#x8D23;&#x539F;&#x5219;(SRP)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第九章-开放-关闭原则-OCP"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x7B2C;&#x4E5D;&#x7AE0;-&#x5F00;&#x653E;-&#x5173;&#x95ED;&#x539F;&#x5219;-OCP" class="headerlink" title="&#x7B2C;&#x4E5D;&#x7AE0; &#x5F00;&#x653E;-&#x5173;&#x95ED;&#x539F;&#x5219;(OCP)"></a>&#x7B2C;&#x4E5D;&#x7AE0; &#x5F00;&#x653E;-&#x5173;&#x95ED;&#x539F;&#x5219;(OCP)</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">车子</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
