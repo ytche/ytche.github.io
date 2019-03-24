@@ -87,18 +87,18 @@
 
 
 
-<meta name="description" content="数据库mysqlclose update safe model1SET SQL_SAFE_UPDATES = 0; linuxscp传送文件1scp -P27580  ROOT.war  root@192.168.111.23:/root 如果需要对应端口 使用-P参数 P要大写 mac命令开启sshd服务1/usr/sbin/sshd -f /etc/ssh/sshd_config">
+<meta name="description" content="数据库mysqlclose update safe model1SET SQL_SAFE_UPDATES = 0; linux命令相关scp传送文件1scp -P27580  ROOT.war  root@192.168.111.23:/root 如果需要对应端口 使用-P参数 P要大写 查看系统版本1lsb_release -a 结果12345LSB Version:	:base-4.0-amd">
 <meta name="keywords" content="日常">
 <meta property="og:type" content="article">
 <meta property="og:title" content="常用命令记录">
 <meta property="og:url" content="http://yoursite.com/2018/01/11/常用命令/index.html">
 <meta property="og:site_name" content="车子的个人博客">
-<meta property="og:description" content="数据库mysqlclose update safe model1SET SQL_SAFE_UPDATES = 0; linuxscp传送文件1scp -P27580  ROOT.war  root@192.168.111.23:/root 如果需要对应端口 使用-P参数 P要大写 mac命令开启sshd服务1/usr/sbin/sshd -f /etc/ssh/sshd_config">
+<meta property="og:description" content="数据库mysqlclose update safe model1SET SQL_SAFE_UPDATES = 0; linux命令相关scp传送文件1scp -P27580  ROOT.war  root@192.168.111.23:/root 如果需要对应端口 使用-P参数 P要大写 查看系统版本1lsb_release -a 结果12345LSB Version:	:base-4.0-amd">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-31T08:20:42.870Z">
+<meta property="og:updated_time" content="2019-03-19T08:40:30.175Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常用命令记录">
-<meta name="twitter:description" content="数据库mysqlclose update safe model1SET SQL_SAFE_UPDATES = 0; linuxscp传送文件1scp -P27580  ROOT.war  root@192.168.111.23:/root 如果需要对应端口 使用-P参数 P要大写 mac命令开启sshd服务1/usr/sbin/sshd -f /etc/ssh/sshd_config">
+<meta name="twitter:description" content="数据库mysqlclose update safe model1SET SQL_SAFE_UPDATES = 0; linux命令相关scp传送文件1scp -P27580  ROOT.war  root@192.168.111.23:/root 如果需要对应端口 使用-P参数 P要大写 查看系统版本1lsb_release -a 结果12345LSB Version:	:base-4.0-amd">
 
 
 
@@ -334,8 +334,12 @@
 
       
         <h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><h2 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h2><h3 id="close-update-safe-model"><a href="#close-update-safe-model" class="headerlink" title="close update safe model"></a>close update safe model</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SET</span> SQL_SAFE_UPDATES = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
-<h2 id="linux"><a href="#linux" class="headerlink" title="linux"></a>linux</h2><h3 id="scp传送文件"><a href="#scp传送文件" class="headerlink" title="scp传送文件"></a>scp传送文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -P27580  ROOT.war  root@192.168.111.23:/root</span><br></pre></td></tr></table></figure>
+<h2 id="linux"><a href="#linux" class="headerlink" title="linux"></a>linux</h2><h3 id="命令相关"><a href="#命令相关" class="headerlink" title="命令相关"></a>命令相关</h3><h4 id="scp传送文件"><a href="#scp传送文件" class="headerlink" title="scp传送文件"></a>scp传送文件</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -P27580  ROOT.war  root@192.168.111.23:/root</span><br></pre></td></tr></table></figure>
 <p>如果需要对应端口 使用-P参数 P要大写</p>
+<h4 id="查看系统版本"><a href="#查看系统版本" class="headerlink" title="查看系统版本"></a>查看系统版本</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsb_release -a</span><br></pre></td></tr></table></figure>
+<p>结果<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">LSB Version:	:base-4.0-amd64:base-4.0-noarch:core-4.0-amd64:core-4.0-noarch</span><br><span class="line">Distributor ID:	CentOS</span><br><span class="line">Description:	CentOS release 6.9 (Final)</span><br><span class="line">Release:	6.9</span><br><span class="line">Codename:	Final</span><br></pre></td></tr></table></figure></p>
+<h4 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shutdown -r now</span><br></pre></td></tr></table></figure>
+<h3 id="文件相关"><a href="#文件相关" class="headerlink" title="文件相关"></a>文件相关</h3><p>环境变量设置文件:/etc/profile</p>
 <h2 id="mac命令"><a href="#mac命令" class="headerlink" title="mac命令"></a>mac命令</h2><h3 id="开启sshd服务"><a href="#开启sshd服务" class="headerlink" title="开启sshd服务"></a>开启sshd服务</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/sbin/sshd -f /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure>
 
       
@@ -457,7 +461,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -475,7 +479,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -510,7 +514,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x6570;&#x636E;&#x5E93;" class="headerlink" title="&#x6570;&#x636E;&#x5E93;"></a>&#x6570;&#x636E;&#x5E93;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#close-update-safe-model"><span class="nav-number">1.1.1.</span> <span class="nav-text"><a href="#close-update-safe-model" class="headerlink" title="close update safe model"></a>close update safe model</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#linux"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#linux" class="headerlink" title="linux"></a>linux</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#scp传送文件"><span class="nav-number">1.2.1.</span> <span class="nav-text"><a href="#scp&#x4F20;&#x9001;&#x6587;&#x4EF6;" class="headerlink" title="scp&#x4F20;&#x9001;&#x6587;&#x4EF6;"></a>scp&#x4F20;&#x9001;&#x6587;&#x4EF6;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mac命令"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#mac&#x547D;&#x4EE4;" class="headerlink" title="mac&#x547D;&#x4EE4;"></a>mac&#x547D;&#x4EE4;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开启sshd服务"><span class="nav-number">1.3.1.</span> <span class="nav-text"><a href="#&#x5F00;&#x542F;sshd&#x670D;&#x52A1;" class="headerlink" title="&#x5F00;&#x542F;sshd&#x670D;&#x52A1;"></a>&#x5F00;&#x542F;sshd&#x670D;&#x52A1;</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x6570;&#x636E;&#x5E93;" class="headerlink" title="&#x6570;&#x636E;&#x5E93;"></a>&#x6570;&#x636E;&#x5E93;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#close-update-safe-model"><span class="nav-number">1.1.1.</span> <span class="nav-text"><a href="#close-update-safe-model" class="headerlink" title="close update safe model"></a>close update safe model</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#linux"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#linux" class="headerlink" title="linux"></a>linux</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令相关"><span class="nav-number">1.2.1.</span> <span class="nav-text"><a href="#&#x547D;&#x4EE4;&#x76F8;&#x5173;" class="headerlink" title="&#x547D;&#x4EE4;&#x76F8;&#x5173;"></a>&#x547D;&#x4EE4;&#x76F8;&#x5173;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#scp传送文件"><span class="nav-number">1.2.1.1.</span> <span class="nav-text"><a href="#scp&#x4F20;&#x9001;&#x6587;&#x4EF6;" class="headerlink" title="scp&#x4F20;&#x9001;&#x6587;&#x4EF6;"></a>scp&#x4F20;&#x9001;&#x6587;&#x4EF6;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看系统版本"><span class="nav-number">1.2.1.2.</span> <span class="nav-text"><a href="#&#x67E5;&#x770B;&#x7CFB;&#x7EDF;&#x7248;&#x672C;" class="headerlink" title="&#x67E5;&#x770B;&#x7CFB;&#x7EDF;&#x7248;&#x672C;"></a>&#x67E5;&#x770B;&#x7CFB;&#x7EDF;&#x7248;&#x672C;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重启"><span class="nav-number">1.2.1.3.</span> <span class="nav-text"><a href="#&#x91CD;&#x542F;" class="headerlink" title="&#x91CD;&#x542F;"></a>&#x91CD;&#x542F;</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件相关"><span class="nav-number">1.2.2.</span> <span class="nav-text"><a href="#&#x6587;&#x4EF6;&#x76F8;&#x5173;" class="headerlink" title="&#x6587;&#x4EF6;&#x76F8;&#x5173;"></a>&#x6587;&#x4EF6;&#x76F8;&#x5173;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mac命令"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#mac&#x547D;&#x4EE4;" class="headerlink" title="mac&#x547D;&#x4EE4;"></a>mac&#x547D;&#x4EE4;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开启sshd服务"><span class="nav-number">1.3.1.</span> <span class="nav-text"><a href="#&#x5F00;&#x542F;sshd&#x670D;&#x52A1;" class="headerlink" title="&#x5F00;&#x542F;sshd&#x670D;&#x52A1;"></a>&#x5F00;&#x542F;sshd&#x670D;&#x52A1;</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
