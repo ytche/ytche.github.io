@@ -79,24 +79,18 @@
 
 
 
-<meta name="description" content="敏捷开发读书笔记五command模式类图先行 templete method(模板方法)模式和strategy(中介者)模式 优先使用对象组合而不是类继承(老生常谈的问题) 模板方法模式和策略模式体现了继承和委托之间的区别.他们要解决的问题类似,但是模板方法模式利用继承解决问题,策略模式利用委托来解决问题  模板方法模式类图先行 策略模式类图先行  模板方法和策略模式都可以用来分离高层算法和低层具">
+<meta name="description" content="敏捷开发读书笔记六18章 数据库属于实现细节,应该尽可能的推迟考虑数据库.太多的应用程序跟数据库绑定在一起无法分离,就是因为一开始设计时就把数据库考虑在内了.  用例:用例是一种捕获/分析系统行为的方法.用例和XP中的用户素材的概念非常相似,用例就像用稍多细节详细描述的用户素材.当前迭代中要实现用户素材的时候,这种详尽细节就是合适的.  有的bug对程序员来说是很正常的,但是管理人员以及用户会对这">
 <meta name="keywords" content="敏捷开发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="敏捷开发读书笔记五">
-<meta property="og:url" content="http://yoursite.com/2019/03/30/敏捷开发读书笔记5五/index.html">
+<meta property="og:title" content="敏捷开发读书笔记六">
+<meta property="og:url" content="http://yoursite.com/2019/04/28/敏捷开发读书笔记六/index.html">
 <meta property="og:site_name" content="车子的个人博客">
-<meta property="og:description" content="敏捷开发读书笔记五command模式类图先行 templete method(模板方法)模式和strategy(中介者)模式 优先使用对象组合而不是类继承(老生常谈的问题) 模板方法模式和策略模式体现了继承和委托之间的区别.他们要解决的问题类似,但是模板方法模式利用继承解决问题,策略模式利用委托来解决问题  模板方法模式类图先行 策略模式类图先行  模板方法和策略模式都可以用来分离高层算法和低层具">
+<meta property="og:description" content="敏捷开发读书笔记六18章 数据库属于实现细节,应该尽可能的推迟考虑数据库.太多的应用程序跟数据库绑定在一起无法分离,就是因为一开始设计时就把数据库考虑在内了.  用例:用例是一种捕获/分析系统行为的方法.用例和XP中的用户素材的概念非常相似,用例就像用稍多细节详细描述的用户素材.当前迭代中要实现用户素材的时候,这种详尽细节就是合适的.  有的bug对程序员来说是很正常的,但是管理人员以及用户会对这">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://img.bigbear.site/agile-develop/command.png">
-<meta property="og:image" content="http://img.bigbear.site/agile-develop/TemplateMethod.png">
-<meta property="og:image" content="http://img.bigbear.site/agile-develop/strategy.webp">
-<meta property="og:image" content="http://img.bigbear.site/agile-develop/facade.png">
-<meta property="og:image" content="http://img.bigbear.site/agile-develop/mediator.png">
-<meta property="og:updated_time" content="2019-03-31T13:17:34.842Z">
+<meta property="og:updated_time" content="2019-04-28T15:09:41.953Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="敏捷开发读书笔记五">
-<meta name="twitter:description" content="敏捷开发读书笔记五command模式类图先行 templete method(模板方法)模式和strategy(中介者)模式 优先使用对象组合而不是类继承(老生常谈的问题) 模板方法模式和策略模式体现了继承和委托之间的区别.他们要解决的问题类似,但是模板方法模式利用继承解决问题,策略模式利用委托来解决问题  模板方法模式类图先行 策略模式类图先行  模板方法和策略模式都可以用来分离高层算法和低层具">
-<meta name="twitter:image" content="http://img.bigbear.site/agile-develop/command.png">
+<meta name="twitter:title" content="敏捷开发读书笔记六">
+<meta name="twitter:description" content="敏捷开发读书笔记六18章 数据库属于实现细节,应该尽可能的推迟考虑数据库.太多的应用程序跟数据库绑定在一起无法分离,就是因为一开始设计时就把数据库考虑在内了.  用例:用例是一种捕获/分析系统行为的方法.用例和XP中的用户素材的概念非常相似,用例就像用稍多细节详细描述的用户素材.当前迭代中要实现用户素材的时候,这种详尽细节就是合适的.  有的bug对程序员来说是很正常的,但是管理人员以及用户会对这">
 
 
 
@@ -126,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/30/敏捷开发读书笔记5五/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/04/28/敏捷开发读书笔记六/"/>
 
 
 
 
 
-  <title>敏捷开发读书笔记五 | 车子的个人博客</title>
+  <title>敏捷开发读书笔记六 | 车子的个人博客</title>
   
 
 
@@ -259,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/30/敏捷开发读书笔记5五/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/敏捷开发读书笔记六/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="车子">
@@ -276,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">敏捷开发读书笔记五</h1>
+          <h1 class="post-title" itemprop="name headline">敏捷开发读书笔记六</h1>
         
 
         <div class="post-meta">
@@ -288,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-30T00:00:00+08:00">
-                2019-03-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-28T22:49:17+08:00">
+                2019-04-28
               </time>
             
 
@@ -340,8 +334,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/03/30/敏捷开发读书笔记5五/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/30/敏捷开发读书笔记5五/" itemprop="commentCount"></span>
+                <a href="/2019/04/28/敏捷开发读书笔记六/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/04/28/敏捷开发读书笔记六/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -369,66 +363,27 @@
       
 
       
-        <h1 id="敏捷开发读书笔记五"><a href="#敏捷开发读书笔记五" class="headerlink" title="敏捷开发读书笔记五"></a>敏捷开发读书笔记五</h1><h2 id="command模式"><a href="#command模式" class="headerlink" title="command模式"></a>command模式</h2><p>类图先行<br><img src="http://img.bigbear.site/agile-develop/command.png" alt="类图"></p>
-<h2 id="templete-method-模板方法-模式和strategy-中介者-模式"><a href="#templete-method-模板方法-模式和strategy-中介者-模式" class="headerlink" title="templete method(模板方法)模式和strategy(中介者)模式"></a>templete method(模板方法)模式和strategy(中介者)模式</h2><ul>
-<li>优先使用对象组合而不是类继承(老生常谈的问题)</li>
-<li>模板方法模式和策略模式体现了继承和委托之间的区别.他们要解决的问题类似,但是模板方法模式利用继承解决问题,策略模式利用委托来解决问题</li>
+        <h1 id="敏捷开发读书笔记六"><a href="#敏捷开发读书笔记六" class="headerlink" title="敏捷开发读书笔记六"></a>敏捷开发读书笔记六</h1><h2 id="18章"><a href="#18章" class="headerlink" title="18章"></a>18章</h2><ul>
+<li><p>数据库属于实现细节,应该尽可能的推迟考虑数据库.太多的应用程序跟数据库绑定在一起无法分离,就是因为一开始设计时就把数据库考虑在内了.</p>
+</li>
+<li><p>用例:用例是一种捕获/分析系统行为的方法.用例和XP中的用户素材的概念非常相似,用例就像用稍多细节详细描述的用户素材.当前迭代中要实现用户素材的时候,这种详尽细节就是合适的.</p>
+</li>
+<li><p>有的bug对程序员来说是很正常的,但是管理人员以及用户会对这些bug感到恐惧.并且程序会给管理人员和用户留下”危险且不稳定”的印象.</p>
+</li>
+<li><p>过度信赖工具和过程以及低估智力和经验都是灾难的源泉.</p>
+</li>
+<li><p>在一次迭代开始,开发人员通常会聚集在一个白版钱,一起思考这次迭代中要实现的用户素材设计.这次会话的目的是发起思考活动,并未开发人员提供一个公共的/可以依据其展开工作的智力模型,而不是为了确定设计.</p>
+</li>
 </ul>
-<h3 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h3><p>类图先行<br><img src="http://img.bigbear.site/agile-develop/TemplateMethod.png" alt="类图"></p>
-<h3 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h3><p>类图先行<br><img src="http://img.bigbear.site/agile-develop/strategy.webp" alt="类图"></p>
-<ul>
-<li>模板方法和策略模式都可以用来分离高层算法和低层具体实现细节.都允许高层的算法独立于它的具体实现细节重用.</li>
+<h2 id="19章"><a href="#19章" class="headerlink" title="19章"></a>19章</h2><ul>
+<li><p>推迟有关数据库的细节是一项不常见的/但是却很值得的实践.</p>
+</li>
+<li><p>太多的UML图而没有验证他的代码是危险的.代码可以告诉你一些UML不能告诉你的设计的内容</p>
+</li>
 </ul>
-<h2 id="facade-外观-模式和mediator-中介者-模式"><a href="#facade-外观-模式和mediator-中介者-模式" class="headerlink" title="facade(外观)模式和mediator(中介者)模式"></a>facade(外观)模式和mediator(中介者)模式</h2><ul>
-<li>这两种模式都是把某种策略施加到另一组对象上,facade模式从上面施加策略,mediator模式从下面世家策略</li>
-<li>如果策略涉及范围广泛而且课件,可以使用facade模式从上面世家策略.如果策略隐藏并且具有针对性,mediator则是更好的选择.</li>
-<li>facade通常是约定的关注点,每个人都去使用facade而不关心其下隐藏的对象.mediator则对用户是隐藏的.他的策略是既成事实而非一项约定事务.</li>
-</ul>
-<h3 id="facade模式"><a href="#facade模式" class="headerlink" title="facade模式"></a>facade模式</h3><p>类图先行<br><img src="http://img.bigbear.site/agile-develop/facade.png" alt="类图"></p>
-<ul>
-<li>facade对用户隐藏了下层的复杂性,并且与用户约定必须通过facade来操作下层的操作而不能绕过.</li>
-<li>facade模式是明显且受限的施加策略.</li>
-</ul>
-<h3 id="mediator模式"><a href="#mediator模式" class="headerlink" title="mediator模式"></a>mediator模式</h3><p>类图先行<br><img src="http://img.bigbear.site/agile-develop/mediator.png" alt="类图"></p>
-<ul>
-<li>mediator模式以隐藏且不受限的方式来施加策略.</li>
-</ul>
-<h2 id="singleton模式-单例-和monostate模式"><a href="#singleton模式-单例-和monostate模式" class="headerlink" title="singleton模式(单例)和monostate模式"></a>singleton模式(单例)和monostate模式</h2><ul>
-<li>singleton和monostate都有单一的含义.singleton通过将构造函数私有化来维持单一实例,monostate通过将所有字段注册为静态字段(static)来保证所有实例都是统一状态.</li>
-<li>多数情况下,这两种模式的实施代价远低于它们的表达力带来的收益.</li>
-<li>sigleton强调结构上的单一性,只能创建一个实例.monostate强调行为上的单一性,所有实例操作的都是同一字段.</li>
-<li>如果希望通过派生去约束一个现存类,并且不介意他的所有调用者都必须调用instance()方法来获取访问权,那么singleton最合适的.</li>
-<li>如果希望类的单一性本质对使用者透明,或者希望使用单一对象的多态派生对象,那么monostate最合适.</li>
-</ul>
-<h3 id="singleton模式"><a href="#singleton模式" class="headerlink" title="singleton模式"></a>singleton模式</h3><p>优点:</p>
-<ul>
-<li>跨平台</li>
-<li>适用于任何类(只需要将构造函数私有并添加相应的static函数和变量)</li>
-<li>可以通过派生创建(可以创建一个给定类的sigleton子类)</li>
-<li>延迟求值(sigleton未使用的时候就不需要创建)</li>
-</ul>
-<p>缺点:</p>
-<ul>
-<li>摧毁方法未定义</li>
-<li>不能继承(singleton派生的子类不是sigleton)</li>
-<li>效率问题(instance方法中的if)</li>
-<li>不透明性(使用者知道操作的是sigleton对象)</li>
-</ul>
-<h3 id="monostate模式"><a href="#monostate模式" class="headerlink" title="monostate模式"></a>monostate模式</h3><p>优点:</p>
-<ul>
-<li>透明性(使用者不知道操作的是monostate对象)</li>
-<li>可派生性(monostate所有的派生类都是monostate)</li>
-<li>多态性(monostate的派生类可以overwrite父类的方法)</li>
-</ul>
-<p>缺点:</p>
-<ul>
-<li>不可转换性(普通类不能转换成monostate)</li>
-<li>效率问题</li>
-<li>内存占用(static变量,即使没有使用,也会占用内存)</li>
-<li>平台局限性</li>
-</ul>
-<h2 id="null-object模式"><a href="#null-object模式" class="headerlink" title="null object模式"></a>null object模式</h2><p>定义一个接口,实现接口时候分为null实现和implementation实现,当出现null情况的时候,返回null实现,从而避免琐碎的判空代码.</p>
-<p>null object的实现代价要高于它的收益.好像陷入了复杂性的badsmell?</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>目前为止还没有完成书中项目的编写,近三个周来比较痛苦.</p>
+<p>第一周试图生读完满是代码的19张内容,然后熟悉之后在回头写代码,花了好几天只推进了一丢丢,太难了.不是第一次吃这个亏了,js权威指南和java编程思想两本书都吃过这种地方的亏,还是没长记性.第三次了,写下来,引以为戒.</p>
+<p>纸上得来终觉浅,觉知此时要躬行.</p>
 
       
     </div>
@@ -459,8 +414,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/26/焦虑清单/" rel="next" title="焦虑清单">
-                <i class="fa fa-chevron-left"></i> 焦虑清单
+              <a href="/2019/04/22/投资实证3-2019-14-22/" rel="next" title="投资实证3-2019-14-22">
+                <i class="fa fa-chevron-left"></i> 投资实证3-2019-14-22
               </a>
             
           </div>
@@ -468,10 +423,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/01/投资实证0-20190401/" rel="prev" title="投资实证0-20190401">
-                投资实证0-20190401 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -610,7 +561,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#敏捷开发读书笔记五"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x654F;&#x6377;&#x5F00;&#x53D1;&#x8BFB;&#x4E66;&#x7B14;&#x8BB0;&#x4E94;" class="headerlink" title="&#x654F;&#x6377;&#x5F00;&#x53D1;&#x8BFB;&#x4E66;&#x7B14;&#x8BB0;&#x4E94;"></a>&#x654F;&#x6377;&#x5F00;&#x53D1;&#x8BFB;&#x4E66;&#x7B14;&#x8BB0;&#x4E94;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#command模式"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#command&#x6A21;&#x5F0F;" class="headerlink" title="command&#x6A21;&#x5F0F;"></a>command&#x6A21;&#x5F0F;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#templete-method-模板方法-模式和strategy-中介者-模式"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#templete-method-&#x6A21;&#x677F;&#x65B9;&#x6CD5;-&#x6A21;&#x5F0F;&#x548C;strategy-&#x4E2D;&#x4ECB;&#x8005;-&#x6A21;&#x5F0F;" class="headerlink" title="templete method(&#x6A21;&#x677F;&#x65B9;&#x6CD5;)&#x6A21;&#x5F0F;&#x548C;strategy(&#x4E2D;&#x4ECB;&#x8005;)&#x6A21;&#x5F0F;"></a>templete method(&#x6A21;&#x677F;&#x65B9;&#x6CD5;)&#x6A21;&#x5F0F;&#x548C;strategy(&#x4E2D;&#x4ECB;&#x8005;)&#x6A21;&#x5F0F;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模板方法模式"><span class="nav-number">1.2.1.</span> <span class="nav-text"><a href="#&#x6A21;&#x677F;&#x65B9;&#x6CD5;&#x6A21;&#x5F0F;" class="headerlink" title="&#x6A21;&#x677F;&#x65B9;&#x6CD5;&#x6A21;&#x5F0F;"></a>&#x6A21;&#x677F;&#x65B9;&#x6CD5;&#x6A21;&#x5F0F;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#策略模式"><span class="nav-number">1.2.2.</span> <span class="nav-text"><a href="#&#x7B56;&#x7565;&#x6A21;&#x5F0F;" class="headerlink" title="&#x7B56;&#x7565;&#x6A21;&#x5F0F;"></a>&#x7B56;&#x7565;&#x6A21;&#x5F0F;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#facade-外观-模式和mediator-中介者-模式"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#facade-&#x5916;&#x89C2;-&#x6A21;&#x5F0F;&#x548C;mediator-&#x4E2D;&#x4ECB;&#x8005;-&#x6A21;&#x5F0F;" class="headerlink" title="facade(&#x5916;&#x89C2;)&#x6A21;&#x5F0F;&#x548C;mediator(&#x4E2D;&#x4ECB;&#x8005;)&#x6A21;&#x5F0F;"></a>facade(&#x5916;&#x89C2;)&#x6A21;&#x5F0F;&#x548C;mediator(&#x4E2D;&#x4ECB;&#x8005;)&#x6A21;&#x5F0F;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#facade模式"><span class="nav-number">1.3.1.</span> <span class="nav-text"><a href="#facade&#x6A21;&#x5F0F;" class="headerlink" title="facade&#x6A21;&#x5F0F;"></a>facade&#x6A21;&#x5F0F;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mediator模式"><span class="nav-number">1.3.2.</span> <span class="nav-text"><a href="#mediator&#x6A21;&#x5F0F;" class="headerlink" title="mediator&#x6A21;&#x5F0F;"></a>mediator&#x6A21;&#x5F0F;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#singleton模式-单例-和monostate模式"><span class="nav-number">1.4.</span> <span class="nav-text"><a href="#singleton&#x6A21;&#x5F0F;-&#x5355;&#x4F8B;-&#x548C;monostate&#x6A21;&#x5F0F;" class="headerlink" title="singleton&#x6A21;&#x5F0F;(&#x5355;&#x4F8B;)&#x548C;monostate&#x6A21;&#x5F0F;"></a>singleton&#x6A21;&#x5F0F;(&#x5355;&#x4F8B;)&#x548C;monostate&#x6A21;&#x5F0F;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#singleton模式"><span class="nav-number">1.4.1.</span> <span class="nav-text"><a href="#singleton&#x6A21;&#x5F0F;" class="headerlink" title="singleton&#x6A21;&#x5F0F;"></a>singleton&#x6A21;&#x5F0F;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#monostate模式"><span class="nav-number">1.4.2.</span> <span class="nav-text"><a href="#monostate&#x6A21;&#x5F0F;" class="headerlink" title="monostate&#x6A21;&#x5F0F;"></a>monostate&#x6A21;&#x5F0F;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null-object模式"><span class="nav-number">1.5.</span> <span class="nav-text"><a href="#null-object&#x6A21;&#x5F0F;" class="headerlink" title="null object&#x6A21;&#x5F0F;"></a>null object&#x6A21;&#x5F0F;</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#敏捷开发读书笔记六"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x654F;&#x6377;&#x5F00;&#x53D1;&#x8BFB;&#x4E66;&#x7B14;&#x8BB0;&#x516D;" class="headerlink" title="&#x654F;&#x6377;&#x5F00;&#x53D1;&#x8BFB;&#x4E66;&#x7B14;&#x8BB0;&#x516D;"></a>&#x654F;&#x6377;&#x5F00;&#x53D1;&#x8BFB;&#x4E66;&#x7B14;&#x8BB0;&#x516D;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#18章"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#18&#x7AE0;" class="headerlink" title="18&#x7AE0;"></a>18&#x7AE0;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#19章"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#19&#x7AE0;" class="headerlink" title="19&#x7AE0;"></a>19&#x7AE0;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#&#x5176;&#x4ED6;" class="headerlink" title="&#x5176;&#x4ED6;"></a>&#x5176;&#x4ED6;</span></a></li></ol></li></ol></div>
             
 
           </div>
