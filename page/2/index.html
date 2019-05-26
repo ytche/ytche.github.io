@@ -252,6 +252,208 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/24/敏捷开发读书笔记四/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="车子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/paladin.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="车子的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/24/敏捷开发读书笔记四/" itemprop="url">敏捷开发读书笔记四</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-24T00:00:00+08:00">
+                2019-03-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/敏捷软件开发/" itemprop="url" rel="index">
+                    <span itemprop="name">敏捷软件开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/24/敏捷开发读书笔记四/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/24/敏捷开发读书笔记四/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="敏捷开发读书笔记四"><a href="#敏捷开发读书笔记四" class="headerlink" title="敏捷开发读书笔记四"></a>敏捷开发读书笔记四</h1><h2 id="Liskov替换原则-LSP"><a href="#Liskov替换原则-LSP" class="headerlink" title="Liskov替换原则(LSP)"></a>Liskov替换原则(LSP)</h2><blockquote>
+<p><strong>Liskov替换原则(LSP)</strong>:子类型(subtype)必须能够替换掉它们的父类型(basetype)</p>
+</blockquote>
+<ul>
+<li>IS-A(是一个)关系又是被认为是面向对象分析的基本技术之一.</li>
+<li>一个模型,如果孤立地看,并不具有真正意义上的有效性.模型的有效性只能通过它的客户程序来表现.</li>
+<li>像所有其他原则一样,通常最好的方法是只预测那些<strong>最明显的对于LSP的违反情况</strong>二推迟所有的其他的预测,直到出现相关的脆弱性的臭味时,采取处理他们.</li>
+<li>IS-A是关于行为的.从行为方式的角度来看,Square不是Rectangle(关于正/长方形的例子),对象的行为方式才是软件真正所关注的问题.</li>
+<li>基于契约设计(Design By Contract,DBC):使用DBC,类的编写者显示的规定针对该类的契约.客户代码的编写者可以通过该契约获悉可以依赖的行为方式.契约是通过为每个方法生命的前置条件(preconditions)和后置条件(postconditions)来制定的.要使一个方法得以执行,前置条件必须要为真.执行完毕后,该方法要保证后置条件为真.</li>
+<li>大多数情况下,接受一个多态性为中的微妙错误都不会比试着修改设计使之完全符合LSP更为有利.接受缺陷而不是去追求完美这是一个工程中的权衡问题.好的工程师知道如何接受缺陷比追求完美更有利.</li>
+<li>提取公共部分是一个设计工具,最好在代码不是很多时应用.</li>
+<li>完成的功能少于基类的派生类通常是不能替换其基类的,一尺就违反了LSP</li>
+<li>在派生类中存在退化函数并不总是表示违反了LSP,但是当存在这种情况是,还是值得注意一下.</li>
+<li>另外一种LSP的违规形式是在派生类的方法中添加了其基类不会抛出的异常.</li>
+<li>LSP是使OCP成为可能的主要原则之一</li>
+</ul>
+<h2 id="依赖倒置原则-DIP"><a href="#依赖倒置原则-DIP" class="headerlink" title="依赖倒置原则(DIP)"></a>依赖倒置原则(DIP)</h2><blockquote>
+<p><strong>依赖倒置原则(DIP)</strong>:</p>
+<p>a.高层模块不应该依赖于低层模块,二者都应该依赖于抽象</p>
+<p>b.抽象不应该依赖于细节,细节应该依赖于抽象.</p>
+</blockquote>
+<ul>
+<li>DIP是框架设计的核心原则.</li>
+<li>倒置不仅仅是依赖关系的倒置,也是接口所有权的倒置.应用DIP的时,往往是客户拥有抽象接口,而服务者则从这些抽象接口派生.</li>
+<li>低层模块实现了在高层模块中声明并被高层模块调用的接口.</li>
+<li>程序中所有的依赖关系都应该终止于抽象类或者接口</li>
+<li>我们在应用程序中所编写的大多数具体类都是不稳定的,我们不想直接依赖于这些不稳定的具体类.通过把它们隐藏在抽象接口的后面,可以隔离它们的不稳定性.</li>
+<li>面向对象的程序设计倒置了依赖关系结构,使得细节和策略都依赖于抽象,并且常常是客户拥有服务接口.这种依赖关系的倒置正式好的面向对象设计的标志所在.</li>
+<li>如果程序的依赖关系是倒置的,它就是面向对象的设计.如果程序的依赖关系不是倒置的,它就是过程化设计.</li>
+<li>DIP的正确应用对于创建可重用框架来说是必须的.</li>
+</ul>
+<h2 id="接口隔离原则-ISP"><a href="#接口隔离原则-ISP" class="headerlink" title="接口隔离原则(ISP)"></a>接口隔离原则(ISP)</h2><blockquote>
+<p><strong>接口隔离原则</strong>:不应该强迫客户依赖于它们不用的方法.</p>
+</blockquote>
+<ul>
+<li>ISP用来处理”胖(fat)”接口所具有的缺点.如果类的接口不是内聚的(conhesive),就表示该类具有”胖”的接口.换句话说,类的”胖”接口可以分解成多组方法.每一组方法都服务于一组不同的客户程序.</li>
+<li>多参数形式通常都应该优先于单参数形式使用.</li>
+<li>每个原则在应用时都必须小心,不能过度使用它们.</li>
+<li>客户程序应该仅仅依赖与它们的实际调用方法.通过把胖类的接口分解成多个特定于客户程序的接口,实现这个目标.</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/敏捷开发读书笔记三/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1559,13 +1761,13 @@
 <li>动漫看了不少,如了动漫的坑,看过好多不错的番.</li>
 </ul>
 <h1 id="2019年挖坑"><a href="#2019年挖坑" class="headerlink" title="2019年挖坑."></a>2019年挖坑.</h1><h2 id="硬性坑"><a href="#硬性坑" class="headerlink" title="硬性坑"></a>硬性坑</h2><ul>
-<li>减肥</li>
-<li>作息规律,晚上23点以前必须关灯睡觉.</li>
+<li>减肥(进行中,105-&gt;87)</li>
+<li>作息规律,晚上23点以前必须关灯睡觉.(最近状态较差)</li>
 <li><del>需要跟父母敞开心扉畅谈一次,把彼此间的事情说明白了.</del></li>
-<li>给父母养老钱. 跟父母多联系/多回家几次</li>
-<li>捣鼓自己的公众号,不用去写程序,只做简单的信息流,写写文章之类的.</li>
-<li>没要至少回来看一次这个2019的挖坑,督促自己来完成工作.</li>
-<li>买个电竞椅.</li>
+<li>给父母养老钱. 跟父母多联系/多回家几次(进行中,联系比较少)</li>
+<li>捣鼓自己的公众号,不用去写程序,只做简单的信息流,写写文章之类的.(写的东西太少)</li>
+<li>每周回来看一次这个2019的挖坑,督促自己来完成工作.(最完美执行的计划)</li>
+<li><del>买个电竞椅.</del>(伪需求,已经放弃)</li>
 <li><del>金三银四面试一下,不跳槽,跳槽在交了保险以后再作考虑</del>.</li>
 </ul>
 <h2 id="软性坑"><a href="#软性坑" class="headerlink" title="软性坑"></a>软性坑</h2><ul>
@@ -2302,193 +2504,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/05/基于自定义注解的springAOP配置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="车子">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/paladin.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="车子的个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/05/基于自定义注解的springAOP配置/" itemprop="url">基于自定义注解的springAOP配置</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-05T00:00:00+08:00">
-                2018-01-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/后端/" itemprop="url" rel="index">
-                    <span itemprop="name">后端</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/后端/spring/" itemprop="url" rel="index">
-                    <span itemprop="name">spring</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/01/05/基于自定义注解的springAOP配置/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/01/05/基于自定义注解的springAOP配置/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="基于自定义注解的springAOP配置"><a href="#基于自定义注解的springAOP配置" class="headerlink" title="基于自定义注解的springAOP配置"></a>基于自定义注解的springAOP配置</h1><p>SpringMVC项目需要做一下登陆日志操作日志,愚蠢的我居然最先想到的在Controller基类中添加一个方法大家来调用,转而一想日志操作不就是AOP的典型应用场景么,随即一边google一边踩坑填坑,终于是完成了第一次的SpringAOP配置.</p>
-<h2 id="自定义注解annotation类"><a href="#自定义注解annotation类" class="headerlink" title="自定义注解annotation类"></a>自定义注解annotation类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> iie.df.analysis.misc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 操作日志AOP注解</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> cheyantao</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Target</span>(&#123;ElementType.PARAMETER, ElementType.METHOD&#125;)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> ActionMethod &#123;</span><br><span class="line">     <span class="function">String <span class="title">modal</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line">     <span class="function">String <span class="title">method</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="AOP切面类"><a href="#AOP切面类" class="headerlink" title="AOP切面类"></a>AOP切面类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> iie.df.analysis.misc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.ProceedingJoinPoint;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.*;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="keyword">import</span> org.springframework.util.StopWatch;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AopLogging</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOG = LoggerFactory.getLogger(AopLogging.class);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Pointcut</span>(value = <span class="string">"@annotation(actionMethod)"</span>,argNames = <span class="string">"actionMethod"</span>)</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actionMethodPointCut</span><span class="params">(ActionMethod actionMethod)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="meta">@Around</span>(value = <span class="string">"actionMethodPointCut(actionMethod)"</span>)</span><br><span class="line">  <span class="function"><span class="keyword">public</span> Object <span class="title">afterActionMethod</span><span class="params">(ProceedingJoinPoint point,ActionMethod actionMethod)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"执行目标方法之前，模拟开始事务..."</span>);</span><br><span class="line">      Object obj=point.proceed();</span><br><span class="line">      System.out.println(actionMethod.modal()+<span class="string">"--"</span>+actionMethod.method());</span><br><span class="line">      <span class="keyword">return</span>  obj;<span class="comment">//记得返回</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="应用类"><a href="#应用类" class="headerlink" title="应用类"></a>应用类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/post-signin"</span>, method = RequestMethod.POST)</span><br><span class="line"><span class="meta">@ActionMethod</span>(modal = <span class="string">"登录日志"</span>,method = <span class="string">"用户登录"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> ModelAndView <span class="title">signinPostDispatch</span><span class="params">(...)</span></span></span><br><span class="line"><span class="function">    <span class="keyword">throws</span> UnsupportedEncodingException </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(<span class="string">"redirect:/"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="spring配置"><a href="#spring配置" class="headerlink" title="spring配置"></a>spring配置</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">xmlns:mvc</span>=<span class="string">"http://www.springframework.org/schema/mvc"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">xmlns:aop</span>=<span class="string">"http://www.springframework.org/schema/aop"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">  http://www.springframework.org/schema/context</span></span></span><br><span class="line"><span class="tag"><span class="string">  http://www.springframework.org/schema/context/spring-context-3.0.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">  http://www.springframework.org/schema/aop</span></span></span><br><span class="line"><span class="tag"><span class="string">  http://www.springframework.org/schema/aop/spring-aop-3.0.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">  http://www.springframework.org/schema/mvc</span></span></span><br><span class="line"><span class="tag"><span class="string">  http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">description</span>&gt;</span>Page Dispatch Config<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--不相关的配置都删掉了,主要是下面两个 以及bean schema中的aop和context支持.--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"iie.df.analysis"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">aop:aspectj-autoproxy</span> <span class="attr">proxy-target-class</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>这里有一个坑,平常我们都会把spring的相关配置在application-context.xml中配置,但是在springMVC项目中把这些配置放到application-context中的时候可能会出现无法进如切面方法情况,我就比较倒霉碰见了.具体解决方案是把以上的配置放到了dispatcher-servlet.xml配置文件中,多谢大神无私的回答:<a href="http://bbs.csdn.net/topics/391049202?page=1" target="_blank" rel="noopener">八楼大神造福大家</a>.<br>如果你也遇到了这种问题,项目中又找不到dispatcher-servlet.xml这个文件,你应该可以再web.xml中找到相关的配置文件<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>Analysis<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">     <span class="comment">&lt;!--藏在这里--&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath*:config/servlet-context.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="几处坑"><a href="#几处坑" class="headerlink" title="几处坑"></a>几处坑</h2><ol>
-<li>上文springMVC配置的坑.</li>
-<li><p>aop切面两个依赖类确实,附上他们的maven地址,如果maven更新失败,请自行下载jar包maven install</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/cglib/cglib --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>cglib<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>cglib<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>asm<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>asm<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.3.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>3.切面类的注解问题.<br>开始参照网上一些例子,大部分没有将注解作为参数传进@Around方法中,造成了获取注解属性必须通过发射获取,代码显得非常臃肿和丑陋.所以大概可以参照一下我的切面类的相关注解.另外这里爬坑的关键文章是<a href="https://stackoverflow.com/questions/4922561/aspectj-pointcut-with-annotation-parameters" target="_blank" rel="noopener">stackoverflow专治疑难杂症</a>,另外挖一个坑日后填<a href="http://www.eclipse.org/aspectj/doc/next/aspectj5rt-api/index.html?org/aspectj/lang/annotation/Pointcut.html" target="_blank" rel="noopener">整理一下AOP相关注解的知识</a><br>4.切面类的@around方法记得把ProceedingJoinPoint执行后的结果返回.</p>
-<h2 id="其他几个用得到的连接"><a href="#其他几个用得到的连接" class="headerlink" title="其他几个用得到的连接"></a>其他几个用得到的连接</h2></li>
-</ol>
-<ul>
-<li><a href="https://www.ibm.com/developerworks/cn/java/j-lo-springaopfilter/index.html" target="_blank" rel="noopener">详细的spring schema配置信息</a>,但是按照这篇文章里的切面类注解,代码无法通过编译</li>
-<li><a href="http://blog.csdn.net/owen_william/article/details/50812792" target="_blank" rel="noopener">一个简洁清楚的@Around方法例子</a></li>
-<li><a href="http://www.cnblogs.com/leifei/p/6094673.html" target="_blank" rel="noopener">一个用反射获取注解属性的反例</a>,但是可以参考这篇文章里的HttpRequest获取.</li>
-<li><a href="http://www.cnblogs.com/guokai870510826/p/5977948.html" target="_blank" rel="noopener">一个简单但是全面的切面类方法注解例子</a></li>
-</ul>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>   大约耗费了我一晚上的时间来搞定这个问题,虽然磕磕绊绊,最后总算是把这个东西配置出来了.最近确确实实感受到了自己两年工作经验跟一年工作经验时候的差别,一年前面对这些繁琐的配置问题大概就是无从下口,找公司的同事帮忙了.如今回过头来看看不知道什么时候自己也就习惯了这些配置问题了,并且能共一点点借助google把问题解决.突然想起大学那个在实验室呆了一个大学,写了无数文档,就是徘徊在编程门口入不了门的少年了.可惜如今已经奔三,不过庆幸的是,还好,总算可以独当一面了.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2538,7 +2558,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2560,7 +2580,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

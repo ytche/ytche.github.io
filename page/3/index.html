@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="spring," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,18 +79,16 @@
 
 
 
-<meta name="description" content="基于自定义注解的springAOP配置SpringMVC项目需要做一下登陆日志操作日志,愚蠢的我居然最先想到的在Controller基类中添加一个方法大家来调用,转而一想日志操作不就是AOP的典型应用场景么,随即一边google一边踩坑填坑,终于是完成了第一次的SpringAOP配置. 自定义注解annotation类123456789101112131415package iie.df.anal">
-<meta name="keywords" content="spring">
-<meta property="og:type" content="article">
-<meta property="og:title" content="基于自定义注解的springAOP配置">
-<meta property="og:url" content="http://yoursite.com/2018/01/05/基于自定义注解的springAOP配置/index.html">
+<meta name="description" content="严重拖延症患者">
+<meta property="og:type" content="website">
+<meta property="og:title" content="车子的个人博客">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
 <meta property="og:site_name" content="车子的个人博客">
-<meta property="og:description" content="基于自定义注解的springAOP配置SpringMVC项目需要做一下登陆日志操作日志,愚蠢的我居然最先想到的在Controller基类中添加一个方法大家来调用,转而一想日志操作不就是AOP的典型应用场景么,随即一边google一边踩坑填坑,终于是完成了第一次的SpringAOP配置. 自定义注解annotation类123456789101112131415package iie.df.anal">
+<meta property="og:description" content="严重拖延症患者">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-04T18:17:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="基于自定义注解的springAOP配置">
-<meta name="twitter:description" content="基于自定义注解的springAOP配置SpringMVC项目需要做一下登陆日志操作日志,愚蠢的我居然最先想到的在Controller基类中添加一个方法大家来调用,转而一想日志操作不就是AOP的典型应用场景么,随即一边google一边踩坑填坑,终于是完成了第一次的SpringAOP配置. 自定义注解annotation类123456789101112131415package iie.df.anal">
+<meta name="twitter:title" content="车子的个人博客">
+<meta name="twitter:description" content="严重拖延症患者">
 
 
 
@@ -120,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/01/05/基于自定义注解的springAOP配置/"/>
+  <link rel="canonical" href="http://yoursite.com/page/3/"/>
 
 
 
 
 
-  <title>基于自定义注解的springAOP配置 | 车子的个人博客</title>
+  <title>车子的个人博客</title>
   
 
 
@@ -145,7 +143,8 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -238,9 +237,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -270,7 +269,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">基于自定义注解的springAOP配置</h1>
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/05/基于自定义注解的springAOP配置/" itemprop="url">基于自定义注解的springAOP配置</a></h1>
         
 
         <div class="post-meta">
@@ -363,7 +364,9 @@
       
 
       
-        <h1 id="基于自定义注解的springAOP配置"><a href="#基于自定义注解的springAOP配置" class="headerlink" title="基于自定义注解的springAOP配置"></a>基于自定义注解的springAOP配置</h1><p>SpringMVC项目需要做一下登陆日志操作日志,愚蠢的我居然最先想到的在Controller基类中添加一个方法大家来调用,转而一想日志操作不就是AOP的典型应用场景么,随即一边google一边踩坑填坑,终于是完成了第一次的SpringAOP配置.</p>
+        
+          
+            <h1 id="基于自定义注解的springAOP配置"><a href="#基于自定义注解的springAOP配置" class="headerlink" title="基于自定义注解的springAOP配置"></a>基于自定义注解的springAOP配置</h1><p>SpringMVC项目需要做一下登陆日志操作日志,愚蠢的我居然最先想到的在Controller基类中添加一个方法大家来调用,转而一想日志操作不就是AOP的典型应用场景么,随即一边google一边踩坑填坑,终于是完成了第一次的SpringAOP配置.</p>
 <h2 id="自定义注解annotation类"><a href="#自定义注解annotation类" class="headerlink" title="自定义注解annotation类"></a>自定义注解annotation类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> iie.df.analysis.misc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 操作日志AOP注解</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> cheyantao</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Target</span>(&#123;ElementType.PARAMETER, ElementType.METHOD&#125;)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> ActionMethod &#123;</span><br><span class="line">     <span class="function">String <span class="title">modal</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line">     <span class="function">String <span class="title">method</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="AOP切面类"><a href="#AOP切面类" class="headerlink" title="AOP切面类"></a>AOP切面类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> iie.df.analysis.misc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.ProceedingJoinPoint;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.*;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="keyword">import</span> org.springframework.util.StopWatch;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AopLogging</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOG = LoggerFactory.getLogger(AopLogging.class);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Pointcut</span>(value = <span class="string">"@annotation(actionMethod)"</span>,argNames = <span class="string">"actionMethod"</span>)</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actionMethodPointCut</span><span class="params">(ActionMethod actionMethod)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="meta">@Around</span>(value = <span class="string">"actionMethodPointCut(actionMethod)"</span>)</span><br><span class="line">  <span class="function"><span class="keyword">public</span> Object <span class="title">afterActionMethod</span><span class="params">(ProceedingJoinPoint point,ActionMethod actionMethod)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"执行目标方法之前，模拟开始事务..."</span>);</span><br><span class="line">      Object obj=point.proceed();</span><br><span class="line">      System.out.println(actionMethod.modal()+<span class="string">"--"</span>+actionMethod.method());</span><br><span class="line">      <span class="keyword">return</span>  obj;<span class="comment">//记得返回</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="应用类"><a href="#应用类" class="headerlink" title="应用类"></a>应用类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/post-signin"</span>, method = RequestMethod.POST)</span><br><span class="line"><span class="meta">@ActionMethod</span>(modal = <span class="string">"登录日志"</span>,method = <span class="string">"用户登录"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> ModelAndView <span class="title">signinPostDispatch</span><span class="params">(...)</span></span></span><br><span class="line"><span class="function">    <span class="keyword">throws</span> UnsupportedEncodingException </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(<span class="string">"redirect:/"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -384,6 +387,8 @@
 </ul>
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>   大约耗费了我一晚上的时间来搞定这个问题,虽然磕磕绊绊,最后总算是把这个东西配置出来了.最近确确实实感受到了自己两年工作经验跟一年工作经验时候的差别,一年前面对这些繁琐的配置问题大概就是无从下口,找公司的同事帮忙了.如今回过头来看看不知道什么时候自己也就习惯了这些配置问题了,并且能共一点点借助google把问题解决.突然想起大学那个在实验室呆了一个大学,写了无数文档,就是徘徊在编程门口入不了门的少年了.可惜如今已经奔三,不过庆幸的是,还好,总算可以独当一面了.</p>
 
+          
+        
       
     </div>
     
@@ -398,36 +403,14 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/spring/" rel="tag"># spring</a>
-          
-        </div>
+
+      
+
       
 
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/01/11/常用命令/" rel="prev" title="常用命令记录">
-                常用命令记录 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -437,11 +420,14 @@
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
 
 
           </div>
@@ -449,13 +435,6 @@
 
 
           
-
-  
-    <div class="comments" id="comments">
-    </div>
-  
-
-
 
         </div>
         
@@ -476,17 +455,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -550,22 +520,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基于自定义注解的springAOP配置"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x57FA;&#x4E8E;&#x81EA;&#x5B9A;&#x4E49;&#x6CE8;&#x89E3;&#x7684;springAOP&#x914D;&#x7F6E;" class="headerlink" title="&#x57FA;&#x4E8E;&#x81EA;&#x5B9A;&#x4E49;&#x6CE8;&#x89E3;&#x7684;springAOP&#x914D;&#x7F6E;"></a>&#x57FA;&#x4E8E;&#x81EA;&#x5B9A;&#x4E49;&#x6CE8;&#x89E3;&#x7684;springAOP&#x914D;&#x7F6E;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义注解annotation类"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#&#x81EA;&#x5B9A;&#x4E49;&#x6CE8;&#x89E3;annotation&#x7C7B;" class="headerlink" title="&#x81EA;&#x5B9A;&#x4E49;&#x6CE8;&#x89E3;annotation&#x7C7B;"></a>&#x81EA;&#x5B9A;&#x4E49;&#x6CE8;&#x89E3;annotation&#x7C7B;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AOP切面类"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#AOP&#x5207;&#x9762;&#x7C7B;" class="headerlink" title="AOP&#x5207;&#x9762;&#x7C7B;"></a>AOP&#x5207;&#x9762;&#x7C7B;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用类"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#&#x5E94;&#x7528;&#x7C7B;" class="headerlink" title="&#x5E94;&#x7528;&#x7C7B;"></a>&#x5E94;&#x7528;&#x7C7B;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring配置"><span class="nav-number">1.4.</span> <span class="nav-text"><a href="#spring&#x914D;&#x7F6E;" class="headerlink" title="spring&#x914D;&#x7F6E;"></a>spring&#x914D;&#x7F6E;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#几处坑"><span class="nav-number">1.5.</span> <span class="nav-text"><a href="#&#x51E0;&#x5904;&#x5751;" class="headerlink" title="&#x51E0;&#x5904;&#x5751;"></a>&#x51E0;&#x5904;&#x5751;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他几个用得到的连接"><span class="nav-number">1.6.</span> <span class="nav-text"><a href="#&#x5176;&#x4ED6;&#x51E0;&#x4E2A;&#x7528;&#x5F97;&#x5230;&#x7684;&#x8FDE;&#x63A5;" class="headerlink" title="&#x5176;&#x4ED6;&#x51E0;&#x4E2A;&#x7528;&#x5F97;&#x5230;&#x7684;&#x8FDE;&#x63A5;"></a>&#x5176;&#x4ED6;&#x51E0;&#x4E2A;&#x7528;&#x5F97;&#x5230;&#x7684;&#x8FDE;&#x63A5;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">1.7.</span> <span class="nav-text"><a href="#&#x5176;&#x4ED6;" class="headerlink" title="&#x5176;&#x4ED6;"></a>&#x5176;&#x4ED6;</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -706,10 +660,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 

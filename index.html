@@ -252,6 +252,211 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/26/计算机网络读书笔记2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="车子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/paladin.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="车子的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/26/计算机网络读书笔记2/" itemprop="url">计算机网络读书笔记2</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-26T22:27:21+08:00">
+                2019-05-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/计算机网络/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机网络</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/05/26/计算机网络读书笔记2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/26/计算机网络读书笔记2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="计算节网络读书笔记2"><a href="#计算节网络读书笔记2" class="headerlink" title="计算节网络读书笔记2"></a>计算节网络读书笔记2</h1><h2 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h2><h3 id="协议原理"><a href="#协议原理" class="headerlink" title="协议原理"></a>协议原理</h3><ul>
+<li>网络应用程序体系结构:<strong>客户-服务器体系结构</strong>和<strong>P2P体系结构</strong></li>
+<li>网络间应用程序的通信实际上是进程的通信.</li>
+<li>两个不同端系统上的进程通过交换<strong>报文</strong>相互通信.</li>
+<li>进程通过一个称为<strong>套接字(socket)</strong>的软件接口向网络发送报文和从网络接收报文.</li>
+<li><p>套接字是同一台主机内应用和运输层之间的接口.</p>
+</li>
+<li><p>应用程序开发者对运输层的控制仅限于:</p>
+<ol>
+<li>选择运输层协议</li>
+<li>也许能设定几个运输层参数,如最大缓存和最大报文段长度等.</li>
+</ol>
+</li>
+<li><p>web服务默认80端口,邮件服务器默认25端口</p>
+</li>
+<li>可供应用程序选择的运输服务:可靠数据传输/吞吐量/定时/安全性<ul>
+<li>可靠数据传输:电子邮件/文件传输/远程主机访问/web文档/金融应用等</li>
+<li>吞吐量:带宽敏感的应用(多媒体相关的)</li>
+<li>定时:因特网电话/虚拟环境/电话会议/多方游戏</li>
+<li>安全性:多数情况.</li>
+</ul>
+</li>
+<li>TCP:面向连接的服务/可靠数据传送</li>
+<li>TCP具有拥塞控制机制.</li>
+<li>UDP:无连接/不可靠数据传送</li>
+<li>UDP是一种不提供不必要服务的轻量级运输协议.不保证报文一定会到达接收进程.</li>
+<li>运输层不提供吞吐量和定时的保证,但是目前有良好的解决方案.</li>
+</ul>
+<h3 id="web和HTTP"><a href="#web和HTTP" class="headerlink" title="web和HTTP"></a>web和HTTP</h3><ul>
+<li>HTTP使用TCP做为支撑运输协议</li>
+<li>HTTP是无状态的.</li>
+<li>非持续连接和持续连接:每个请求/响应是经一个单独的TCP连接发送,还是所有的请求及其响应经相同的TCP连接发送.</li>
+<li>HTTP在默认方式下使用持续连接,HTTP客户和服务器也能配置成使用非连续连接.</li>
+<li>连接/非连接在HTTP报文头中会注明.</li>
+<li>web缓存器:也叫代理服务器.在请求到达互联网之前,在局域网内缓存web内容的服务器,可以有效的降低请求时间或者带宽成本.</li>
+</ul>
+<h3 id="电子邮件"><a href="#电子邮件" class="headerlink" title="电子邮件"></a>电子邮件</h3><ul>
+<li>邮件系统包括:用户代理/邮件服务器/SMTP(简单邮件传输协议)</li>
+<li>SMTP的运输层采用TCP</li>
+<li>HTTP是一个拉协议,STMP是一个推协议</li>
+<li>因为SMTP是推协议,不能主动的获取邮件.所以通过邮件访问协议来解决这个问题,如第三版的邮局协议(POP3)/因特网个邮件访问协议(IMAP)</li>
+<li>SMTP用来将邮件从发送方的邮件服务器传送到接收方的邮件服务器:SMTP也用来将邮件从发送方的用户代理传送到发送方的邮件服务器.如POP3这样的邮件访问协议用来将邮件从接收方的邮件服务器传送到接收方的用户代理.</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/19/计算机网络读书笔记1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1994,213 +2199,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/24/敏捷开发读书笔记四/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="车子">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/paladin.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="车子的个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/24/敏捷开发读书笔记四/" itemprop="url">敏捷开发读书笔记四</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-24T00:00:00+08:00">
-                2019-03-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">读书笔记</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/读书笔记/敏捷软件开发/" itemprop="url" rel="index">
-                    <span itemprop="name">敏捷软件开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/03/24/敏捷开发读书笔记四/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/24/敏捷开发读书笔记四/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="敏捷开发读书笔记四"><a href="#敏捷开发读书笔记四" class="headerlink" title="敏捷开发读书笔记四"></a>敏捷开发读书笔记四</h1><h2 id="Liskov替换原则-LSP"><a href="#Liskov替换原则-LSP" class="headerlink" title="Liskov替换原则(LSP)"></a>Liskov替换原则(LSP)</h2><blockquote>
-<p><strong>Liskov替换原则(LSP)</strong>:子类型(subtype)必须能够替换掉它们的父类型(basetype)</p>
-</blockquote>
-<ul>
-<li>IS-A(是一个)关系又是被认为是面向对象分析的基本技术之一.</li>
-<li>一个模型,如果孤立地看,并不具有真正意义上的有效性.模型的有效性只能通过它的客户程序来表现.</li>
-<li>像所有其他原则一样,通常最好的方法是只预测那些<strong>最明显的对于LSP的违反情况</strong>二推迟所有的其他的预测,直到出现相关的脆弱性的臭味时,采取处理他们.</li>
-<li>IS-A是关于行为的.从行为方式的角度来看,Square不是Rectangle(关于正/长方形的例子),对象的行为方式才是软件真正所关注的问题.</li>
-<li>基于契约设计(Design By Contract,DBC):使用DBC,类的编写者显示的规定针对该类的契约.客户代码的编写者可以通过该契约获悉可以依赖的行为方式.契约是通过为每个方法生命的前置条件(preconditions)和后置条件(postconditions)来制定的.要使一个方法得以执行,前置条件必须要为真.执行完毕后,该方法要保证后置条件为真.</li>
-<li>大多数情况下,接受一个多态性为中的微妙错误都不会比试着修改设计使之完全符合LSP更为有利.接受缺陷而不是去追求完美这是一个工程中的权衡问题.好的工程师知道如何接受缺陷比追求完美更有利.</li>
-<li>提取公共部分是一个设计工具,最好在代码不是很多时应用.</li>
-<li>完成的功能少于基类的派生类通常是不能替换其基类的,一尺就违反了LSP</li>
-<li>在派生类中存在退化函数并不总是表示违反了LSP,但是当存在这种情况是,还是值得注意一下.</li>
-<li>另外一种LSP的违规形式是在派生类的方法中添加了其基类不会抛出的异常.</li>
-<li>LSP是使OCP成为可能的主要原则之一</li>
-</ul>
-<h2 id="依赖倒置原则-DIP"><a href="#依赖倒置原则-DIP" class="headerlink" title="依赖倒置原则(DIP)"></a>依赖倒置原则(DIP)</h2><blockquote>
-<p><strong>依赖倒置原则(DIP)</strong>:</p>
-<p>a.高层模块不应该依赖于低层模块,二者都应该依赖于抽象</p>
-<p>b.抽象不应该依赖于细节,细节应该依赖于抽象.</p>
-</blockquote>
-<ul>
-<li>DIP是框架设计的核心原则.</li>
-<li>倒置不仅仅是依赖关系的倒置,也是接口所有权的倒置.应用DIP的时,往往是客户拥有抽象接口,而服务者则从这些抽象接口派生.</li>
-<li>低层模块实现了在高层模块中声明并被高层模块调用的接口.</li>
-<li>程序中所有的依赖关系都应该终止于抽象类或者接口</li>
-<li>我们在应用程序中所编写的大多数具体类都是不稳定的,我们不想直接依赖于这些不稳定的具体类.通过把它们隐藏在抽象接口的后面,可以隔离它们的不稳定性.</li>
-<li>面向对象的程序设计倒置了依赖关系结构,使得细节和策略都依赖于抽象,并且常常是客户拥有服务接口.这种依赖关系的倒置正式好的面向对象设计的标志所在.</li>
-<li>如果程序的依赖关系是倒置的,它就是面向对象的设计.如果程序的依赖关系不是倒置的,它就是过程化设计.</li>
-<li>DIP的正确应用对于创建可重用框架来说是必须的.</li>
-</ul>
-<h2 id="接口隔离原则-ISP"><a href="#接口隔离原则-ISP" class="headerlink" title="接口隔离原则(ISP)"></a>接口隔离原则(ISP)</h2><blockquote>
-<p><strong>接口隔离原则</strong>:不应该强迫客户依赖于它们不用的方法.</p>
-</blockquote>
-<ul>
-<li>ISP用来处理”胖(fat)”接口所具有的缺点.如果类的接口不是内聚的(conhesive),就表示该类具有”胖”的接口.换句话说,类的”胖”接口可以分解成多组方法.每一组方法都服务于一组不同的客户程序.</li>
-<li>多参数形式通常都应该优先于单参数形式使用.</li>
-<li>每个原则在应用时都必须小心,不能过度使用它们.</li>
-<li>客户程序应该仅仅依赖与它们的实际调用方法.通过把胖类的接口分解成多个特定于客户程序的接口,实现这个目标.</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2250,7 +2253,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2272,7 +2275,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
