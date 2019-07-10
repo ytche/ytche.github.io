@@ -87,10 +87,12 @@
 <meta property="og:site_name" content="车子的个人博客">
 <meta property="og:description" content="计算机网络读书笔记6链路层和局域网 链路层提供的服务   成帧.在每个网络层数据报经链路层传送前,几乎所有的链路层协议都要将其用链路层帧封装起来. 链路接入.媒体访问控制(MAC)协议规定了帧在链路上的传输规则. 可靠交付.当链路层协议提供可靠交付服务时,它保证无差错的经链路层移动每个网络层数据报.链路层的可靠交付服务通常是通过确认和重传取得的. 差错检测和纠正.链路层的差错纠正,接收方不进能检测">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-07T10:02:40.694Z">
+<meta property="og:image" content="http://img.bigbear.site/network/6/IMG_2258.JPG">
+<meta property="og:updated_time" content="2019-07-10T00:13:13.447Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机网络读书笔记6">
 <meta name="twitter:description" content="计算机网络读书笔记6链路层和局域网 链路层提供的服务   成帧.在每个网络层数据报经链路层传送前,几乎所有的链路层协议都要将其用链路层帧封装起来. 链路接入.媒体访问控制(MAC)协议规定了帧在链路上的传输规则. 可靠交付.当链路层协议提供可靠交付服务时,它保证无差错的经链路层移动每个网络层数据报.链路层的可靠交付服务通常是通过确认和重传取得的. 差错检测和纠正.链路层的差错纠正,接收方不进能检测">
+<meta name="twitter:image" content="http://img.bigbear.site/network/6/IMG_2258.JPG">
 
 
 
@@ -526,6 +528,66 @@
 </ul>
 </li>
 <li><p>虚拟局域网（Virtula Local Network,VLAN）:支持VLAN的交换机允许经过一个单一的物理局域网基础设施定义多个虚拟局域网。</p>
+</li>
+<li><p>多协议标签交换（MPLS）目标：对于基于固定长度的标签和虚电路技术，在不放弃基于目的地IP数据报转发的基础设施的前提下，当可能时通过选择性地表示数据报并允许路由器基于固定长度的标签（而不是目的地IP地址）转发数据报来增强其功能。</p>
+</li>
+<li><p>多协议标签交换可以改善IP路由器的转发速度。</p>
+</li>
+<li><p>一个MPLS加强帧仅能在两个均为MPLS使能的路由器之间发送。</p>
+</li>
+<li><p>一个MPLS路由器通常被称作标签交换路由器，因为它功过在其转发表中查找MPLS标签，然后立即将数据报传递给适当的输出接口赚翻MPLS帧。因此MPLS使能的路由器不需要提取目的IP地址和在转发表中执行最长前缀匹配的查找。</p>
+</li>
+<li><p>MPLS能够并且已经被用于实现所谓的虚拟专用网（VPN）</p>
+</li>
+<li><p>WEB页面请求历程</p>
+<p>  假设Bob携带便携机以一根以太网电缆连接到学校的以太网，并且下载一个web页面（www.google.com）,经历如下过程。</p>
+<p>  <img src="http://img.bigbear.site/network/6/IMG_2258.JPG" alt="网络图"></p>
+<ul>
+<li><p>准备DHCP、UDP、IP和以太网。</p>
+<ul>
+<li>Bob的便携机生成一个<strong>DHCP请求报文</strong>（应用层协议），该报文被放入了包含目的端口67（DHCP服务器）和源端口68（DHCP客户）的<strong>UDP报文段</strong>（运输层），该UDP报文段被放入了具有广播IP目的地址（255.255.255.255）和源IP地址0.0.0.0（当前IP待分配）的<strong>IP数据报</strong>中（网络层）。</li>
+<li>包含DHCP请求报文的IP数据报被放入<strong>以太网帧</strong>中（链路层）。该以太网帧具有目的MAC地址FF:FF:FF:FF:FF:FF(广播地址)和源MAC地址(Bob的便携机的MAC地址，00:16:D3:23:68:8A)</li>
+<li>包含DHCP请求的广播以太帧是第一个由Bob便携机发送到以太网交换机的帧，该交换机在所有出端口广播入帧，包括连接到路由器的端口。</li>
+<li>路由器在它的具有MAC地址00:22:6B:45:1F:1B的接口接收到包含DHCP请求的广播以太帧，并从该帧中提取IP数据报。该数据报的广播IP目的地址指示了IP数据报应由该节点的高层协议处理，所以IP数据报的载荷（UDP报文段）被分解上达UDP。DHCP请求报文被从UDP报文段抽取出来。DCHP服务器有了DHCP请求报文</li>
+<li>DHCP服务器决定分配68.86.2.101给Bob的便携机。DHCP服务器生成<strong>DCHP ACH报文</strong>，该报文包括：分配给Bob的IP地址（68.86.2.101）、DNC服务器的IP地址（68.87.71.226）、默认网关路由器的IP地址（68.85.2.1）和子网块（68.85.2.0/24）（等价于子网掩码）。该报文被放入一个UDP报文段中，UDP报文段被放入一个IP数据报中，IP数据报被放入一个以太网帧中。这个以太网帧的源MAP地址是路由器连接到归属网络时的接口MAC地址（00:22:6B:45:1F:1B），目的地址是Bob便携机的MAC地址（00:16:D3:23:68:8A）.</li>
+</ul>
+</li>
+<li><p>包含DHCP ACK的以太网帧由路由器发送给交换机。因为交换机是自学习的，交换机将该帧转发给通向Bob便携机的输出端口。</p>
+<ul>
+<li>Bob便携机接收到包含DHCP ACK的以太网帧，从该帧中抽取IP数据报，从IP数据报中抽取UDP报文段，从UDP报文段中抽取DHCP ACK报文。Bob的DHCP客户端记录下它的IP地址和他的DNS服务器的IP地址，并在其<strong>IP转发表</strong>中安装默认网关的地址。此时，Bob便携机已经从初始化好了它的网络组建，并开始准备处理Web网页的获取。</li>
+</ul>
+</li>
+<li><p>准备DNS和ARP</p>
+<p>  Bob在讲www.google.com键入web浏览器，开启一连串时间，最终谷歌的页面显示在web浏览器上。</p>
+<ul>
+<li>Bob便携机上单操作系统生成一个DNS查询报文，将字符串www.google.com放入DNS报文的问题段中。该报文被放置在一个具有53号（DNS服务器）目的端口的UDP报文段中。该报文段则被放入具有IP目的地址68.87.71.226（DHCP ACK中的DNS服务器IP地址）和源地址68.86.2.101（便携机IP）的IP数据报中。</li>
+<li>Bob便携机将包含DNS请求报文的数据报放入一个以太网帧中，准备发送给（链路层）Bob学校的路由器。但是，当前只知道学校网管路由器的IP地址，MAC地址未知。所以需要进行ARP查询。</li>
+<li>Bob便携机生成一个具有目的地址68.85.2.1（默认网关）的ARP查询报文，将该报文放置在一个具有广播目的地址（FF:FF:FF:FF:FF:FF）的以太网帧中，向交换机发送该帧，叫环境将该帧交付给所有设备。</li>
+<li>网关路由器在与学校连接的接口上接收到包含该ARP报文的帧，发现其中的目标地址匹配其接口的IP地址。网关路由器准备一个ARP回答，指示它的MAC地址为00:22:6B:45:1F:1B对应IP 68.85.2.1。它将该ARP回答放入以太网帧中，并将目的地址设置为Bob便携机，向交换机发送该帧，交换机将该帧交付给Bob便携机。</li>
+<li>Bob便携机接收到包含ARP回答报文的帧之后，从该帧中抽取网关的MAC地址。</li>
+<li>Bob将包含DNS查询的以太网帧发送给交换机，并由交换机交付给路由器。该帧中的IP数据报的目的地址是68.87.71.226（DNS服务器），而该帧的目的地址是00:22:6B:45:1F:1B（网关路由器）。</li>
+</ul>
+</li>
+<li><p>仍在准备：域内路由选择到DNS服务器。</p>
+<ul>
+<li>学校的网关路由器从该帧中抽取DNS查询报文的IP数据报，获取其目的地址68.87.71.226（DNS服务器）。路由器通过查询自己的转发表，决定该数据报应当发送到图中Comcast网络的最左边路由器。IP数据被放置到链路层帧中，该链路连接学校路由器和Comcast最左边路由器，发送给Comcast最左边的路由器。</li>
+<li>Comcast接收到该帧，并提取IP数据报，检查数据报的目的地址（DNS服务器地址），根据转发表确定存储接口，经过该接口向DNS服务器转发数据报。</li>
+<li>最终DNS查询的IP数据报到达了DNS服务器。DNS服务器抽取出DNS查询报文，在它的DNS数据库中查找包含www.google.com的IP地址的DNS源记录。这个缓存记录源自google.com的权威DNS服务器。DNS服务器生成一个<strong>DNS回答报文</strong>，将DNS回答报文放入UDP报文段中，将报文段放入寻址到Bob便携机的IP数据报中，将该数据报通过Comcast网络反向转发到学校的路由器中，再通过以太网交换机到Bob便携机</li>
+<li>Bob便携机从DNS回答报文中臭气www.google.com的IP地址。</li>
+</ul>
+</li>
+<li><p>Web客户-服务器交互：TCP和HTTP</p>
+<ul>
+<li>Bob便携机获取www.google.com的IP地址之后，就能够生成TCP套接字，用于向www.google.com发送HTTP GET报文。在Bob便携机生成TCP套接字时，它的TCP必须先与www.google.com的TCP执行三次握手。Bob便携机首先生成一个具有目的端口80（针对HTTP）的TCP SYN报文段，将该报文的放置在具有目的IP地址64.233.169.105（www.google.com）的IP数据报中，将该数据报放在MAC地址为学校网关路由器的地址的帧中，向交换机发送该帧。</li>
+<li>在学校网络、Comcast网络和谷歌网络中的路由器朝着www.google.com转发把汗TCP SYN的数据报，使用每台路由器中的转发表。</li>
+<li>最终包含TCP SYN的数据报到达www.google.com。从数据报中抽取TCP SYN报文并分解到与端口80相联系的欢迎套接字。产生一个TCP SYNACK报文段，将其放入想Bob便携机寻址的一个数据报中，最后放入链路层帧中，该链路适合将www.google.com连接到第一跳路由器。</li>
+<li>包含TCP SYNACK报文段的数据报通过谷歌、Comcast和学校网络，最终到达Bob便携机的以太网卡。数据报在操作系统分解，生成TCP套接字，进入连接状态。</li>
+<li>Bob的浏览器生成包含要获取URL的HTTP GET报文。HTTP GET报文写入套接字，其中GET报文生成一个TCP报文段的载荷。该TCP报文段被放置在一个数据报中，并交付给www.google.com。</li>
+<li>在ww.google.com的HTTP服务器从TCP套接字中读取HTTP GET报文，生成一个HTTP相应报文，将请求的Web页内容放入HTTP相应体重，并将报文发送进TCP套接字中。</li>
+<li>包含HTTP回答报文的数据报通过谷歌、Comcast和学校网络抓饭，到达Bob便携机。Bob的浏览器从套接字中读取HTTP相应，从HTTP相应中抽取Web页面的HTML，最终显示了Web页面。</li>
+</ul>
+</li>
+</ul>
 </li>
 </ul>
 
