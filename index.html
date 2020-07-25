@@ -252,6 +252,179 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/25/spring-Async异步获取结果/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="车子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/paladin.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="车子的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/07/25/spring-Async异步获取结果/" itemprop="url">spring@Async异步获取结果</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-25T18:40:00+08:00">
+                2020-07-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端/spring/" itemprop="url" rel="index">
+                    <span itemprop="name">spring</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/07/25/spring-Async异步获取结果/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/07/25/spring-Async异步获取结果/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="spring-Async异步获取结果"><a href="#spring-Async异步获取结果" class="headerlink" title="spring@Async异步获取结果"></a>spring@Async异步获取结果</h1><p>涉及到两个问题：</p>
+<ul>
+<li>解决同类调用@Async方法无效问题。</li>
+<li>用completableFuture替换Future，解决Future.get()获取结果阻塞的问题。</li>
+</ul>
+<p>这里只提供利用@Async注解的解决方案，因为使用了spring,更倾向于用spring的注解来解决问题.把线程池注册成bean交给spring管理,比自己每次生成销毁或者自己控制全局线程池要优雅的多.</p>
+<p>另一种解决方案，因为线程池是通过@bean方式注册成bean，直接@autowied线程池，然后利用正常的线程池+countDownLatch也可以解决(未验证）。</p>
+<p>以下是基于@async的解决方案：</p>
+<p>代码不连续，这里只贴一下关键代码，以免非关键代码干扰思路，不懂的留言或者邮件我cheyantao@foxmail.com，看见了及时回你。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line"><span class="comment">//spring上下文用来获取当前类的代理</span></span><br><span class="line"><span class="meta">@Autowired</span> <span class="keyword">private</span> ApplicationContext applicationContext;</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line"><span class="comment">//就是一个普通的方法，无视之，不要被干扰视线</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Page&lt;SourceVo&gt; <span class="title">page</span><span class="params">(Pageable pageable, String selectId, String keyword)</span> </span>&#123;</span><br><span class="line"> .</span><br><span class="line"> .</span><br><span class="line"> <span class="comment">//需要countDownLatch阻塞等待结果。</span></span><br><span class="line"> CountDownLatch countDownLatch = <span class="keyword">new</span> CountDownLatch(sourceDo.getContent().size());</span><br><span class="line"> <span class="keyword">for</span> (Source source : sourceDo.getContent()) &#123;</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  <span class="comment">//这里通过applicationContext获取代理类，解决调用同类方法@Async不生效</span></span><br><span class="line">   SourceService serviceProxy = applicationContext.getBean(SourceService.class);</span><br><span class="line">   <span class="comment">//在这里调用了@Aysnc的方法，看不懂建议瞅一眼completableFuture的相关知识。</span></span><br><span class="line">   serviceProxy</span><br><span class="line">      .requestDataByte(source, component)</span><br><span class="line">      .thenAccept(</span><br><span class="line">          s -&gt; &#123;</span><br><span class="line">            sourceVo.setDataByte(s);</span><br><span class="line">            content.add(sourceVo);</span><br><span class="line">            countDownLatch.countDown();</span><br><span class="line">          &#125;);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">try</span> &#123;</span><br><span class="line">   countDownLatch.await(<span class="number">5</span>, TimeUnit.SECONDS);</span><br><span class="line"> &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">   log.error(<span class="string">"获取数据量线程阻塞异常"</span>, e); </span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line"><span class="comment">//@Async注解的方法，这里是异步获取的字符串</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="meta">@Async</span>(<span class="string">"fetchExecutor"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> CompletableFuture&lt;String&gt; <span class="title">requestDataByte</span><span class="params">(Source source, Component component)</span> </span>&#123;</span><br><span class="line">  String metricName = <span class="keyword">this</span>.buildMetricNames(source);</span><br><span class="line">  <span class="keyword">if</span> (StringUtils.isBlank(metricName)) &#123;</span><br><span class="line">    <span class="comment">//返回空字符串结果</span></span><br><span class="line">    <span class="keyword">return</span> AsyncResult.forValue(<span class="string">""</span>).completable();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">   .</span><br><span class="line">   .</span><br><span class="line">   .</span><br><span class="line">   <span class="comment">//AsyncResult.forValue(字符串).completable()返回正确结果，不要被forValue（）里的句子干扰实现了，就是一个             普通的业务逻辑方法</span></span><br><span class="line">    <span class="keyword">return</span> AsyncResult.forValue(<span class="keyword">this</span>.getValueFromMetric(response.getMetrics().get(<span class="number">0</span>)))</span><br><span class="line">        .completable();</span><br><span class="line">  &#125; <span class="keyword">catch</span> (Exception ex) &#123;</span><br><span class="line">    log.error(<span class="string">"获取数据量失败,sourceId:&#123;&#125;"</span>, source.getId(), ex);</span><br><span class="line">    <span class="keyword">return</span> AsyncResult.forValue(<span class="string">""</span>).completable();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>OK ,以上.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/25/2020年中总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3000,230 +3173,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/16/计算机网络读书笔记4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="车子">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/paladin.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="车子的个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/16/计算机网络读书笔记4/" itemprop="url">计算机网络读书笔记4</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-16T18:26:06+08:00">
-                2019-06-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">读书笔记</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/读书笔记/计算机网络/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机网络</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/06/16/计算机网络读书笔记4/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/06/16/计算机网络读书笔记4/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="计算机网络读书笔记4–运输层"><a href="#计算机网络读书笔记4–运输层" class="headerlink" title="计算机网络读书笔记4–运输层"></a>计算机网络读书笔记4–运输层</h1><h2 id="概述和运输层服务"><a href="#概述和运输层服务" class="headerlink" title="概述和运输层服务"></a>概述和运输层服务</h2><ul>
-<li>运输层为运行在不同主机上的应用程序之间提供了逻辑通信.(而非物理通信)</li>
-<li><strong>报文段(segment)</strong>:运输层将 从 发送应用程序 进程 接收到的 报文 转换成运输层分组,这个分组称为报文段.</li>
-<li>网络层提供了<strong>主机</strong>之间的逻辑通信,运输层为运行在不同主机上的<strong>应用程序进程</strong>提供逻辑通信.</li>
-<li>运输协议能够提供的服务常常受制于底层网络层协议的服务模型.</li>
-<li>UDP(用户数据报协议)为调用他的应用程序提供了一种不可靠/无连接的服务.TCP(传输控制协议)为调用它的应用程序提供了一种可靠的/面向连接的服务.</li>
-<li>IP协议(网际协议)为主机之间提供了罗技通信.IP的服务模型为<strong>尽力而为交付服务</strong>(best-effort delivery service),这意味着IP会”尽最大努力”在通信的主机之间交付报文段,但它不做任何确保.特别的不保证报文段的交付/不保证报文段交付的次序/不保证报文段中数据的完整性.因此,IP被称为<strong>不可靠服务</strong></li>
-<li>UDP和TCP最基本的责任是:将两个端系统间IP的交付服务拓展为运行在两个端系统上的进程之间的交互服务.</li>
-<li>将主机间交付拓展到进程间交付被称为运输层的<strong>多路复用</strong>和<strong>多路分解</strong></li>
-<li>进程到进程的<strong>数据交付</strong>和<strong>差错检查</strong>是两种最低限度的运输层服务,也是UDP仅通过的两种服务</li>
-<li>多路分解(demultiplexing),将运输层的报文段中的数据交付到正确的套接字的工作.</li>
-<li>多路复用(multiplexiong),在源主机不同套接字中收集数据块,并未每个数据块封装上首部信息(以后用于分解)从而生成报文段,然后将报文段传递到网络中的工作</li>
-<li>web服务器会为每一条连接生成一个新进程.</li>
-</ul>
-<h2 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h2><ul>
-<li>UDP只做了运输协议能够做到最少工作.除了复用/分解功能以及少量的差错检测外,他几乎没有对IP增加别的东西.</li>
-<li>DNS使用的UDP协议.</li>
-<li>UDP的优点:<ul>
-<li>关于发送什么数据以及何时发送 的 应用层控制更为精细.</li>
-<li>无须连接建立</li>
-<li>无连接状态</li>
-<li>分组首部开销小.</li>
-</ul>
-</li>
-<li>端到端原则:与在较高级别提供这些功能代价相比,在较低级别上设置的功能可能是冗余的或几乎没有价值的.</li>
-</ul>
-<h2 id="可靠数据传输远离"><a href="#可靠数据传输远离" class="headerlink" title="可靠数据传输远离"></a>可靠数据传输远离</h2><ul>
-<li>自动重传请求协议:控制 报文 使得接收方可以让发送方知道 哪些内容被正确接收,哪些内容接收有误并因此需要重复.基于这样重传机制的可靠数据传输协议成为自动重传请求协议.(ARQ)</li>
-<li>ARQ协议需要差错检测/接收方反馈/重传三种协议功能来处理比特差错情况.</li>
-<li>停等协议:当发送发处于等待ACK或NCK的状态时,不能从上层获得更多的数据.</li>
-<li>停等协议是一个形象的网络协议限制底层网络硬件所提供能力的图例.</li>
-<li>解决流水线的差错的两种基本方法:回退N步和选择重传.</li>
-<li>可靠数据传输机制总结为:(P151)<ul>
-<li>校验和</li>
-<li>定时器</li>
-<li>序号</li>
-<li>确认</li>
-<li>否定确认</li>
-<li>窗口/流水线</li>
-</ul>
-</li>
-</ul>
-<h2 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h2><ul>
-<li>TCP是面向连接的,TCP提供的连接是端到端的逻辑连接.</li>
-<li>TCP提供全双工服务.</li>
-<li>最大报文长度(MSS),TCP可以从缓存中取出并放入报文段中的最大数据数量.</li>
-<li>最大传输单元(MTU),最初确定的 由本地发送主机 发送的 最大链路层帧长度.</li>
-<li>TCP通过使用肯定确认与定时器来提供可靠数据传输.</li>
-<li>TCP通过让发送方维护一个称为接受窗口的变量来提供流量控制.</li>
-<li>三次握手报文段:<ul>
-<li>第一次:客户:SYN=1,seq=client_isn(随机选择)</li>
-<li>第二次:服务器:SYN=1,seq=server_isn,ack=clinet_isn+1</li>
-<li>第三次:客户:SYN=0,seq=client_isn+1,ack=server_isn+1</li>
-</ul>
-</li>
-<li>攀岩运动的攀岩者和保护者使用了相类似的三次握手通信机制.</li>
-<li>TCP必须使用端到端拥塞控制而不是使用网络辅助的拥塞控制,因为IP层不想端系统提供显示的网络拥塞反馈.</li>
-<li>TCP所采用的方法是让每一个发送方根据所感知到的网络拥塞程度来限制其想连接发送的流量速率.</li>
-<li>TCP拥塞控制算法包括:慢启动/拥塞避免/快速恢复.其中慢启动和拥塞避免是TCP的强制部分.快速恢复为推荐部分.</li>
-<li>云服务通过TCP分岔可以有效的避免时延.</li>
-<li>其他的运输层协议:数据报拥塞控制协议(QCCP),QUIC(Quick UDP Internet Connections)协议,DCTCP(数据中心TCP)协议,流控制传输协议,TCP友好速率控制协议.</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3278,7 +3227,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
