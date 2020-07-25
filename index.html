@@ -252,6 +252,248 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/25/springInAction读书笔记1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="车子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/paladin.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="车子的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/07/25/springInAction读书笔记1/" itemprop="url">springInAction读书笔记1</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-25T22:40:00+08:00">
+                2020-07-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/springinaction/" itemprop="url" rel="index">
+                    <span itemprop="name">springinaction</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/07/25/springInAction读书笔记1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/07/25/springInAction读书笔记1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="spring-in-action"><a href="#spring-in-action" class="headerlink" title="spring in action"></a>spring in action</h1><p>读了这本书的半本,感觉是一本不错的扫盲书,不是深入的书,没有深入的带你分析spring源码和设计模式.</p>
+<p>spring在日常应用过程中大家都有使用,但是因为spring历经了多个版本,在不熟悉spring的时候,有些解决方案都是百度直接过来的,百度到的代码只是帮你解决了问题,但是并没有帮你正确的解决问题.spring的版本是向下兼容的,很多老版本的spring代码依然可以在新版本上运行,但是很多老代码的解决方案会显得臃肿和笨拙,不但影响代码的可读性,通常也会附带很多鸡肋一样的注释.而新版本的优化可能让你更优雅的使用spring,但是你并不知道这些新的解决方案.这本书就可以帮你了解spring那些新的,coooooooool的解决方案.</p>
+<h2 id="Spring基础"><a href="#Spring基础" class="headerlink" title="Spring基础"></a>Spring基础</h2><h3 id="关于启动类"><a href="#关于启动类" class="headerlink" title="关于启动类"></a>关于启动类</h3><ul>
+<li><p>@SpringBootApplication包含了如下三个注解</p>
+<ul>
+<li>@SpringBootConfig:生命该类是配置类.这个注解实际上是@configuation的特殊形式.</li>
+<li>@EnableAutoConfiguration:启用Spring boot的自动配置.</li>
+<li>@ComponentScan:启动组件扫描.</li>
+</ul>
+</li>
+<li><p>Main方法:</p>
+<p>这个main方法会调用SpringApplication中的静态的run()方法,后者会真正的执行应用的引导过程,也就是创建spring的应用上下文.在传递给run的两个参数中,一个是配置类,另一个是命令行参数.</p>
+</li>
+<li><p>对大多数应用来说,最好还是为没有实现自动配置的功能创建一个单独的配置类.</p>
+</li>
+</ul>
+<h3 id="Controller的单元测试"><a href="#Controller的单元测试" class="headerlink" title="Controller的单元测试"></a>Controller的单元测试</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@WebMvcTest</span>(HomeController.class)<span class="comment">//针对HomeController的web测试</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HomeControllerTestTest</span></span>&#123;</span><br><span class="line">  <span class="meta">@Autowired</span></span><br><span class="line">  <span class="keyword">private</span> MockMvc mockMvc  </span><br><span class="line">  </span><br><span class="line">  <span class="meta">@Test</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testHomePage</span><span class="params">()</span> <span class="keyword">throws</span> Exxception</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.mockMvc.perform(<span class="string">"/"</span>)   <span class="comment">//发起对"/"的Get</span></span><br><span class="line">        .addExpect(status().isOk())    <span class="comment">//期望得到HTTP200</span></span><br><span class="line">        .addExpect(view().name(<span class="string">"home"</span>)) <span class="comment">//期望得到home视图</span></span><br><span class="line">        .addExpect(content().string(containsString(<span class="string">"welcome to ..."</span>))) <span class="comment">//期望包含"welcome to"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Spring-DevTools"><a href="#Spring-DevTools" class="headerlink" title="Spring DevTools"></a>Spring DevTools</h3><ul>
+<li><p>热部署</p>
+<p>DevTool运行的时候,应用程序会加载到JVM两个独立的类加载器中.其中一个类加载器会加载你的Java代码/属性文件以及项目中”src/main/“路径下的几乎所有内容.另一个类加载器加载依赖的库.</p>
+</li>
+<li><p>面向浏览器的资源(模板,JS,css等)发生变化时自动刷新浏览器</p>
+</li>
+<li><p>自动禁用模板缓存</p>
+<p>需要浏览器的LiveReload插件</p>
+</li>
+<li><p>内置了H2控制台</p>
+</li>
+</ul>
+<h3 id="Spring构成"><a href="#Spring构成" class="headerlink" title="Spring构成"></a>Spring构成</h3><ul>
+<li>spirng核心框架</li>
+<li>Spring Boot</li>
+<li>Spring Data </li>
+<li>Spring Security</li>
+<li>Spring Integration和Spring Batch</li>
+<li>Spring cloud</li>
+</ul>
+<h3 id="领域"><a href="#领域" class="headerlink" title="领域"></a>领域</h3><p>应用的领域指的是他所要解决的主体范围:也就是会影响到应用理解的理念和概念.(深入了解看&lt;领域驱动设计&gt;)</p>
+<h3 id="Thymeleaf"><a href="#Thymeleaf" class="headerlink" title="Thymeleaf"></a>Thymeleaf</h3><ul>
+<li>展示校验错误</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"validationError"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">th:if</span>=<span class="string">"$&#123;#fields.hasEorrors('ccnumber')&#125;"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">th:errors</span>=<span class="string">"*&#123;ccNumber&#125;"</span>&gt;</span>CC Number Error<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>模板缓存</p>
+<p>| 模板             | 配置项                       |<br>| —————- | —————————- |<br>| FreeMaker        | spring.freemaker.cache       |<br>| Groovy Templates | spring.groovy.template.cache |<br>| Mustache         | spring.mustache.cache        |<br>| Thymeleaf        | spring.thymeleaf.cache       |</p>
+<p>true为启用,false为禁止</p>
+</li>
+</ul>
+<h3 id="spring-Data"><a href="#spring-Data" class="headerlink" title="spring Data"></a>spring Data</h3><ul>
+<li>spring data 替换jpa实现库  (P73,只是一个maven配置)</li>
+<li>@PrePersist标注一个方法,对象在持久化之前,会调用这个方法,给某些字段加默认值.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Prepersist</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">createAt</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.createAt=<span class="keyword">new</span> Date();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>repository方法由一个动词,一个可选的主题(subject)/关键词by以及一个断言所组成的</li>
+<li>repository方法的操作符,见P79.例如IsAfter/After等等..</li>
+</ul>
+<h3 id="Spring-Security"><a href="#Spring-Security" class="headerlink" title="Spring Security"></a>Spring Security</h3><ul>
+<li>配置和加密</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableWebSecurity</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> class SecurityConfig extends <span class="title">WebSecurityConfigurerAdapter</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">configure</span> <span class="params">(AuthenticationManagerBuilder auth)</span></span>&#123;</span><br><span class="line">    auth.jdbcAuthentication()</span><br><span class="line">      .dataSource(dataSource)</span><br><span class="line">      .userByUserNameQuery(</span><br><span class="line">    			<span class="string">"select userName,....."</span>)</span><br><span class="line">      .authoritiesByUsernameQuery(<span class="string">"select ..."</span>)</span><br><span class="line">      .passwordEncoder(<span class="keyword">new</span> StandaardPasswordEncoder(<span class="string">"111111"</span>))</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>passwordEncoder()方法可以接受Spring Security中PasswordEncoder接口的任意实现.Spring Security的加密模块包括了多个这样的实现.</p>
+<ul>
+<li>BCryptPasswordEncoder:使用bcrypt强哈希加密</li>
+<li>NoOpPasswordEncoder:不进行任何转码</li>
+<li>Pbkdf2PasswordEncoder:使用PBKDF2加密</li>
+<li>ScryptPasswordEncoder:使用scrypt哈希加密</li>
+<li>StandardPasswordEncoder:使用SHA-256哈希加密</li>
+</ul>
+<h3 id="spring的配置"><a href="#spring的配置" class="headerlink" title="spring的配置"></a>spring的配置</h3><ul>
+<li>属性源:<ul>
+<li>JVM系统属性</li>
+<li>操作系统环境变量</li>
+<li>命令行参数</li>
+<li>application.properties</li>
+<li>application.yml</li>
+</ul>
+</li>
+<li>@ConfigurationProperties (prefix=”taco.orders”),比如要给A类的pageSize配置属性,配置文件中需要是taco.orders.pageSize</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/25/spring-Async异步获取结果/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2937,242 +3179,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/24/计算机网络读书笔记5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="车子">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/paladin.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="车子的个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/24/计算机网络读书笔记5/" itemprop="url">计算机网络读书笔记5</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-24T00:38:44+08:00">
-                2019-06-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">读书笔记</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/读书笔记/计算机网络/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机网络</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/06/24/计算机网络读书笔记5/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/06/24/计算机网络读书笔记5/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="网络层-数据平面"><a href="#网络层-数据平面" class="headerlink" title="网络层:数据平面"></a>网络层:数据平面</h1><ul>
-<li>每台路由器的<strong>数据平面</strong>的主要作用是从其输入链路向其输出链路转发数据报;<strong>控制平面</strong>的主要作用是协调这些本地的路由器转发动作,使得数据报沿着源和目的地主机之间的路由器路径最终进行端对端的传送</li>
-<li>网络层的两个重要功能:转发和路由选择</li>
-<li>转发:将分组从一个输入链路接口转移到适当的输出链路接口的路由器本地动作.转发是有网络层的数据平面执行的主要功能.</li>
-<li>路由选择:是指确定分组从源到目的地所采取的端对端路径的网络范围处理过程.</li>
-<li>因特网的网络层提供单一的服务,称为尽力而为的服务</li>
-<li>路由器的交换法方式:经内存交换/经总线交换/经互联网络交换</li>
-<li>路由器体系:<ul>
-<li>输入端口.<ul>
-<li>1.执行终结物理链路层的物理层功能</li>
-<li>2.与位于入链路远端的数据链路层交互执行数据链路层功能.</li>
-<li>3.执行查找功能,通过查询转发表决定路由器的输出端口.</li>
-</ul>
-</li>
-<li>交换结构.将路由器的输入端口连接到他的输出端口.</li>
-<li>输出端口.存储从交换结构接收的分组,并通过执行必要的链路层和物理层功能在输出链路上传输这些分组.</li>
-<li>路由选择处理器.执行控制平面功能.传统路由器中,执行路由选择协议;SDN路由器中,负责与远程控制器通信,接收由远程控制器计算的转发表,并在该路由器的输入输出端口安装这些表项.路由选择器还执行网络管理功能.</li>
-</ul>
-</li>
-<li>交换结构的交换方式:1.经内存交换 2.经总线交换 3.经互联网络交换.</li>
-<li>输出端口的存储队列满时,将会丢弃新到的分组.</li>
-<li>分组调度方式:先进先出/优先权排队/循环和加权平均公平排队</li>
-<li>链路层最大传输单元(MTU)严格的限制着IP数据报的长度</li>
-<li><p>IPv4数据报格式:</p>
-<blockquote>
-<ul>
-<li>版本号:4比特规定了数据报的IP协议版本.</li>
-<li>首部长度:因为一个IPv4数据报可能包含一些可变数量的选项,故用4比特来确定IP数据报中的载荷(运输层报文段)实际开始的地方.</li>
-<li>服务类型:服务类型比特包含在IPv4首部中,以便使不同类型的IP数据报能相互区别开来.</li>
-<li>数据报长度:IP数据报的总长度(首部加上数据),一字节集.该字段长为16别特.理论上数据报的最大长度是65535字节,但是受到MTU限制,一般很少超过1500字节.</li>
-<li>标识/标志/片位移:这三个字段与IP分片相关.标识用来区分数据报(类似于数据报的序号,每个数据报唯一,该数据报的多个分片有同一标识号).标志用来区分是否为最后分片,最后分片为0,其余分片为1.便宜字段指定了分派在初始IP数据报的哪个位置.</li>
-<li>寿命(Time-To-Live,TTL):用来确保数据报不会永远在网络中循环.当TTL为0时,该数据报被丢弃</li>
-<li>协议:通常仅当一个IP数据报到达最终目的地时才会使用.指示了IP数据报的数据部分应当交给哪个特定的运输层协议.</li>
-<li>首部校验和.用于帮助路由器检测收到的IP数据报中的比特错误.只对IP首部计算了校验和.</li>
-<li>源和目的IP地址.</li>
-<li>选项:用于IP首部进行扩展,很少使用</li>
-<li>数据(有效载荷),数据部分.</li>
-</ul>
-</blockquote>
-<p>  一个IP数据报有总长20的字节首部(无选项).如果数据报承载了一个TCP报文段,则每个数据报共承载了总长40字节的首部(20字节IP20字节TCP首部)以及应用层报文.</p>
-</li>
-<li><p>因为MTU的存在,过长的IP数据报被分片发送.数据报的重新组装工作放在端系统中么不是放在网络路由器中.</p>
-</li>
-<li>接口:主机和物理链路之间的边界叫做接口.从技术上将,一个IP地址与一个接口相联系,而不是与包括该接口的主机或路由器相关联,</li>
-<li>当前因特网的地址分配策略为无类别域间路由选择(CIDR).CIDR将子网寻址的概念一般化了.当使用子网寻址时,32比特的IP地址被划分成两部分,并且也具有点分十进制形式a.b.c.d/x,x指示了地址的第一部分中的比特数.x表示的最高位比特构成了IP地址的网络部分,通常也被成为该地址的前缀;剩下的32-x比特可以认为是用于区分该组织内部设备的,这些内部设备有相同的网络前缀(长度为x的高位比特)</li>
-<li>在CIDR被采用前,IP地址的网络部分被限制长度为8/16/24比特,被称为分类编址的编址方案,具有8/16/24比特子网地址的子网分别称为A/B/C类网络.</li>
-<li>IP广播地址255.255.255.255</li>
-<li><p>动态主机配置协议(DHCP)接入新设备步骤:</p>
-<blockquote>
-<ul>
-<li>DHCP服务器发现.客户端向目标地址255.255.255.255广播DHCP发现报文的IP数据报,并且源IP为0.0.0.0</li>
-<li>DHCP服务器提供.DHCP接收到DHCP发现报文的时,用DHCP提供报文想客户做出响应仍然使用255.255.255.255广播地址.报文中含有收到的发现报文的事务ID/向客户推荐的IP地址,网络掩码和IP地址租用期.</li>
-<li>DHCP请求.新到达的客户从一个或者多个服务器提供中选择一个,并且向选中的服务器提供DHCP请求报文进行响应,回显配置的参数.</li>
-<li>DHCP ACK.服务器用DHCP ACK报文对DHCP请求报文进行响应,证实所要求的参数.</li>
-</ul>
-</blockquote>
-</li>
-<li><p>通过网络地址转换(NAT)将子网IP地址与外网IP地址相对应.</p>
-</li>
-<li>IPv6数据报.<blockquote>
-<ul>
-<li>版本.4比特.</li>
-<li>流量类型.8比特</li>
-<li>流标签.20比特,表示一条数据报的流,能够对一条流中的某些数据报给出优先权.</li>
-<li>有效载荷长度.16比特.表示了跟在40字节订场的数据报首部后面的字节数量.</li>
-<li>下一个首部.标识数据报中的内容(数据字段)需要交付给哪个协议.(与IPv4首部中协议字段相同的值)</li>
-<li>跳限制.转发数据报的每台路由器对该字段的内容减1.如果该字段为0则被丢弃.</li>
-<li>源地址和目的地址</li>
-<li>数据</li>
-</ul>
-</blockquote>
-</li>
-<li>IPv6数据报采用隧道的方法,通过IPv4的节点.</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3227,7 +3233,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3238,7 +3244,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

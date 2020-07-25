@@ -252,6 +252,242 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/24/计算机网络读书笔记5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="车子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/paladin.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="车子的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/24/计算机网络读书笔记5/" itemprop="url">计算机网络读书笔记5</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-24T00:38:44+08:00">
+                2019-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/计算机网络/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机网络</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/06/24/计算机网络读书笔记5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/06/24/计算机网络读书笔记5/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="网络层-数据平面"><a href="#网络层-数据平面" class="headerlink" title="网络层:数据平面"></a>网络层:数据平面</h1><ul>
+<li>每台路由器的<strong>数据平面</strong>的主要作用是从其输入链路向其输出链路转发数据报;<strong>控制平面</strong>的主要作用是协调这些本地的路由器转发动作,使得数据报沿着源和目的地主机之间的路由器路径最终进行端对端的传送</li>
+<li>网络层的两个重要功能:转发和路由选择</li>
+<li>转发:将分组从一个输入链路接口转移到适当的输出链路接口的路由器本地动作.转发是有网络层的数据平面执行的主要功能.</li>
+<li>路由选择:是指确定分组从源到目的地所采取的端对端路径的网络范围处理过程.</li>
+<li>因特网的网络层提供单一的服务,称为尽力而为的服务</li>
+<li>路由器的交换法方式:经内存交换/经总线交换/经互联网络交换</li>
+<li>路由器体系:<ul>
+<li>输入端口.<ul>
+<li>1.执行终结物理链路层的物理层功能</li>
+<li>2.与位于入链路远端的数据链路层交互执行数据链路层功能.</li>
+<li>3.执行查找功能,通过查询转发表决定路由器的输出端口.</li>
+</ul>
+</li>
+<li>交换结构.将路由器的输入端口连接到他的输出端口.</li>
+<li>输出端口.存储从交换结构接收的分组,并通过执行必要的链路层和物理层功能在输出链路上传输这些分组.</li>
+<li>路由选择处理器.执行控制平面功能.传统路由器中,执行路由选择协议;SDN路由器中,负责与远程控制器通信,接收由远程控制器计算的转发表,并在该路由器的输入输出端口安装这些表项.路由选择器还执行网络管理功能.</li>
+</ul>
+</li>
+<li>交换结构的交换方式:1.经内存交换 2.经总线交换 3.经互联网络交换.</li>
+<li>输出端口的存储队列满时,将会丢弃新到的分组.</li>
+<li>分组调度方式:先进先出/优先权排队/循环和加权平均公平排队</li>
+<li>链路层最大传输单元(MTU)严格的限制着IP数据报的长度</li>
+<li><p>IPv4数据报格式:</p>
+<blockquote>
+<ul>
+<li>版本号:4比特规定了数据报的IP协议版本.</li>
+<li>首部长度:因为一个IPv4数据报可能包含一些可变数量的选项,故用4比特来确定IP数据报中的载荷(运输层报文段)实际开始的地方.</li>
+<li>服务类型:服务类型比特包含在IPv4首部中,以便使不同类型的IP数据报能相互区别开来.</li>
+<li>数据报长度:IP数据报的总长度(首部加上数据),一字节集.该字段长为16别特.理论上数据报的最大长度是65535字节,但是受到MTU限制,一般很少超过1500字节.</li>
+<li>标识/标志/片位移:这三个字段与IP分片相关.标识用来区分数据报(类似于数据报的序号,每个数据报唯一,该数据报的多个分片有同一标识号).标志用来区分是否为最后分片,最后分片为0,其余分片为1.便宜字段指定了分派在初始IP数据报的哪个位置.</li>
+<li>寿命(Time-To-Live,TTL):用来确保数据报不会永远在网络中循环.当TTL为0时,该数据报被丢弃</li>
+<li>协议:通常仅当一个IP数据报到达最终目的地时才会使用.指示了IP数据报的数据部分应当交给哪个特定的运输层协议.</li>
+<li>首部校验和.用于帮助路由器检测收到的IP数据报中的比特错误.只对IP首部计算了校验和.</li>
+<li>源和目的IP地址.</li>
+<li>选项:用于IP首部进行扩展,很少使用</li>
+<li>数据(有效载荷),数据部分.</li>
+</ul>
+</blockquote>
+<p>  一个IP数据报有总长20的字节首部(无选项).如果数据报承载了一个TCP报文段,则每个数据报共承载了总长40字节的首部(20字节IP20字节TCP首部)以及应用层报文.</p>
+</li>
+<li><p>因为MTU的存在,过长的IP数据报被分片发送.数据报的重新组装工作放在端系统中么不是放在网络路由器中.</p>
+</li>
+<li>接口:主机和物理链路之间的边界叫做接口.从技术上将,一个IP地址与一个接口相联系,而不是与包括该接口的主机或路由器相关联,</li>
+<li>当前因特网的地址分配策略为无类别域间路由选择(CIDR).CIDR将子网寻址的概念一般化了.当使用子网寻址时,32比特的IP地址被划分成两部分,并且也具有点分十进制形式a.b.c.d/x,x指示了地址的第一部分中的比特数.x表示的最高位比特构成了IP地址的网络部分,通常也被成为该地址的前缀;剩下的32-x比特可以认为是用于区分该组织内部设备的,这些内部设备有相同的网络前缀(长度为x的高位比特)</li>
+<li>在CIDR被采用前,IP地址的网络部分被限制长度为8/16/24比特,被称为分类编址的编址方案,具有8/16/24比特子网地址的子网分别称为A/B/C类网络.</li>
+<li>IP广播地址255.255.255.255</li>
+<li><p>动态主机配置协议(DHCP)接入新设备步骤:</p>
+<blockquote>
+<ul>
+<li>DHCP服务器发现.客户端向目标地址255.255.255.255广播DHCP发现报文的IP数据报,并且源IP为0.0.0.0</li>
+<li>DHCP服务器提供.DHCP接收到DHCP发现报文的时,用DHCP提供报文想客户做出响应仍然使用255.255.255.255广播地址.报文中含有收到的发现报文的事务ID/向客户推荐的IP地址,网络掩码和IP地址租用期.</li>
+<li>DHCP请求.新到达的客户从一个或者多个服务器提供中选择一个,并且向选中的服务器提供DHCP请求报文进行响应,回显配置的参数.</li>
+<li>DHCP ACK.服务器用DHCP ACK报文对DHCP请求报文进行响应,证实所要求的参数.</li>
+</ul>
+</blockquote>
+</li>
+<li><p>通过网络地址转换(NAT)将子网IP地址与外网IP地址相对应.</p>
+</li>
+<li>IPv6数据报.<blockquote>
+<ul>
+<li>版本.4比特.</li>
+<li>流量类型.8比特</li>
+<li>流标签.20比特,表示一条数据报的流,能够对一条流中的某些数据报给出优先权.</li>
+<li>有效载荷长度.16比特.表示了跟在40字节订场的数据报首部后面的字节数量.</li>
+<li>下一个首部.标识数据报中的内容(数据字段)需要交付给哪个协议.(与IPv4首部中协议字段相同的值)</li>
+<li>跳限制.转发数据报的每台路由器对该字段的内容减1.如果该字段为0则被丢弃.</li>
+<li>源地址和目的地址</li>
+<li>数据</li>
+</ul>
+</blockquote>
+</li>
+<li>IPv6数据报采用隧道的方法,通过IPv4的节点.</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/16/计算机网络读书笔记4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2022,193 +2258,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/07/投资实证1-20190407/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="车子">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/paladin.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="车子的个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/07/投资实证1-20190407/" itemprop="url">投资实证1-20190407</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-07T22:24:25+08:00">
-                2019-04-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/理财/" itemprop="url" rel="index">
-                    <span itemprop="name">理财</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/理财/记录/" itemprop="url" rel="index">
-                    <span itemprop="name">记录</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/04/07/投资实证1-20190407/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/04/07/投资实证1-20190407/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="投资实证1-20190407"><a href="#投资实证1-20190407" class="headerlink" title="投资实证1-20190407"></a>投资实证1-20190407</h1><h2 id="净值"><a href="#净值" class="headerlink" title="净值"></a>净值</h2><ul>
-<li><p>本周总净值:34863.67</p>
-</li>
-<li><p>主理财账户净值:11538.01,1.0778</p>
-</li>
-</ul>
-<p><img src="http://img.bigbear.site/finance/1/20190407.PNG" alt="最新净值"></p>
-<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><ul>
-<li>买入二八轮动 1000</li>
-</ul>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
-<li><p>E大微博</p>
-<ul>
-<li><p>记住，投资这件事千万不要用上次的经验推导下次。<br>比如上次顶部没跑，就觉得要随时跑锁定利润。<br>比如上次随时跑没赚钱，下次打死也不卖。<br>比如上次胆子小买的少，下次疯狂加杠杆。<br>如果这样做，你会非常惨。<br>这条微博值500万，不信你十年后回来看</p>
-</li>
-<li><p>各位用过去这几年的时间，能完整体会一次顶部坚决卖，下跌过程不着急买，底部区域坚定多买，上涨趋势不着急卖，这样一个完整赚大钱的过程。</p>
-</li>
-</ul>
-</li>
-<li><p>也谈钱</p>
-<ul>
-<li>开始跟投以前充分怀疑，开始跟投以后充分信任。</li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2263,7 +2312,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2274,7 +2323,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

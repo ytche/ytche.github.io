@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="spring,java," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="spring in action读了这本书的半本,感觉是一本不错的扫盲书,不是深入的书,没有深入的带你分析spring源码和设计模式. spring在日常应用过程中大家都有使用,但是因为spring历经了多个版本,在不熟悉spring的时候,有些解决方案都是百度直接过来的,百度到的代码只是帮你解决了问题,但是并没有帮你正确的解决问题.spring的版本是向下兼容的,很多老版本的spring代码依然">
+<meta name="keywords" content="spring,java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="springInAction读书笔记1">
+<meta property="og:url" content="http://yoursite.com/2020/07/25/springInAction读书笔记1/index.html">
+<meta property="og:site_name" content="车子的个人博客">
+<meta property="og:description" content="spring in action读了这本书的半本,感觉是一本不错的扫盲书,不是深入的书,没有深入的带你分析spring源码和设计模式. spring在日常应用过程中大家都有使用,但是因为spring历经了多个版本,在不熟悉spring的时候,有些解决方案都是百度直接过来的,百度到的代码只是帮你解决了问题,但是并没有帮你正确的解决问题.spring的版本是向下兼容的,很多老版本的spring代码依然">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-07-25T14:50:43.242Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="springInAction读书笔记1">
+<meta name="twitter:description" content="spring in action读了这本书的半本,感觉是一本不错的扫盲书,不是深入的书,没有深入的带你分析spring源码和设计模式. spring在日常应用过程中大家都有使用,但是因为spring历经了多个版本,在不熟悉spring的时候,有些解决方案都是百度直接过来的,百度到的代码只是帮你解决了问题,但是并没有帮你正确的解决问题.spring的版本是向下兼容的,很多老版本的spring代码依然">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/07/25/springInAction读书笔记1/"/>
+
+
+
+
+
+  <title>springInAction读书笔记1 | 车子的个人博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">车子的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">以自己喜欢的方式去度过一生</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/25/springInAction读书笔记1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="车子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/paladin.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="车子的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">springInAction读书笔记1</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-25T22:40:00+08:00">
+                2020-07-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/springinaction/" itemprop="url" rel="index">
+                    <span itemprop="name">springinaction</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/07/25/springInAction读书笔记1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/07/25/springInAction读书笔记1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="spring-in-action"><a href="#spring-in-action" class="headerlink" title="spring in action"></a>spring in action</h1><p>读了这本书的半本,感觉是一本不错的扫盲书,不是深入的书,没有深入的带你分析spring源码和设计模式.</p>
+<p>spring在日常应用过程中大家都有使用,但是因为spring历经了多个版本,在不熟悉spring的时候,有些解决方案都是百度直接过来的,百度到的代码只是帮你解决了问题,但是并没有帮你正确的解决问题.spring的版本是向下兼容的,很多老版本的spring代码依然可以在新版本上运行,但是很多老代码的解决方案会显得臃肿和笨拙,不但影响代码的可读性,通常也会附带很多鸡肋一样的注释.而新版本的优化可能让你更优雅的使用spring,但是你并不知道这些新的解决方案.这本书就可以帮你了解spring那些新的,coooooooool的解决方案.</p>
+<h2 id="Spring基础"><a href="#Spring基础" class="headerlink" title="Spring基础"></a>Spring基础</h2><h3 id="关于启动类"><a href="#关于启动类" class="headerlink" title="关于启动类"></a>关于启动类</h3><ul>
+<li><p>@SpringBootApplication包含了如下三个注解</p>
+<ul>
+<li>@SpringBootConfig:生命该类是配置类.这个注解实际上是@configuation的特殊形式.</li>
+<li>@EnableAutoConfiguration:启用Spring boot的自动配置.</li>
+<li>@ComponentScan:启动组件扫描.</li>
+</ul>
+</li>
+<li><p>Main方法:</p>
+<p>这个main方法会调用SpringApplication中的静态的run()方法,后者会真正的执行应用的引导过程,也就是创建spring的应用上下文.在传递给run的两个参数中,一个是配置类,另一个是命令行参数.</p>
+</li>
+<li><p>对大多数应用来说,最好还是为没有实现自动配置的功能创建一个单独的配置类.</p>
+</li>
+</ul>
+<h3 id="Controller的单元测试"><a href="#Controller的单元测试" class="headerlink" title="Controller的单元测试"></a>Controller的单元测试</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@WebMvcTest</span>(HomeController.class)<span class="comment">//针对HomeController的web测试</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HomeControllerTestTest</span></span>&#123;</span><br><span class="line">  <span class="meta">@Autowired</span></span><br><span class="line">  <span class="keyword">private</span> MockMvc mockMvc  </span><br><span class="line">  </span><br><span class="line">  <span class="meta">@Test</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testHomePage</span><span class="params">()</span> <span class="keyword">throws</span> Exxception</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.mockMvc.perform(<span class="string">"/"</span>)   <span class="comment">//发起对"/"的Get</span></span><br><span class="line">        .addExpect(status().isOk())    <span class="comment">//期望得到HTTP200</span></span><br><span class="line">        .addExpect(view().name(<span class="string">"home"</span>)) <span class="comment">//期望得到home视图</span></span><br><span class="line">        .addExpect(content().string(containsString(<span class="string">"welcome to ..."</span>))) <span class="comment">//期望包含"welcome to"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Spring-DevTools"><a href="#Spring-DevTools" class="headerlink" title="Spring DevTools"></a>Spring DevTools</h3><ul>
+<li><p>热部署</p>
+<p>DevTool运行的时候,应用程序会加载到JVM两个独立的类加载器中.其中一个类加载器会加载你的Java代码/属性文件以及项目中”src/main/“路径下的几乎所有内容.另一个类加载器加载依赖的库.</p>
+</li>
+<li><p>面向浏览器的资源(模板,JS,css等)发生变化时自动刷新浏览器</p>
+</li>
+<li><p>自动禁用模板缓存</p>
+<p>需要浏览器的LiveReload插件</p>
+</li>
+<li><p>内置了H2控制台</p>
+</li>
+</ul>
+<h3 id="Spring构成"><a href="#Spring构成" class="headerlink" title="Spring构成"></a>Spring构成</h3><ul>
+<li>spirng核心框架</li>
+<li>Spring Boot</li>
+<li>Spring Data </li>
+<li>Spring Security</li>
+<li>Spring Integration和Spring Batch</li>
+<li>Spring cloud</li>
+</ul>
+<h3 id="领域"><a href="#领域" class="headerlink" title="领域"></a>领域</h3><p>应用的领域指的是他所要解决的主体范围:也就是会影响到应用理解的理念和概念.(深入了解看&lt;领域驱动设计&gt;)</p>
+<h3 id="Thymeleaf"><a href="#Thymeleaf" class="headerlink" title="Thymeleaf"></a>Thymeleaf</h3><ul>
+<li>展示校验错误</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"validationError"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">th:if</span>=<span class="string">"$&#123;#fields.hasEorrors('ccnumber')&#125;"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">th:errors</span>=<span class="string">"*&#123;ccNumber&#125;"</span>&gt;</span>CC Number Error<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>模板缓存</p>
+<p>| 模板             | 配置项                       |<br>| —————- | —————————- |<br>| FreeMaker        | spring.freemaker.cache       |<br>| Groovy Templates | spring.groovy.template.cache |<br>| Mustache         | spring.mustache.cache        |<br>| Thymeleaf        | spring.thymeleaf.cache       |</p>
+<p>true为启用,false为禁止</p>
+</li>
+</ul>
+<h3 id="spring-Data"><a href="#spring-Data" class="headerlink" title="spring Data"></a>spring Data</h3><ul>
+<li>spring data 替换jpa实现库  (P73,只是一个maven配置)</li>
+<li>@PrePersist标注一个方法,对象在持久化之前,会调用这个方法,给某些字段加默认值.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Prepersist</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">createAt</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.createAt=<span class="keyword">new</span> Date();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>repository方法由一个动词,一个可选的主题(subject)/关键词by以及一个断言所组成的</li>
+<li>repository方法的操作符,见P79.例如IsAfter/After等等..</li>
+</ul>
+<h3 id="Spring-Security"><a href="#Spring-Security" class="headerlink" title="Spring Security"></a>Spring Security</h3><ul>
+<li>配置和加密</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableWebSecurity</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> class SecurityConfig extends <span class="title">WebSecurityConfigurerAdapter</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">configure</span> <span class="params">(AuthenticationManagerBuilder auth)</span></span>&#123;</span><br><span class="line">    auth.jdbcAuthentication()</span><br><span class="line">      .dataSource(dataSource)</span><br><span class="line">      .userByUserNameQuery(</span><br><span class="line">    			<span class="string">"select userName,....."</span>)</span><br><span class="line">      .authoritiesByUsernameQuery(<span class="string">"select ..."</span>)</span><br><span class="line">      .passwordEncoder(<span class="keyword">new</span> StandaardPasswordEncoder(<span class="string">"111111"</span>))</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>passwordEncoder()方法可以接受Spring Security中PasswordEncoder接口的任意实现.Spring Security的加密模块包括了多个这样的实现.</p>
+<ul>
+<li>BCryptPasswordEncoder:使用bcrypt强哈希加密</li>
+<li>NoOpPasswordEncoder:不进行任何转码</li>
+<li>Pbkdf2PasswordEncoder:使用PBKDF2加密</li>
+<li>ScryptPasswordEncoder:使用scrypt哈希加密</li>
+<li>StandardPasswordEncoder:使用SHA-256哈希加密</li>
+</ul>
+<h3 id="spring的配置"><a href="#spring的配置" class="headerlink" title="spring的配置"></a>spring的配置</h3><ul>
+<li>属性源:<ul>
+<li>JVM系统属性</li>
+<li>操作系统环境变量</li>
+<li>命令行参数</li>
+<li>application.properties</li>
+<li>application.yml</li>
+</ul>
+</li>
+<li>@ConfigurationProperties (prefix=”taco.orders”),比如要给A类的pageSize配置属性,配置文件中需要是taco.orders.pageSize</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/spring/" rel="tag"># spring</a>
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/25/spring-Async异步获取结果/" rel="next" title="spring@Async异步获取结果">
+                <i class="fa fa-chevron-left"></i> spring@Async异步获取结果
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/paladin.png"
+                alt="车子" />
+            
+              <p class="site-author-name" itemprop="name">车子</p>
+              <p class="site-description motion-element" itemprop="description">重启中....</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#spring-in-action"><span class="nav-number">1.</span> <span class="nav-text"><a href="#spring-in-action" class="headerlink" title="spring in action"></a>spring in action</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring基础"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#Spring&#x57FA;&#x7840;" class="headerlink" title="Spring&#x57FA;&#x7840;"></a>Spring&#x57FA;&#x7840;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关于启动类"><span class="nav-number">1.1.1.</span> <span class="nav-text"><a href="#&#x5173;&#x4E8E;&#x542F;&#x52A8;&#x7C7B;" class="headerlink" title="&#x5173;&#x4E8E;&#x542F;&#x52A8;&#x7C7B;"></a>&#x5173;&#x4E8E;&#x542F;&#x52A8;&#x7C7B;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Controller的单元测试"><span class="nav-number">1.1.2.</span> <span class="nav-text"><a href="#Controller&#x7684;&#x5355;&#x5143;&#x6D4B;&#x8BD5;" class="headerlink" title="Controller&#x7684;&#x5355;&#x5143;&#x6D4B;&#x8BD5;"></a>Controller&#x7684;&#x5355;&#x5143;&#x6D4B;&#x8BD5;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-DevTools"><span class="nav-number">1.1.3.</span> <span class="nav-text"><a href="#Spring-DevTools" class="headerlink" title="Spring DevTools"></a>Spring DevTools</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring构成"><span class="nav-number">1.1.4.</span> <span class="nav-text"><a href="#Spring&#x6784;&#x6210;" class="headerlink" title="Spring&#x6784;&#x6210;"></a>Spring&#x6784;&#x6210;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#领域"><span class="nav-number">1.1.5.</span> <span class="nav-text"><a href="#&#x9886;&#x57DF;" class="headerlink" title="&#x9886;&#x57DF;"></a>&#x9886;&#x57DF;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Thymeleaf"><span class="nav-number">1.1.6.</span> <span class="nav-text"><a href="#Thymeleaf" class="headerlink" title="Thymeleaf"></a>Thymeleaf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spring-Data"><span class="nav-number">1.1.7.</span> <span class="nav-text"><a href="#spring-Data" class="headerlink" title="spring Data"></a>spring Data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Security"><span class="nav-number">1.1.8.</span> <span class="nav-text"><a href="#Spring-Security" class="headerlink" title="Spring Security"></a>Spring Security</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spring的配置"><span class="nav-number">1.1.9.</span> <span class="nav-text"><a href="#spring&#x7684;&#x914D;&#x7F6E;" class="headerlink" title="spring&#x7684;&#x914D;&#x7F6E;"></a>spring&#x7684;&#x914D;&#x7F6E;</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">车子</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'TmdjbpYgyCq6SEtj6V33uVFl-gzGzoHsz',
+        appKey: 'KY64izQXFJgYaW2r38wCvzDE',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
