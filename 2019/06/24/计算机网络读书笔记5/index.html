@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="网络层:数据平面 每台路由器的数据平面的主要作用是从其输入链路向其输出链路转发数据报;控制平面的主要作用是协调这些本地的路由器转发动作,使得数据报沿着源和目的地主机之间的路由器路径最终进行端对端的传送  网络层的两个重要功能:转发和路由选择  转发:将分组从一个输入链路接口转移到适当的输出链路接口的路由器本地动作.转发是有网络层的数据平面执行的主要功能.  路由选择:是指确定分组从源到目的地所采取">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络读书笔记5">
+<meta property="og:url" content="http://example.com/2019/06/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B05/index.html">
+<meta property="og:site_name" content="车子的个人博客">
+<meta property="og:description" content="网络层:数据平面 每台路由器的数据平面的主要作用是从其输入链路向其输出链路转发数据报;控制平面的主要作用是协调这些本地的路由器转发动作,使得数据报沿着源和目的地主机之间的路由器路径最终进行端对端的传送  网络层的两个重要功能:转发和路由选择  转发:将分组从一个输入链路接口转移到适当的输出链路接口的路由器本地动作.转发是有网络层的数据平面执行的主要功能.  路由选择:是指确定分组从源到目的地所采取">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-06-23T16:38:44.000Z">
+<meta property="article:modified_time" content="2026-03-29T06:38:58.162Z">
+<meta property="article:author" content="车子">
+<meta property="article:tag" content="show me your code">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2019/06/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B05/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2019/06/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B05/","path":"2019/06/24/计算机网络读书笔记5/","title":"计算机网络读书笔记5"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>计算机网络读书笔记5 | 车子的个人博客</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">车子的个人博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">正确的事情通常都是优雅的</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82-%E6%95%B0%E6%8D%AE%E5%B9%B3%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">网络层:数据平面</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">车子</p>
+  <div class="site-description" itemprop="description">坐下看看</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">105</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/06/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B05/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="车子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="车子的个人博客">
+      <meta itemprop="description" content="坐下看看">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="计算机网络读书笔记5 | 车子的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          计算机网络读书笔记5
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-06-24 00:38:44" itemprop="dateCreated datePublished" datetime="2019-06-24T00:38:44+08:00">2019-06-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-29 14:38:58" itemprop="dateModified" datetime="2026-03-29T14:38:58+08:00">2026-03-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="网络层-数据平面"><a href="#网络层-数据平面" class="headerlink" title="网络层:数据平面"></a>网络层:数据平面</h1><ul>
+<li><p>每台路由器的<strong>数据平面</strong>的主要作用是从其输入链路向其输出链路转发数据报;<strong>控制平面</strong>的主要作用是协调这些本地的路由器转发动作,使得数据报沿着源和目的地主机之间的路由器路径最终进行端对端的传送</p>
+</li>
+<li><p>网络层的两个重要功能:转发和路由选择</p>
+</li>
+<li><p>转发:将分组从一个输入链路接口转移到适当的输出链路接口的路由器本地动作.转发是有网络层的数据平面执行的主要功能.</p>
+</li>
+<li><p>路由选择:是指确定分组从源到目的地所采取的端对端路径的网络范围处理过程.</p>
+</li>
+<li><p>因特网的网络层提供单一的服务,称为尽力而为的服务</p>
+</li>
+<li><p>路由器的交换法方式:经内存交换&#x2F;经总线交换&#x2F;经互联网络交换</p>
+</li>
+<li><p>路由器体系:</p>
+<ul>
+<li>输入端口.<ul>
+<li>1.执行终结物理链路层的物理层功能</li>
+<li>2.与位于入链路远端的数据链路层交互执行数据链路层功能.</li>
+<li>3.执行查找功能,通过查询转发表决定路由器的输出端口.</li>
+</ul>
+</li>
+<li>交换结构.将路由器的输入端口连接到他的输出端口.</li>
+<li>输出端口.存储从交换结构接收的分组,并通过执行必要的链路层和物理层功能在输出链路上传输这些分组.</li>
+<li>路由选择处理器.执行控制平面功能.传统路由器中,执行路由选择协议;SDN路由器中,负责与远程控制器通信,接收由远程控制器计算的转发表,并在该路由器的输入输出端口安装这些表项.路由选择器还执行网络管理功能.</li>
+</ul>
+</li>
+<li><p>交换结构的交换方式:1.经内存交换 2.经总线交换 3.经互联网络交换.</p>
+</li>
+<li><p>输出端口的存储队列满时,将会丢弃新到的分组.</p>
+</li>
+<li><p>分组调度方式:先进先出&#x2F;优先权排队&#x2F;循环和加权平均公平排队</p>
+</li>
+<li><p>链路层最大传输单元(MTU)严格的限制着IP数据报的长度</p>
+</li>
+<li><p>IPv4数据报格式:</p>
+<blockquote>
+<ul>
+<li>版本号:4比特规定了数据报的IP协议版本.</li>
+<li>首部长度:因为一个IPv4数据报可能包含一些可变数量的选项,故用4比特来确定IP数据报中的载荷(运输层报文段)实际开始的地方.</li>
+<li>服务类型:服务类型比特包含在IPv4首部中,以便使不同类型的IP数据报能相互区别开来.</li>
+<li>数据报长度:IP数据报的总长度(首部加上数据),一字节集.该字段长为16别特.理论上数据报的最大长度是65535字节,但是受到MTU限制,一般很少超过1500字节.</li>
+<li>标识&#x2F;标志&#x2F;片位移:这三个字段与IP分片相关.标识用来区分数据报(类似于数据报的序号,每个数据报唯一,该数据报的多个分片有同一标识号).标志用来区分是否为最后分片,最后分片为0,其余分片为1.便宜字段指定了分派在初始IP数据报的哪个位置.</li>
+<li>寿命(Time-To-Live,TTL):用来确保数据报不会永远在网络中循环.当TTL为0时,该数据报被丢弃</li>
+<li>协议:通常仅当一个IP数据报到达最终目的地时才会使用.指示了IP数据报的数据部分应当交给哪个特定的运输层协议.</li>
+<li>首部校验和.用于帮助路由器检测收到的IP数据报中的比特错误.只对IP首部计算了校验和.</li>
+<li>源和目的IP地址.</li>
+<li>选项:用于IP首部进行扩展,很少使用</li>
+<li>数据(有效载荷),数据部分.</li>
+</ul>
+</blockquote>
+<p>  一个IP数据报有总长20的字节首部(无选项).如果数据报承载了一个TCP报文段,则每个数据报共承载了总长40字节的首部(20字节IP20字节TCP首部)以及应用层报文.</p>
+</li>
+<li><p>因为MTU的存在,过长的IP数据报被分片发送.数据报的重新组装工作放在端系统中么不是放在网络路由器中.</p>
+</li>
+<li><p>接口:主机和物理链路之间的边界叫做接口.从技术上将,一个IP地址与一个接口相联系,而不是与包括该接口的主机或路由器相关联,</p>
+</li>
+<li><p>当前因特网的地址分配策略为无类别域间路由选择(CIDR).CIDR将子网寻址的概念一般化了.当使用子网寻址时,32比特的IP地址被划分成两部分,并且也具有点分十进制形式a.b.c.d&#x2F;x,x指示了地址的第一部分中的比特数.x表示的最高位比特构成了IP地址的网络部分,通常也被成为该地址的前缀;剩下的32-x比特可以认为是用于区分该组织内部设备的,这些内部设备有相同的网络前缀(长度为x的高位比特)</p>
+</li>
+<li><p>在CIDR被采用前,IP地址的网络部分被限制长度为8&#x2F;16&#x2F;24比特,被称为分类编址的编址方案,具有8&#x2F;16&#x2F;24比特子网地址的子网分别称为A&#x2F;B&#x2F;C类网络.</p>
+</li>
+<li><p>IP广播地址255.255.255.255</p>
+</li>
+<li><p>动态主机配置协议(DHCP)接入新设备步骤:</p>
+<blockquote>
+<ul>
+<li>DHCP服务器发现.客户端向目标地址255.255.255.255广播DHCP发现报文的IP数据报,并且源IP为0.0.0.0</li>
+<li>DHCP服务器提供.DHCP接收到DHCP发现报文的时,用DHCP提供报文想客户做出响应仍然使用255.255.255.255广播地址.报文中含有收到的发现报文的事务ID&#x2F;向客户推荐的IP地址,网络掩码和IP地址租用期.</li>
+<li>DHCP请求.新到达的客户从一个或者多个服务器提供中选择一个,并且向选中的服务器提供DHCP请求报文进行响应,回显配置的参数.</li>
+<li>DHCP ACK.服务器用DHCP ACK报文对DHCP请求报文进行响应,证实所要求的参数.</li>
+</ul>
+</blockquote>
+</li>
+<li><p>通过网络地址转换(NAT)将子网IP地址与外网IP地址相对应.</p>
+</li>
+<li><p>IPv6数据报.</p>
+<blockquote>
+<ul>
+<li>版本.4比特.</li>
+<li>流量类型.8比特</li>
+<li>流标签.20比特,表示一条数据报的流,能够对一条流中的某些数据报给出优先权.</li>
+<li>有效载荷长度.16比特.表示了跟在40字节订场的数据报首部后面的字节数量.</li>
+<li>下一个首部.标识数据报中的内容(数据字段)需要交付给哪个协议.(与IPv4首部中协议字段相同的值)</li>
+<li>跳限制.转发数据报的每台路由器对该字段的内容减1.如果该字段为0则被丢弃.</li>
+<li>源地址和目的地址</li>
+<li>数据</li>
+</ul>
+</blockquote>
+</li>
+<li><p>IPv6数据报采用隧道的方法,通过IPv4的节点.</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/06/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B04/" rel="prev" title="计算机网络读书笔记4">
+                  <i class="fa fa-angle-left"></i> 计算机网络读书笔记4
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/06/30/2019%E5%B9%B4%E4%B8%AD%E5%A4%8D%E7%9B%98/" rel="next" title="2019年中复盘">
+                  2019年中复盘 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">车子</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

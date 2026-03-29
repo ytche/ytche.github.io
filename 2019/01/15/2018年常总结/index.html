@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="关于年初的坑 java编程思想线程部分放弃了.java虚拟机也看完了,另外看完了重构和大话设计模式. 对mac系统基本熟练应用 算是攒了三万块钱. 一年工作没有考虑换工作,但是没有多少积累. 每个月存了1000给父母的钱,已经给了7000,剩下的不出意外过年给家里. 想法有改变,依然在用信用卡,但是没有之前的压力了,能够控制好,今后一般使用信用卡是常态. 还了银行的一屁股债  其余年初挖的坑,均没">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2018年常总结">
+<meta property="og:url" content="http://example.com/2019/01/15/2018%E5%B9%B4%E5%B8%B8%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="车子的个人博客">
+<meta property="og:description" content="关于年初的坑 java编程思想线程部分放弃了.java虚拟机也看完了,另外看完了重构和大话设计模式. 对mac系统基本熟练应用 算是攒了三万块钱. 一年工作没有考虑换工作,但是没有多少积累. 每个月存了1000给父母的钱,已经给了7000,剩下的不出意外过年给家里. 想法有改变,依然在用信用卡,但是没有之前的压力了,能够控制好,今后一般使用信用卡是常态. 还了银行的一屁股债  其余年初挖的坑,均没">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-01-15T13:31:09.000Z">
+<meta property="article:modified_time" content="2026-03-29T06:38:58.153Z">
+<meta property="article:author" content="车子">
+<meta property="article:tag" content="年常">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2019/01/15/2018%E5%B9%B4%E5%B8%B8%E6%80%BB%E7%BB%93/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2019/01/15/2018%E5%B9%B4%E5%B8%B8%E6%80%BB%E7%BB%93/","path":"2019/01/15/2018年常总结/","title":"2018年常总结"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2018年常总结 | 车子的个人博客</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">车子的个人博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">正确的事情通常都是优雅的</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E5%B9%B4%E5%88%9D%E7%9A%84%E5%9D%91"><span class="nav-number">1.</span> <span class="nav-text">关于年初的坑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#18%E5%B9%B4%E7%9A%84%E5%85%B6%E4%BB%96%E5%9B%9E%E9%A1%BE"><span class="nav-number">2.</span> <span class="nav-text">18年的其他回顾</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8B%89%E5%BC%BA%E6%8B%BC%E5%87%91%E7%9A%84%E6%94%B6%E8%8E%B7"><span class="nav-number">2.1.</span> <span class="nav-text">勉强拼凑的收获</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E8%B6%B3"><span class="nav-number">2.2.</span> <span class="nav-text">不足</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E5%B7%A5%E4%BD%9C"><span class="nav-number">2.3.</span> <span class="nav-text">关于工作.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E6%B8%B8%E6%88%8F"><span class="nav-number">2.4.</span> <span class="nav-text">关于游戏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E5%AD%A6%E4%B9%A0"><span class="nav-number">2.5.</span> <span class="nav-text">关于学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E8%BA%AB%E4%BD%93%E5%92%8C%E5%81%A5%E5%BA%B7"><span class="nav-number">2.6.</span> <span class="nav-text">关于身体和健康</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E7%88%B6%E6%AF%8D%E5%92%8C%E5%A7%90%E5%A7%90"><span class="nav-number">2.7.</span> <span class="nav-text">关于父母和姐姐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E7%BB%8F%E6%B5%8E"><span class="nav-number">2.8.</span> <span class="nav-text">关于经济</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E5%85%B6%E4%BB%96"><span class="nav-number">2.9.</span> <span class="nav-text">关于其他</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2019%E5%B9%B4%E6%8C%96%E5%9D%91"><span class="nav-number">3.</span> <span class="nav-text">2019年挖坑.</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A1%AC%E6%80%A7%E5%9D%91"><span class="nav-number">3.1.</span> <span class="nav-text">硬性坑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E6%80%A7%E5%9D%91"><span class="nav-number">3.2.</span> <span class="nav-text">软性坑</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B"><span class="nav-number">4.</span> <span class="nav-text">总结一下</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">车子</p>
+  <div class="site-description" itemprop="description">坐下看看</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">105</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/01/15/2018%E5%B9%B4%E5%B8%B8%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="车子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="车子的个人博客">
+      <meta itemprop="description" content="坐下看看">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2018年常总结 | 车子的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2018年常总结
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-01-15 21:31:09" itemprop="dateCreated datePublished" datetime="2019-01-15T21:31:09+08:00">2019-01-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-29 14:38:58" itemprop="dateModified" datetime="2026-03-29T14:38:58+08:00">2026-03-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E5%88%92%E4%B8%8E%E5%A4%8D%E7%9B%98/" itemprop="url" rel="index"><span itemprop="name">计划与复盘</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E5%88%92%E4%B8%8E%E5%A4%8D%E7%9B%98/2018/" itemprop="url" rel="index"><span itemprop="name">2018</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="关于年初的坑"><a href="#关于年初的坑" class="headerlink" title="关于年初的坑"></a>关于年初的坑</h1><ul>
+<li>java编程思想线程部分放弃了.java虚拟机也看完了,另外看完了重构和大话设计模式.</li>
+<li>对mac系统基本熟练应用</li>
+<li>算是攒了三万块钱.</li>
+<li>一年工作没有考虑换工作,但是没有多少积累.</li>
+<li>每个月存了1000给父母的钱,已经给了7000,剩下的不出意外过年给家里.</li>
+<li>想法有改变,依然在用信用卡,但是没有之前的压力了,能够控制好,今后一般使用信用卡是常态.</li>
+<li>还了银行的一屁股债</li>
+</ul>
+<p>其余年初挖的坑,均没有填上,主要是自控力差以及由自控力差引出来的这种那种的接口.</p>
+<h1 id="18年的其他回顾"><a href="#18年的其他回顾" class="headerlink" title="18年的其他回顾"></a>18年的其他回顾</h1><h2 id="勉强拼凑的收获"><a href="#勉强拼凑的收获" class="headerlink" title="勉强拼凑的收获"></a>勉强拼凑的收获</h2><ul>
+<li>虽然一年都在混,好在年底两三个月看了点书.</li>
+<li>在知识付费上花了几百块钱.通过stormzhang的公众号和星球改变了一些看世界的认知.</li>
+<li>在理财上有所行动.</li>
+<li>借钱黑名单加了人.以后的日子,非特殊情况,尽量不借钱给别人了.</li>
+<li>买了台新台式机.</li>
+</ul>
+<h2 id="不足"><a href="#不足" class="headerlink" title="不足"></a>不足</h2><ul>
+<li>游戏上花费的时间,精力和钱都太多.特别的钱是小事,魔兽花费的精力严重透支了身体健康.</li>
+<li>工作上划水严重,被环境影响的太过拖沓.</li>
+<li>知识付费上花了钱,但是并没有很好的利用.</li>
+<li>读书太少&#x2F;技术成长太少.</li>
+<li>刷社交网站或者软件时间太长.</li>
+<li>制定计划的可行性不足,执行力不足.</li>
+<li>睡得太晚,起的太晚.</li>
+<li>身体终于坚持不住,出现了异常.慢性肝损伤和高尿酸.</li>
+<li>活动不足,没有吧减肥这件事坚持出一个月.</li>
+<li>联系父母太少&#x2F;回家次数太少</li>
+<li>交际圈萎缩.</li>
+</ul>
+<h2 id="关于工作"><a href="#关于工作" class="headerlink" title="关于工作."></a>关于工作.</h2><ul>
+<li>18年工作划水太多,节奏严重变得拖沓起来.没有坚持番茄工作法.</li>
+<li>工作时间空闲的试试没有充分利用,浪费了大把时间在刷知乎等社交平台上.</li>
+<li>工作应用的技术上也没有什么新的突破.当然也感觉个人到达了一个天花板,基本上是通常的业务需求和技术框架改变的问题都能够解决,所以在日常工作中的提升会变得很少.</li>
+<li>并没有接触大数据相关的东西,跟自己当初来公司的目的相悖.</li>
+<li>依然下班直接走.跟年初的想法有些区别,不再有强制自己加班的想法了.</li>
+</ul>
+<h2 id="关于游戏"><a href="#关于游戏" class="headerlink" title="关于游戏"></a>关于游戏</h2><ul>
+<li>18年游戏占据了自己大量的时间精力和金钱,引以为戒.</li>
+<li>魔兽世界的粘性太大,今后完全不能考虑认真去玩了.</li>
+<li>虽然并不排斥游戏上花钱,但是18年花的钱太多了,以后一定要控制.</li>
+<li>还是玩了几款不错的游戏.</li>
+<li>玩游戏的态度有问题,花费大量时间精力以后游戏开始变成逃避负罪感的方式,形成恶性循环.</li>
+</ul>
+<h2 id="关于学习"><a href="#关于学习" class="headerlink" title="关于学习"></a>关于学习</h2><ul>
+<li>学习时间太少,方法有问题.企图通过思想控制身体学习,结果总是失败.应该让身体先进入学习的状态,然后让思想去适应.</li>
+<li>在知识付费的方面开始有部分投入,但是并没有很好的利用.</li>
+<li>虽然有点晚,但是还是在年底进入了学习装填,希望到2019的春节能够一直保持.</li>
+<li>并没有完成18年积累技术的期望,可以说是荒废了一年.</li>
+</ul>
+<h2 id="关于身体和健康"><a href="#关于身体和健康" class="headerlink" title="关于身体和健康"></a>关于身体和健康</h2><ul>
+<li>一整年生活严重不规律,太不正常了.</li>
+<li>没有坚持减肥.</li>
+<li>依然管不住嘴和腿&#x2F;比17年更差劲.惰性更重.</li>
+<li>身体终于撑不住了,估计在医院花了三千了.</li>
+<li>医生说必须要减肥了,生死攸关.</li>
+</ul>
+<h2 id="关于父母和姐姐"><a href="#关于父母和姐姐" class="headerlink" title="关于父母和姐姐"></a>关于父母和姐姐</h2><ul>
+<li>今年跟父母的联系太少,19年必须更改.</li>
+<li>回家的次数太少.</li>
+<li>每个月给父母存了1000块钱.之前有考虑过要不要给父母,后来想了下18年年初的计划,还是执行到底吧.剩下的5000过年也取出来给父母.</li>
+<li>年初希望通过互联网让父母的精神生活更好一些.但是因为联系太少,没有更好的让他们熟悉互联网.</li>
+<li>跟姐姐的联系太少.</li>
+</ul>
+<h2 id="关于经济"><a href="#关于经济" class="headerlink" title="关于经济"></a>关于经济</h2><ul>
+<li>整体比较满意.还了17年的外债,能够有盈余,能够给父母钱也交上了保险.</li>
+<li>交保险的五月份依然是一个痛苦的资金周转时间段.</li>
+<li>关于理财,比17年更了解了那么一丢丢.</li>
+<li>有很多不应该的冲动消费.</li>
+<li>虽然给了父母钱,但是平常日子换的钱还是有点少.</li>
+<li>知识上的冲动消费允许有,但是游戏和娱乐上的冲动消费要控制一下.</li>
+</ul>
+<h2 id="关于其他"><a href="#关于其他" class="headerlink" title="关于其他"></a>关于其他</h2><ul>
+<li>肥都没减,谈什么女朋友.</li>
+<li>买了个阿里云服务器,年末在搞备案.</li>
+<li>七牛云测试域名被收回,导致博客的图片都挂掉了.</li>
+<li>闲书读的太少,电影太少.读书笔记好久没有维护了.</li>
+<li>动漫看了不少,如了动漫的坑,看过好多不错的番.</li>
+</ul>
+<h1 id="2019年挖坑"><a href="#2019年挖坑" class="headerlink" title="2019年挖坑."></a>2019年挖坑.</h1><h2 id="硬性坑"><a href="#硬性坑" class="headerlink" title="硬性坑"></a>硬性坑</h2><ul>
+<li>减肥(进行中,105-&gt;87)</li>
+<li>作息规律,晚上23点以前必须关灯睡觉.(最近状态较差)</li>
+<li><del>需要跟父母敞开心扉畅谈一次,把彼此间的事情说明白了.</del></li>
+<li>给父母养老钱. 跟父母多联系&#x2F;多回家几次(进行中,联系比较少)</li>
+<li>捣鼓自己的公众号,不用去写程序,只做简单的信息流,写写文章之类的.(写的东西太少)</li>
+<li>每周回来看一次这个2019的挖坑,督促自己来完成工作.(最完美执行的计划)</li>
+<li><del>买个电竞椅.</del>(伪需求,已经放弃)</li>
+<li><del>金三银四面试一下,不跳槽,跳槽在交了保险以后再作考虑</del>.</li>
+</ul>
+<h2 id="软性坑"><a href="#软性坑" class="headerlink" title="软性坑"></a>软性坑</h2><ul>
+<li>贯彻身体带动思想的方法.</li>
+<li>每个月在网上给父母买点生活用品.</li>
+<li>工作上要利利索索,不能再被环境影响养成拖沓的毛病.</li>
+<li>减少游戏上的经济消费.控制游戏时间</li>
+<li>把知识付费的英语和算法的坑填上.</li>
+<li>催债程序</li>
+<li>五篇blog</li>
+<li>五本技术类书籍.高性能mysql&#x2F;敏捷开发&#x2F;cleancode</li>
+<li>java核心编程多线程(顺便把编程思想剩下的搞定)&#x2F;程序员的自我修养.</li>
+<li>多跟姐姐联系看看能不能抽时间一起回家.</li>
+<li>春节前后集中解决下数据结构的问题.</li>
+<li>阿里云的钱还要丢.争取在上边搞点东西.</li>
+<li>去店里买点衣服.</li>
+<li>攒5w块钱.</li>
+</ul>
+<p>写坑的时候考虑了一下把学习放到了低于健康一级,也就是明年的主要目标是减肥和健康,顺便改善与父母的状态.减肥和改善父母的关系并不冲突,但是减肥和学习有时间上的冲突.重要性摆开,减肥和健康&gt;经济问题&gt;与家人的改善状态&gt;学习&gt;工作&gt;游戏和其他.<br>如果完成了硬坑的一般,20年元旦出去转转.<br>如果提前完成了减肥,就提前出去转转.<br>我想休息一下.<br>我很缺钱.</p>
+<h1 id="总结一下"><a href="#总结一下" class="headerlink" title="总结一下"></a>总结一下</h1><p>2018年过的十分安逸.并不想用一个积极的词来总结,用过消极的词吧—虚度.<br>没有生活的压力,整个人的精神状态很萎靡和消极,自制力差,懊恼,熬夜,工作拖沓,生病.简而言之是非常失败的一年.<br>往事不可谏,来者犹可追.<br>希望自己在19年能够做出足够的改变.经常回来看看这篇文章,看好以下自己以前的状态惊醒下.提醒下自己19年的目标.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%B9%B4%E5%B8%B8/" rel="tag"># 年常</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/03/03/java%E4%B8%AD%E7%9A%84classpath%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/" rel="prev" title="Classpath问题">
+                  <i class="fa fa-angle-left"></i> Classpath问题
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/01/23/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93/" rel="next" title="设计模式总结">
+                  设计模式总结 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">车子</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="MySQL零散知识点总结1. COUNT(*) vs COUNT(1) vs COUNT(列) COUNT(*)：统计所有行，包括NULL COUNT(1)：统计结果与COUNT(*)等价，1可以是任意值 COUNT(列)：只统计非NULL值  性能：InnoDB中COUNT(*)和COUNT(1)性能相当，因为有专门的优化。 2. WHERE vs HAVING WHERE：过滤行，在分组前生效">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL零散知识点总结">
+<meta property="og:url" content="http://example.com/2023/11/28/Mysql%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86%E7%82%B9/index.html">
+<meta property="og:site_name" content="车子的个人博客">
+<meta property="og:description" content="MySQL零散知识点总结1. COUNT(*) vs COUNT(1) vs COUNT(列) COUNT(*)：统计所有行，包括NULL COUNT(1)：统计结果与COUNT(*)等价，1可以是任意值 COUNT(列)：只统计非NULL值  性能：InnoDB中COUNT(*)和COUNT(1)性能相当，因为有专门的优化。 2. WHERE vs HAVING WHERE：过滤行，在分组前生效">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-11-27T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-29T06:38:58.084Z">
+<meta property="article:author" content="车子">
+<meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="技术">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2023/11/28/Mysql%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86%E7%82%B9/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/11/28/Mysql%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86%E7%82%B9/","path":"2023/11/28/Mysql零散知识点/","title":"MySQL零散知识点总结"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MySQL零散知识点总结 | 车子的个人博客</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">车子的个人博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">正确的事情通常都是优雅的</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93"><span class="nav-number">1.</span> <span class="nav-text">MySQL零散知识点总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-COUNT-vs-COUNT-1-vs-COUNT-%E5%88%97"><span class="nav-number">1.1.</span> <span class="nav-text">1. COUNT(*) vs COUNT(1) vs COUNT(列)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-WHERE-vs-HAVING"><span class="nav-number">1.2.</span> <span class="nav-text">2. WHERE vs HAVING</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-DISTINCT-%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">1.3.</span> <span class="nav-text">3. DISTINCT 的注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-UNION-vs-UNION-ALL"><span class="nav-number">1.4.</span> <span class="nav-text">4. UNION vs UNION ALL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96"><span class="nav-number">1.5.</span> <span class="nav-text">5. 分页查询优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%B6%E8%BF%9F%E5%85%B3%E8%81%94"><span class="nav-number">1.5.1.</span> <span class="nav-text">延迟关联</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%B8%E6%A0%87%E5%88%86%E9%A1%B5"><span class="nav-number">1.5.2.</span> <span class="nav-text">游标分页</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%AD%97%E6%AE%B5%E7%B1%BB%E5%9E%8B%E9%80%89%E6%8B%A9"><span class="nav-number">1.6.</span> <span class="nav-text">6. 字段类型选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%AD%98%E5%82%A8"><span class="nav-number">1.7.</span> <span class="nav-text">7. 字符串存储</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E6%97%B6%E9%97%B4%E7%B1%BB%E5%9E%8B%E9%80%89%E6%8B%A9"><span class="nav-number">1.8.</span> <span class="nav-text">8. 时间类型选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-COUNT-1-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="nav-number">1.9.</span> <span class="nav-text">9. COUNT(1) 性能优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-INSERT-%E6%89%B9%E9%87%8F%E6%8F%92%E5%85%A5"><span class="nav-number">1.10.</span> <span class="nav-text">10. INSERT 批量插入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-%E5%B8%B8%E8%A7%81SQL%E6%8A%80%E5%B7%A7"><span class="nav-number">1.11.</span> <span class="nav-text">11. 常见SQL技巧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-%E5%AE%B9%E6%98%93%E5%BF%BD%E7%95%A5%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.12.</span> <span class="nav-text">12. 容易忽略的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.13.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">车子</p>
+  <div class="site-description" itemprop="description">坐下看看</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">105</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/11/28/Mysql%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86%E7%82%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="车子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="车子的个人博客">
+      <meta itemprop="description" content="坐下看看">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="MySQL零散知识点总结 | 车子的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MySQL零散知识点总结
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-28 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-28T00:00:00+08:00">2023-11-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-29 14:38:58" itemprop="dateModified" datetime="2026-03-29T14:38:58+08:00">2026-03-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">后端</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="MySQL零散知识点总结"><a href="#MySQL零散知识点总结" class="headerlink" title="MySQL零散知识点总结"></a>MySQL零散知识点总结</h1><h2 id="1-COUNT-vs-COUNT-1-vs-COUNT-列"><a href="#1-COUNT-vs-COUNT-1-vs-COUNT-列" class="headerlink" title="1. COUNT(*) vs COUNT(1) vs COUNT(列)"></a>1. COUNT(*) vs COUNT(1) vs COUNT(列)</h2><ul>
+<li><strong>COUNT(*)</strong>：统计所有行，包括NULL</li>
+<li><strong>COUNT(1)</strong>：统计结果与COUNT(*)等价，1可以是任意值</li>
+<li><strong>COUNT(列)</strong>：只统计非NULL值</li>
+</ul>
+<p><strong>性能</strong>：InnoDB中COUNT(*)和COUNT(1)性能相当，因为有专门的优化。</p>
+<h2 id="2-WHERE-vs-HAVING"><a href="#2-WHERE-vs-HAVING" class="headerlink" title="2. WHERE vs HAVING"></a>2. WHERE vs HAVING</h2><ul>
+<li><strong>WHERE</strong>：过滤行，在分组前生效</li>
+<li><strong>HAVING</strong>：过滤分组后的结果，在GROUP BY后生效</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 正确用法</span></span><br><span class="line"><span class="keyword">SELECT</span> dept, <span class="built_in">COUNT</span>(<span class="operator">*</span>) </span><br><span class="line"><span class="keyword">FROM</span> employee </span><br><span class="line"><span class="keyword">WHERE</span> dept <span class="operator">!=</span> <span class="string">&#x27;IT&#x27;</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> dept</span><br><span class="line"><span class="keyword">HAVING</span> <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="operator">&gt;</span> <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-DISTINCT-的注意事项"><a href="#3-DISTINCT-的注意事项" class="headerlink" title="3. DISTINCT 的注意事项"></a>3. DISTINCT 的注意事项</h2><ul>
+<li>DISTINCT只能放在第一个字段前</li>
+<li>多字段去重是基于全部字段的组合去重</li>
+<li>DISTINCT会触发排序操作，大数据量时性能差</li>
+</ul>
+<h2 id="4-UNION-vs-UNION-ALL"><a href="#4-UNION-vs-UNION-ALL" class="headerlink" title="4. UNION vs UNION ALL"></a>4. UNION vs UNION ALL</h2><ul>
+<li><strong>UNION</strong>：去重 + 排序，性能较低</li>
+<li><strong>UNION ALL</strong>：不去重，性能高</li>
+</ul>
+<h2 id="5-分页查询优化"><a href="#5-分页查询优化" class="headerlink" title="5. 分页查询优化"></a>5. 分页查询优化</h2><h3 id="延迟关联"><a href="#延迟关联" class="headerlink" title="延迟关联"></a>延迟关联</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 低效</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> orders <span class="keyword">ORDER</span> <span class="keyword">BY</span> id LIMIT <span class="number">100000</span>, <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 高效（延迟关联）</span></span><br><span class="line"><span class="keyword">SELECT</span> o.<span class="operator">*</span> </span><br><span class="line"><span class="keyword">FROM</span> orders o </span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> (<span class="keyword">SELECT</span> id <span class="keyword">FROM</span> orders <span class="keyword">ORDER</span> <span class="keyword">BY</span> id LIMIT <span class="number">100000</span>, <span class="number">10</span>) t </span><br><span class="line"><span class="keyword">ON</span> o.id <span class="operator">=</span> t.id;</span><br></pre></td></tr></table></figure>
+
+<h3 id="游标分页"><a href="#游标分页" class="headerlink" title="游标分页"></a>游标分页</h3><p>记录上一页最后一条的ID，用ID范围分页</p>
+<h2 id="6-字段类型选择"><a href="#6-字段类型选择" class="headerlink" title="6. 字段类型选择"></a>6. 字段类型选择</h2><ul>
+<li>整型优先于字符串</li>
+<li>避免NULL，使用NOT NULL + 默认值</li>
+<li>避免TEXT&#x2F;BLOB作为主键</li>
+<li>枚举类型用ENUM</li>
+</ul>
+<h2 id="7-字符串存储"><a href="#7-字符串存储" class="headerlink" title="7. 字符串存储"></a>7. 字符串存储</h2><ul>
+<li>定长用CHAR，变长用VARCHAR</li>
+<li>VARCHAR(100)和VARCHAR(1000)存储空间相同，但内存占用不同</li>
+<li>手机号、身份证用字符串而非数字</li>
+</ul>
+<h2 id="8-时间类型选择"><a href="#8-时间类型选择" class="headerlink" title="8. 时间类型选择"></a>8. 时间类型选择</h2><ul>
+<li>日期用DATE</li>
+<li>日期时间用DATETIME或TIMESTAMP</li>
+<li>需要时区用TIMESTAMP</li>
+<li>需要高精度用DATETIME(6)</li>
+</ul>
+<h2 id="9-COUNT-1-性能优化"><a href="#9-COUNT-1-性能优化" class="headerlink" title="9. COUNT(1) 性能优化"></a>9. COUNT(1) 性能优化</h2><ul>
+<li>近似值用EXPLAIN SELECT COUNT(*) FROM table</li>
+<li>加条件用COUNT(*) WHERE status &#x3D; 1</li>
+<li>预先建立计数表</li>
+</ul>
+<h2 id="10-INSERT-批量插入"><a href="#10-INSERT-批量插入" class="headerlink" title="10. INSERT 批量插入"></a>10. INSERT 批量插入</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 低效</span></span><br><span class="line"><span class="keyword">INSERT INTO</span> t <span class="keyword">VALUES</span> (<span class="number">1</span>,<span class="string">&#x27;a&#x27;</span>), (<span class="number">2</span>,<span class="string">&#x27;b&#x27;</span>), (<span class="number">3</span>,<span class="string">&#x27;c&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 高效（控制在1000条以内）</span></span><br><span class="line"><span class="keyword">INSERT INTO</span> t <span class="keyword">VALUES</span> (<span class="number">1</span>,<span class="string">&#x27;a&#x27;</span>), (<span class="number">2</span>,<span class="string">&#x27;b&#x27;</span>), (<span class="number">3</span>,<span class="string">&#x27;c&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="11-常见SQL技巧"><a href="#11-常见SQL技巧" class="headerlink" title="11. 常见SQL技巧"></a>11. 常见SQL技巧</h2><ul>
+<li>IFNULL处理NULL值</li>
+<li>IF(CONDITION, TRUE_VAL, FALSE_VAL) 条件表达式</li>
+<li>COALESCE 返回第一个非NULL值</li>
+</ul>
+<h2 id="12-容易忽略的问题"><a href="#12-容易忽略的问题" class="headerlink" title="12. 容易忽略的问题"></a>12. 容易忽略的问题</h2><ul>
+<li>字符串比较要加引号</li>
+<li>避免在索引列上使用函数</li>
+<li>使用EXPLAIN分析SQL</li>
+<li>注意SQL注入风险</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文汇总了MySQL开发中常见的零散知识点，虽然都是细节，但在实际开发中能避免很多问题。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag"># 技术</a>
+              <a href="/tags/java/" rel="tag"># java</a>
+              <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/09/10/JDBC%20ResultSet%E8%8E%B7%E5%8F%96%E5%88%97%E5%90%8D/" rel="prev" title="JDBC ResultSet获取列名">
+                  <i class="fa fa-angle-left"></i> JDBC ResultSet获取列名
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/03/05/Future%E5%92%8CFutureTask%E7%9A%84%E5%8C%BA%E5%88%AB/" rel="next" title="Future和FutureTask的区别">
+                  Future和FutureTask的区别 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">车子</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
