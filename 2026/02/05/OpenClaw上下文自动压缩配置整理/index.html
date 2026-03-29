@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="OpenClaw上下文压缩配置整理上下文 vs 速度关系 &lt;4K tokens：几乎无感知，最快 4K-16K：轻微变慢，日常对话无压力 16K-32K：开始有明显延迟 &gt;32K：速度下降明显，成本也更高  解决方案：自动压缩配置1. 压缩（Compaction）压缩会将较早的对话总结为紧凑的摘要条目，并保持近期消息不变。 配置参数： 12345678&quot;compaction&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenClaw上下文自动压缩配置整理">
+<meta property="og:url" content="http://example.com/2026/02/05/OpenClaw%E4%B8%8A%E4%B8%8B%E6%96%87%E8%87%AA%E5%8A%A8%E5%8E%8B%E7%BC%A9%E9%85%8D%E7%BD%AE%E6%95%B4%E7%90%86/index.html">
+<meta property="og:site_name" content="车子的个人博客">
+<meta property="og:description" content="OpenClaw上下文压缩配置整理上下文 vs 速度关系 &lt;4K tokens：几乎无感知，最快 4K-16K：轻微变慢，日常对话无压力 16K-32K：开始有明显延迟 &gt;32K：速度下降明显，成本也更高  解决方案：自动压缩配置1. 压缩（Compaction）压缩会将较早的对话总结为紧凑的摘要条目，并保持近期消息不变。 配置参数： 12345678&quot;compaction&amp;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-02-04T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-29T09:03:03.196Z">
+<meta property="article:author" content="车子">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="openclaw">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/02/05/OpenClaw%E4%B8%8A%E4%B8%8B%E6%96%87%E8%87%AA%E5%8A%A8%E5%8E%8B%E7%BC%A9%E9%85%8D%E7%BD%AE%E6%95%B4%E7%90%86/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2026/02/05/OpenClaw%E4%B8%8A%E4%B8%8B%E6%96%87%E8%87%AA%E5%8A%A8%E5%8E%8B%E7%BC%A9%E9%85%8D%E7%BD%AE%E6%95%B4%E7%90%86/","path":"2026/02/05/OpenClaw上下文自动压缩配置整理/","title":"OpenClaw上下文自动压缩配置整理"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>OpenClaw上下文自动压缩配置整理 | 车子的个人博客</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">车子的个人博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">正确的事情通常都是优雅的</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#OpenClaw%E4%B8%8A%E4%B8%8B%E6%96%87%E5%8E%8B%E7%BC%A9%E9%85%8D%E7%BD%AE%E6%95%B4%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">OpenClaw上下文压缩配置整理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8A%E4%B8%8B%E6%96%87-vs-%E9%80%9F%E5%BA%A6%E5%85%B3%E7%B3%BB"><span class="nav-number">1.1.</span> <span class="nav-text">上下文 vs 速度关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9A%E8%87%AA%E5%8A%A8%E5%8E%8B%E7%BC%A9%E9%85%8D%E7%BD%AE"><span class="nav-number">1.2.</span> <span class="nav-text">解决方案：自动压缩配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%8E%8B%E7%BC%A9%EF%BC%88Compaction%EF%BC%89"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. 压缩（Compaction）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%BC%9A%E8%AF%9D%E4%BF%AE%E5%89%AA%EF%BC%88Session-Pruning%EF%BC%89"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. 会话修剪（Session Pruning）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E4%BC%9A%E8%AF%9D%E9%87%8D%E7%BD%AE%EF%BC%88Session-Reset%EF%BC%89"><span class="nav-number">1.2.3.</span> <span class="nav-text">3. 会话重置（Session Reset）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.3.</span> <span class="nav-text">完整配置文件示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E4%BD%8D%E7%BD%AE"><span class="nav-number">1.4.</span> <span class="nav-text">配置位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E7%AE%A1%E7%90%86%E7%AD%96%E7%95%A5"><span class="nav-number">1.5.</span> <span class="nav-text">手动管理策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%94%A8%E5%8E%8B%E7%BC%A9%E7%AD%96%E7%95%A5"><span class="nav-number">1.5.1.</span> <span class="nav-text">实用压缩策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E4%B9%A0%E6%83%AF%E5%BB%BA%E8%AE%AE"><span class="nav-number">1.5.2.</span> <span class="nav-text">使用习惯建议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAAgent"><span class="nav-number">1.6.</span> <span class="nav-text">创建Agent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"><span class="nav-number">1.7.</span> <span class="nav-text">参考文档</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">车子</p>
+  <div class="site-description" itemprop="description">坐下看看</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">66</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/02/05/OpenClaw%E4%B8%8A%E4%B8%8B%E6%96%87%E8%87%AA%E5%8A%A8%E5%8E%8B%E7%BC%A9%E9%85%8D%E7%BD%AE%E6%95%B4%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="车子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="车子的个人博客">
+      <meta itemprop="description" content="坐下看看">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="OpenClaw上下文自动压缩配置整理 | 车子的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          OpenClaw上下文自动压缩配置整理
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-02-05 00:00:00" itemprop="dateCreated datePublished" datetime="2026-02-05T00:00:00+08:00">2026-02-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI/Agent/" itemprop="url" rel="index"><span itemprop="name">Agent</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI/Agent/openclaw/" itemprop="url" rel="index"><span itemprop="name">openclaw</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="OpenClaw上下文压缩配置整理"><a href="#OpenClaw上下文压缩配置整理" class="headerlink" title="OpenClaw上下文压缩配置整理"></a>OpenClaw上下文压缩配置整理</h1><h3 id="上下文-vs-速度关系"><a href="#上下文-vs-速度关系" class="headerlink" title="上下文 vs 速度关系"></a>上下文 vs 速度关系</h3><ul>
+<li><strong>&lt;4K tokens</strong>：几乎无感知，最快</li>
+<li><strong>4K-16K</strong>：轻微变慢，日常对话无压力</li>
+<li><strong>16K-32K</strong>：开始有明显延迟</li>
+<li><strong>&gt;32K</strong>：速度下降明显，成本也更高</li>
+</ul>
+<h3 id="解决方案：自动压缩配置"><a href="#解决方案：自动压缩配置" class="headerlink" title="解决方案：自动压缩配置"></a>解决方案：自动压缩配置</h3><h4 id="1-压缩（Compaction）"><a href="#1-压缩（Compaction）" class="headerlink" title="1. 压缩（Compaction）"></a>1. 压缩（Compaction）</h4><p>压缩会将较早的对话总结为紧凑的摘要条目，并保持近期消息不变。</p>
+<p><strong>配置参数：</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;compaction&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;mode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;safeguard&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;reserveTokensFloor&quot;</span><span class="punctuation">:</span> <span class="number">24000</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;memoryFlush&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;enabled&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;softThresholdTokens&quot;</span><span class="punctuation">:</span> <span class="number">6000</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>参数说明：</strong></p>
+<ul>
+<li><code>mode</code>: <code>default</code>（标准压缩）或 <code>safeguard</code>（为超长历史启用分块摘要）</li>
+<li><code>reserveTokensFloor</code>: 最小保留token数（默认20000，确保压缩前有足够空间）</li>
+<li><code>memoryFlush</code>: 压缩前自动运行静默回合，将重要内容写入记忆文件<ul>
+<li><code>softThresholdTokens</code>: 触发记忆刷新的token阈值</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-会话修剪（Session-Pruning）"><a href="#2-会话修剪（Session-Pruning）" class="headerlink" title="2. 会话修剪（Session Pruning）"></a>2. 会话修剪（Session Pruning）</h4><p>减少工具结果膨胀，只保留最近的工具调用结果。</p>
+<p><strong>配置参数：</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;session&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;pruning&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;enabled&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;maxToolResults&quot;</span><span class="punctuation">:</span> <span class="number">3</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-会话重置（Session-Reset）"><a href="#3-会话重置（Session-Reset）" class="headerlink" title="3. 会话重置（Session Reset）"></a>3. 会话重置（Session Reset）</h4><p>定期自动开启新会话，避免历史累积过长。</p>
+<p><strong>配置参数：</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;session&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;reset&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;daily&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;idleMinutes&quot;</span><span class="punctuation">:</span> <span class="number">120</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>重置规则：</strong></p>
+<ul>
+<li><code>daily: true</code>: 每天凌晨4点自动重置会话</li>
+<li><code>idleMinutes: 120</code>: 空闲120分钟后自动重置</li>
+</ul>
+<h3 id="完整配置文件示例"><a href="#完整配置文件示例" class="headerlink" title="完整配置文件示例"></a>完整配置文件示例</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;agents&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;defaults&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;compaction&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;mode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;safeguard&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;reserveTokensFloor&quot;</span><span class="punctuation">:</span> <span class="number">24000</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;memoryFlush&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">          <span class="attr">&quot;enabled&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;softThresholdTokens&quot;</span><span class="punctuation">:</span> <span class="number">6000</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;session&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;pruning&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">          <span class="attr">&quot;enabled&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;maxToolResults&quot;</span><span class="punctuation">:</span> <span class="number">3</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;session&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;reset&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;daily&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;idleMinutes&quot;</span><span class="punctuation">:</span> <span class="number">120</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="配置位置"><a href="#配置位置" class="headerlink" title="配置位置"></a>配置位置</h3><ul>
+<li>配置文件：<code>~/.openclaw/openclaw.json</code></li>
+<li>修改后需要重启：<code>openclaw gateway restart</code></li>
+</ul>
+<h2 id="手动管理策略"><a href="#手动管理策略" class="headerlink" title="手动管理策略"></a>手动管理策略</h2><h3 id="实用压缩策略"><a href="#实用压缩策略" class="headerlink" title="实用压缩策略"></a>实用压缩策略</h3><ol>
+<li><strong>自动清理</strong>：通过上述配置实现</li>
+<li><strong>手动重启</strong>：感觉卡顿时，直接开新会话最干净</li>
+<li><strong>摘要模式</strong>：让AI自己总结前文，然后替换历史</li>
+<li><strong>分段归档</strong>：长话题结束后，主动清理上下文</li>
+</ol>
+<h3 id="使用习惯建议"><a href="#使用习惯建议" class="headerlink" title="使用习惯建议"></a>使用习惯建议</h3><ul>
+<li><strong>日常闲聊</strong>：每10-20条消息建议重启</li>
+<li><strong>工作会话</strong>：按任务划分，一个任务一个会话</li>
+<li><strong>重要内容</strong>：先保存到文件（MEMORY.md或笔记），再清理</li>
+</ul>
+<h2 id="创建Agent"><a href="#创建Agent" class="headerlink" title="创建Agent"></a>创建Agent</h2><h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul>
+<li>OpenClaw 压缩概念文档：<code>/concepts/compaction</code></li>
+<li>会话管理深入了解：<code>/reference/session-management-compaction</code></li>
+<li>配置参考：<code>/gateway/configuration</code></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/AI/" rel="tag"># AI</a>
+              <a href="/tags/openclaw/" rel="tag"># openclaw</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/12/17/%E5%85%B3%E4%BA%8EAI%E5%9C%BA%E6%99%AF%E4%B8%8B%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E6%A0%B8%E5%BF%83%E8%83%BD%E5%8A%9B%E5%92%8C%E8%81%8C%E4%B8%9A%E6%96%B9%E5%90%91%E7%9A%84%E5%AF%B9%E8%AF%9D/" rel="prev" title="关于AI场景下程序员的核心能力和职业方向的对话">
+                  <i class="fa fa-angle-left"></i> 关于AI场景下程序员的核心能力和职业方向的对话
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/02/08/openclaw%E6%9C%AC%E5%9C%B0%E6%A8%A1%E5%9E%8B%E5%95%86%E7%94%A8%E6%A8%A1%E5%9E%8B%E8%B0%83%E7%94%A8%E5%BB%BA%E8%AE%AE/" rel="next" title="openclaw本地模型商用模型调用建议">
+                  openclaw本地模型商用模型调用建议 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">车子</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

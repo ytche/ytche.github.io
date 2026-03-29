@@ -140,7 +140,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">105</span>
+          <span class="site-state-item-count">108</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -151,7 +151,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-count">66</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -168,6 +168,377 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/10/Spring%E7%94%9F%E6%80%81JPA%E5%AE%9E%E4%BD%93%E9%87%8D%E5%A4%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="车子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="车子的个人博客">
+      <meta itemprop="description" content="坐下看看">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 车子的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/05/10/Spring%E7%94%9F%E6%80%81JPA%E5%AE%9E%E4%BD%93%E9%87%8D%E5%A4%8D/" class="post-title-link" itemprop="url">JPA实体重复问题解决</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-10 00:00:00" itemprop="dateCreated datePublished" datetime="2022-05-10T00:00:00+08:00">2022-05-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">后端</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/spring/" itemprop="url" rel="index"><span itemprop="name">spring</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="JPA实体重复问题解决"><a href="#JPA实体重复问题解决" class="headerlink" title="JPA实体重复问题解决"></a>JPA实体重复问题解决</h1><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>同一实体对象被多个EntityManager管理。</p>
+<h2 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方式1：merge</span></span><br><span class="line"><span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> entityManager.merge(user);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 方式2：clear</span></span><br><span class="line">entityManager.clear();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 方式3：remove + persist</span></span><br><span class="line">entityManager.remove(user);</span><br><span class="line">entityManager.persist(user);</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>正确管理实体生命周期可避免重复问题。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/20/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B8%8E%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="车子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="车子的个人博客">
+      <meta itemprop="description" content="坐下看看">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 车子的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/04/20/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B8%8E%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">Spring全家桶笔记：核心概念与配置</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-20 00:00:00" itemprop="dateCreated datePublished" datetime="2022-04-20T00:00:00+08:00">2022-04-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">后端</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/spring/" itemprop="url" rel="index"><span itemprop="name">spring</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Spring全家桶笔记：核心概念与配置"><a href="#Spring全家桶笔记：核心概念与配置" class="headerlink" title="Spring全家桶笔记：核心概念与配置"></a>Spring全家桶笔记：核心概念与配置</h1><h2 id="Spring概述"><a href="#Spring概述" class="headerlink" title="Spring概述"></a>Spring概述</h2><p>Spring是一个轻量级的Java开发框架，旨在简化企业级应用开发。其核心是<strong>控制反转（IOC）<strong>和</strong>面向切面编程（AOP）</strong>。</p>
+<h2 id="IOC容器"><a href="#IOC容器" class="headerlink" title="IOC容器"></a>IOC容器</h2><h3 id="什么是IOC"><a href="#什么是IOC" class="headerlink" title="什么是IOC"></a>什么是IOC</h3><p>IOC（Inversion of Control）即控制反转，将对象创建和管理权交给Spring容器，由容器负责注入依赖。</p>
+<h3 id="容器实现"><a href="#容器实现" class="headerlink" title="容器实现"></a>容器实现</h3><ul>
+<li><strong>BeanFactory</strong>：基础容器，延迟加载</li>
+<li><strong>ApplicationContext</strong>：增强版容器，继承BeanFactory</li>
+</ul>
+<h3 id="Bean配置方式"><a href="#Bean配置方式" class="headerlink" title="Bean配置方式"></a>Bean配置方式</h3><h4 id="1-XML配置"><a href="#1-XML配置" class="headerlink" title="1. XML配置"></a>1. XML配置</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;userService&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.example.UserService&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;userDao&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;userDao&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">value</span>=<span class="string">&quot;张三&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-注解配置"><a href="#2-注解配置" class="headerlink" title="2. 注解配置"></a>2. 注解配置</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserDao userDao;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;app.name&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String appName;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-Java配置"><a href="#3-Java配置" class="headerlink" title="3. Java配置"></a>3. Java配置</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AppConfig</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> UserService <span class="title function_">userService</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">UserService</span> <span class="variable">service</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UserService</span>();</span><br><span class="line">        service.setUserDao(userDao());</span><br><span class="line">        <span class="keyword">return</span> service;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> UserDao <span class="title function_">userDao</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">UserDaoImpl</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Bean作用域"><a href="#Bean作用域" class="headerlink" title="Bean作用域"></a>Bean作用域</h3><table>
+<thead>
+<tr>
+<th>作用域</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>singleton</td>
+<td>单例（默认）</td>
+</tr>
+<tr>
+<td>prototype</td>
+<td>多例</td>
+</tr>
+<tr>
+<td>request</td>
+<td>HTTP请求</td>
+</tr>
+<tr>
+<td>session</td>
+<td>HTTP会话</td>
+</tr>
+<tr>
+<td>application</td>
+<td>ServletContext生命周期</td>
+</tr>
+</tbody></table>
+<h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><ol>
+<li>实例化 → 2. 属性赋值 → 3. 初始化 → 4. 销毁</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserService</span> <span class="keyword">implements</span> <span class="title class_">InitializingBean</span>, DisposableBean &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@PostConstruct</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;初始化&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@PreDestroy</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">destroy</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;销毁&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">afterPropertiesSet</span><span class="params">()</span> &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">destroy</span><span class="params">()</span> &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h2><h3 id="注入方式"><a href="#注入方式" class="headerlink" title="注入方式"></a>注入方式</h3><ul>
+<li><strong>构造器注入</strong>：推荐，清晰表示依赖关系</li>
+<li><strong>Setter注入</strong>：可选注入</li>
+<li><strong>字段注入</strong>：简洁但不利于测试</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OrderService</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> UserService userService;  <span class="comment">// 构造器注入</span></span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> OrderDao orderDao;  <span class="comment">// 字段注入</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setPaymentService</span><span class="params">(PaymentService paymentService)</span> &#123;</span><br><span class="line">        <span class="comment">// Setter注入</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="自动装配"><a href="#自动装配" class="headerlink" title="自动装配"></a>自动装配</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// byType：按类型自动装配</span></span><br><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> UserDao userDao;</span><br><span class="line"></span><br><span class="line"><span class="comment">// byName：按名称自动装配</span></span><br><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> UserDao userDaoImpl;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 构造函数自动装配</span></span><br><span class="line"><span class="keyword">public</span> <span class="title function_">UserService</span><span class="params">(UserDao userDao)</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="AOP面向切面编程"><a href="#AOP面向切面编程" class="headerlink" title="AOP面向切面编程"></a>AOP面向切面编程</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ul>
+<li><strong>Aspect</strong>：切面</li>
+<li><strong>Join Point</strong>：连接点</li>
+<li><strong>Pointcut</strong>：切点</li>
+<li><strong>Advice</strong>：通知（增强）</li>
+<li><strong>Weaving</strong>：织入</li>
+</ul>
+<h3 id="通知类型"><a href="#通知类型" class="headerlink" title="通知类型"></a>通知类型</h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@Before</td>
+<td>前置通知</td>
+</tr>
+<tr>
+<td>@AfterReturning</td>
+<td>后置通知</td>
+</tr>
+<tr>
+<td>@AfterThrowing</td>
+<td>异常通知</td>
+</tr>
+<tr>
+<td>@After</td>
+<td>最终通知</td>
+</tr>
+<tr>
+<td>@Around</td>
+<td>环绕通知</td>
+</tr>
+</tbody></table>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LoggingAspect</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Pointcut(&quot;execution(* com.example.service.*.*(..))&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">servicePointcut</span><span class="params">()</span> &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Before(&quot;servicePointcut()&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">before</span><span class="params">(JoinPoint joinPoint)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;方法: &quot;</span> + joinPoint.getSignature());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@AfterReturning(pointcut = &quot;servicePointcut()&quot;, returning = &quot;result&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">afterReturning</span><span class="params">(Object result)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;返回: &quot;</span> + result);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Around(&quot;servicePointcut()&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">around</span><span class="params">(ProceedingJoinPoint pjp)</span> <span class="keyword">throws</span> Throwable &#123;</span><br><span class="line">        <span class="type">long</span> <span class="variable">start</span> <span class="operator">=</span> System.currentTimeMillis();</span><br><span class="line">        <span class="type">Object</span> <span class="variable">result</span> <span class="operator">=</span> pjp.proceed();</span><br><span class="line">        <span class="type">long</span> <span class="variable">end</span> <span class="operator">=</span> System.currentTimeMillis();</span><br><span class="line">        System.out.println(<span class="string">&quot;耗时: &quot;</span> + (end - start) + <span class="string">&quot;ms&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="常用配置"><a href="#常用配置" class="headerlink" title="常用配置"></a>常用配置</h2><h3 id="属性配置"><a href="#属性配置" class="headerlink" title="属性配置"></a>属性配置</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># application.yml</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">myapp</span></span><br><span class="line">  <span class="attr">profiles:</span></span><br><span class="line">    <span class="attr">active:</span> <span class="string">dev</span></span><br><span class="line"></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8080</span></span><br><span class="line"></span><br><span class="line"><span class="attr">custom:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">test</span></span><br><span class="line">  <span class="attr">max:</span> <span class="number">100</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Value(&quot;$&#123;custom.name&#125;&quot;)</span></span><br><span class="line"><span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Value(&quot;$&#123;custom.max&#125;&quot;)</span></span><br><span class="line"><span class="keyword">private</span> Integer max;</span><br></pre></td></tr></table></figure>
+
+<h3 id="多环境配置"><a href="#多环境配置" class="headerlink" title="多环境配置"></a>多环境配置</h3><ul>
+<li>application.yml（默认）</li>
+<li>application-dev.yml</li>
+<li>application-prod.yml</li>
+</ul>
+<h3 id="条件配置"><a href="#条件配置" class="headerlink" title="条件配置"></a>条件配置</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ConditionalOnProperty(name = &quot;feature.enabled&quot;, havingValue = &quot;true&quot;)</span></span><br><span class="line"><span class="meta">@ConditionalOnMissingBean(UserService.class)</span></span><br><span class="line"><span class="meta">@ConditionalOnClass(MongoTemplate.class)</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Spring-Boot自动配置"><a href="#Spring-Boot自动配置" class="headerlink" title="Spring Boot自动配置"></a>Spring Boot自动配置</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>@SpringBootApplication &#x3D; @SpringBootConfiguration + @EnableAutoConfiguration + @ComponentScan</p>
+<p>@EnableAutoConfiguration 通过spring.factories和META-INF&#x2F;spring&#x2F;org.springframework.boot.autoconfigure.AutoConfiguration.imports加载配置。</p>
+<h3 id="自定义-starter"><a href="#自定义-starter" class="headerlink" title="自定义-starter"></a>自定义-starter</h3><ol>
+<li>创建autoconfigure模块</li>
+<li>定义配置类</li>
+<li>创建spring.factories</li>
+<li>创建starter模块依赖autoconfigure</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Spring核心概念包括IOC容器、依赖注入和AOP。理解这些概念是掌握Spring全家桶的基础。Spring Boot通过自动配置简化了开发，需要理解其原理以便更好地定制和调试。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/20/MySQL%E5%A4%96%E9%94%AE%E7%BB%91%E5%AE%9A%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="车子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="车子的个人博客">
+      <meta itemprop="description" content="坐下看看">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 车子的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/03/20/MySQL%E5%A4%96%E9%94%AE%E7%BB%91%E5%AE%9A%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">MySQL外键绑定问题</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-03-20 00:00:00" itemprop="dateCreated datePublished" datetime="2022-03-20T00:00:00+08:00">2022-03-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">后端</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="MySQL外键绑定问题"><a href="#MySQL外键绑定问题" class="headerlink" title="MySQL外键绑定问题"></a>MySQL外键绑定问题</h1><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>外键约束无法创建或绑定失败。</p>
+<h2 id="常见原因"><a href="#常见原因" class="headerlink" title="常见原因"></a>常见原因</h2><ol>
+<li>类型不匹配</li>
+<li>字符集不一致</li>
+<li>索引缺失</li>
+</ol>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 确保关联字段类型一致</span></span><br><span class="line"><span class="keyword">ALTER TABLE</span> child MODIFY parent_id <span class="type">BIGINT</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 确保字符集一致</span></span><br><span class="line"><span class="keyword">ALTER TABLE</span> child <span class="keyword">CONVERT</span> <span class="keyword">TO</span> <span class="keyword">CHARACTER SET</span> utf8mb4;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 手动创建索引</span></span><br><span class="line"><span class="keyword">CREATE</span> INDEX idx_parent_id <span class="keyword">ON</span> child(parent_id);</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>外键使用需注意细节。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -875,303 +1246,6 @@
 <h2 id="与旧API互转"><a href="#与旧API互转" class="headerlink" title="与旧API互转"></a>与旧API互转</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Date -&gt; LocalDateTime</span></span><br><span class="line"><span class="type">Date</span> <span class="variable">date</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line"><span class="type">Instant</span> <span class="variable">instant</span> <span class="operator">=</span> date.toInstant();</span><br><span class="line"><span class="type">LocalDateTime</span> <span class="variable">ldt</span> <span class="operator">=</span> LocalDateTime.ofInstant(instant, ZoneId.systemDefault());</span><br><span class="line"></span><br><span class="line"><span class="comment">// LocalDateTime -&gt; Date</span></span><br><span class="line"><span class="type">LocalDateTime</span> <span class="variable">ldt</span> <span class="operator">=</span> LocalDateTime.now();</span><br><span class="line"><span class="type">Instant</span> <span class="variable">instant</span> <span class="operator">=</span> ldt.atZone(ZoneId.systemDefault()).toInstant();</span><br><span class="line"><span class="type">Date</span> <span class="variable">date</span> <span class="operator">=</span> Date.from(instant);</span><br></pre></td></tr></table></figure>
 
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Java 8时间API更加清晰易用，建议替换掉旧的Date和Calendar。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/15/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="车子">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="车子的个人博客">
-      <meta itemprop="description" content="坐下看看">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 车子的个人博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/08/15/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">Linux常用命令整理</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-08-15 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-15T00:00:00+08:00">2021-08-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Linux常用命令整理"><a href="#Linux常用命令整理" class="headerlink" title="Linux常用命令整理"></a>Linux常用命令整理</h1><h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> -la          <span class="comment"># 列出文件</span></span><br><span class="line"><span class="built_in">cd</span> /path        <span class="comment"># 切换目录</span></span><br><span class="line"><span class="built_in">cp</span> <span class="built_in">source</span> dest  <span class="comment"># 复制</span></span><br><span class="line"><span class="built_in">mv</span> <span class="built_in">source</span> dest  <span class="comment"># 移动</span></span><br><span class="line"><span class="built_in">rm</span> -rf path     <span class="comment"># 删除</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="文本处理"><a href="#文本处理" class="headerlink" title="文本处理"></a>文本处理</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">grep <span class="string">&quot;pattern&quot;</span> file    <span class="comment"># 搜索</span></span><br><span class="line">sed <span class="string">&#x27;s/a/b/g&#x27;</span> file     <span class="comment"># 替换</span></span><br><span class="line">awk <span class="string">&#x27;&#123;print $1&#125;&#x27;</span> file  <span class="comment"># 截取</span></span><br><span class="line"><span class="built_in">cat</span> file | <span class="built_in">head</span> -n 10  <span class="comment"># 查看前10行</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="系统监控"><a href="#系统监控" class="headerlink" title="系统监控"></a>系统监控</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">top           <span class="comment"># 进程监控</span></span><br><span class="line"><span class="built_in">df</span> -h         <span class="comment"># 磁盘使用</span></span><br><span class="line">free -h       <span class="comment"># 内存使用</span></span><br><span class="line">netstat -tlnp <span class="comment"># 端口监听</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ping host     <span class="comment"># 测试连通性</span></span><br><span class="line">curl url      <span class="comment"># 请求URL</span></span><br><span class="line">scp file user@host:/path  <span class="comment"># 远程复制</span></span><br><span class="line">ssh user@host <span class="comment"># 远程登录</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Linux命令是开发者的必备技能。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/15/SpringData%E5%8F%8C%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="车子">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="车子的个人博客">
-      <meta itemprop="description" content="坐下看看">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 车子的个人博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/08/15/SpringData%E5%8F%8C%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">Spring Data双数据源配置</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-08-15 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-15T00:00:00+08:00">2021-08-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">后端</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%90%8E%E7%AB%AF/spring/" itemprop="url" rel="index"><span itemprop="name">spring</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Spring-Data双数据源配置"><a href="#Spring-Data双数据源配置" class="headerlink" title="Spring Data双数据源配置"></a>Spring Data双数据源配置</h1><h2 id="配置类"><a href="#配置类" class="headerlink" title="配置类"></a>配置类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DataSourceConfig</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Primary</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@ConfigurationProperties(&quot;spring.datasource.primary&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> DataSource <span class="title function_">primaryDataSource</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> DataSourceBuilder.create().build();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@ConfigurationProperties(&quot;spring.datasource.secondary&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> DataSource <span class="title function_">secondaryDataSource</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> DataSourceBuilder.create().build();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="EntityManager"><a href="#EntityManager" class="headerlink" title="EntityManager"></a>EntityManager</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="meta">@Primary</span></span><br><span class="line"><span class="keyword">public</span> LocalContainerEntityManagerFactoryBean <span class="title function_">primaryEntityManager</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">// 配置</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>多数据源配置需要明确指定Primary。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/28/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%A6%E8%A7%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="车子">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="车子的个人博客">
-      <meta itemprop="description" content="坐下看看">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 车子的个人博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/05/28/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%A6%E8%A7%A3/" class="post-title-link" itemprop="url">Lambda表达式详解</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-05-28 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-28T00:00:00+08:00">2021-05-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">后端</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%90%8E%E7%AB%AF/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Lambda表达式详解"><a href="#Lambda表达式详解" class="headerlink" title="Lambda表达式详解"></a>Lambda表达式详解</h1><h2 id="什么是Lambda"><a href="#什么是Lambda" class="headerlink" title="什么是Lambda"></a>什么是Lambda</h2><p>Lambda是Java 8引入的函数式编程特性，本质是匿名内部块的简化写法。</p>
-<h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 完整写法</span></span><br><span class="line">(param) -&gt; &#123; statements &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 简写</span></span><br><span class="line">param -&gt; expression</span><br><span class="line">() -&gt; expression</span><br></pre></td></tr></table></figure>
-
-<h2 id="函数式接口"><a href="#函数式接口" class="headerlink" title="函数式接口"></a>函数式接口</h2><p>Lambda需要配合函数式接口使用，即只有一个抽象方法的接口。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Calculator</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="title function_">calc</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用</span></span><br><span class="line"><span class="type">Calculator</span> <span class="variable">add</span> <span class="operator">=</span> (a, b) -&gt; a + b;</span><br><span class="line"><span class="type">Calculator</span> <span class="variable">sub</span> <span class="operator">=</span> (a, b) -&gt; a - b;</span><br></pre></td></tr></table></figure>
-
-<h2 id="常用函数式接口"><a href="#常用函数式接口" class="headerlink" title="常用函数式接口"></a>常用函数式接口</h2><table>
-<thead>
-<tr>
-<th>接口</th>
-<th>方法</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Supplier<T></td>
-<td>T get()</td>
-<td>生产</td>
-</tr>
-<tr>
-<td>Consumer<T></td>
-<td>void accept(T t)</td>
-<td>消费</td>
-</tr>
-<tr>
-<td>Function&lt;T,R&gt;</td>
-<td>R apply(T t)</td>
-<td>转换</td>
-</tr>
-<tr>
-<td>Predicate<T></td>
-<td>boolean test(T t)</td>
-<td>判断</td>
-</tr>
-</tbody></table>
-<h2 id="方法引用"><a href="#方法引用" class="headerlink" title="方法引用"></a>方法引用</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 构造器引用</span></span><br><span class="line">Supplier&lt;Obj&gt; s = Obj::<span class="keyword">new</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 静态方法引用</span></span><br><span class="line">Function&lt;Integer, String&gt; f = String::valueOf;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实例方法引用</span></span><br><span class="line">Function&lt;String, Integer&gt; f = String::length;</span><br></pre></td></tr></table></figure>
-
-<h2 id="闭包变量"><a href="#闭包变量" class="headerlink" title="闭包变量"></a>闭包变量</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line"><span class="type">Runnable</span> <span class="variable">r</span> <span class="operator">=</span> () -&gt; System.out.println(a);</span><br></pre></td></tr></table></figure>
-
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Lambda使代码更简洁，配合Stream API能写出更优雅的代码。</p>
 
       
     </div>

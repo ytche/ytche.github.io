@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="用户：在过去，软件工程把产品经理和程序员分隔来了，让产品经理去专注处理需求、给出需求文档，程序员负责把需求落实到代码层面，完成抽象需求进入程序设计里，完成需求落实到程序设计的统一概念里。程序员的这部分工作应该怎么描述更准确。 我：这个问题涉及软件工程中的角色分工和术语定义，我来帮你梳理一下。 程序员这部分工作的准确描述你描述的是程序员将抽象需求转化为具体技术实现的过程，在软件工程中有几个更精确的术">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于AI场景下程序员的核心能力和职业方向的对话">
+<meta property="og:url" content="http://example.com/2025/12/17/%E5%85%B3%E4%BA%8EAI%E5%9C%BA%E6%99%AF%E4%B8%8B%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E6%A0%B8%E5%BF%83%E8%83%BD%E5%8A%9B%E5%92%8C%E8%81%8C%E4%B8%9A%E6%96%B9%E5%90%91%E7%9A%84%E5%AF%B9%E8%AF%9D/index.html">
+<meta property="og:site_name" content="车子的个人博客">
+<meta property="og:description" content="用户：在过去，软件工程把产品经理和程序员分隔来了，让产品经理去专注处理需求、给出需求文档，程序员负责把需求落实到代码层面，完成抽象需求进入程序设计里，完成需求落实到程序设计的统一概念里。程序员的这部分工作应该怎么描述更准确。 我：这个问题涉及软件工程中的角色分工和术语定义，我来帮你梳理一下。 程序员这部分工作的准确描述你描述的是程序员将抽象需求转化为具体技术实现的过程，在软件工程中有几个更精确的术">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-12-16T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-29T08:47:45.655Z">
+<meta property="article:author" content="车子">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="LLM">
+<meta property="article:tag" content="思考">
+<meta property="article:tag" content="未来规划">
+<meta property="article:tag" content="职业发展">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/12/17/%E5%85%B3%E4%BA%8EAI%E5%9C%BA%E6%99%AF%E4%B8%8B%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E6%A0%B8%E5%BF%83%E8%83%BD%E5%8A%9B%E5%92%8C%E8%81%8C%E4%B8%9A%E6%96%B9%E5%90%91%E7%9A%84%E5%AF%B9%E8%AF%9D/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/12/17/%E5%85%B3%E4%BA%8EAI%E5%9C%BA%E6%99%AF%E4%B8%8B%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E6%A0%B8%E5%BF%83%E8%83%BD%E5%8A%9B%E5%92%8C%E8%81%8C%E4%B8%9A%E6%96%B9%E5%90%91%E7%9A%84%E5%AF%B9%E8%AF%9D/","path":"2025/12/17/关于AI场景下程序员的核心能力和职业方向的对话/","title":"关于AI场景下程序员的核心能力和职业方向的对话"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>关于AI场景下程序员的核心能力和职业方向的对话 | 车子的个人博客</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">车子的个人博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">正确的事情通常都是优雅的</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E5%91%98%E8%BF%99%E9%83%A8%E5%88%86%E5%B7%A5%E4%BD%9C%E7%9A%84%E5%87%86%E7%A1%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">程序员这部分工作的准确描述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1-Software-Design"><span class="nav-number">1.1.</span> <span class="nav-text">1. 软件设计 (Software Design)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%8A%80%E6%9C%AF%E5%AE%9E%E7%8E%B0-Technical-Implementation-Implementation"><span class="nav-number">1.2.</span> <span class="nav-text">2. 技术实现 (Technical Implementation &#x2F; Implementation)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E9%9C%80%E6%B1%82%E5%B7%A5%E7%A8%8B%E4%B8%AD%E7%9A%84%E2%80%9D%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E2%80%9D%E2%86%92%E2%80%9D%E8%AE%BE%E8%AE%A1%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E2%80%9D%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.3.</span> <span class="nav-text">3. 需求工程中的”需求规格说明”→”设计规格说明”转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%9B%B4%E5%85%B7%E4%BD%93%E7%9A%84%E6%9C%AF%E8%AF%AD"><span class="nav-number">1.4.</span> <span class="nav-text">4. 更具体的术语</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%80%BB%E7%BB%93"><span class="nav-number">2.</span> <span class="nav-text">一句话总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E7%BB%93%E8%AE%BA%EF%BC%9A%E4%BB%96%E6%AC%A0%E7%BC%BA%E7%9A%84%E6%98%AF-%E2%80%9D%E8%A7%A3%E5%9F%9F%E5%BB%BA%E6%A8%A1%E8%83%BD%E5%8A%9B%E2%80%9D"><span class="nav-number">3.</span> <span class="nav-text">核心结论：他欠缺的是**”解域建模能力”**</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E6%AC%A0%E7%BC%BA%E7%9A%84%E8%83%BD%E5%8A%9B"><span class="nav-number">4.</span> <span class="nav-text">具体欠缺的能力</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%BE%B9%E7%95%8C%E6%84%8F%E8%AF%86%EF%BC%88%E4%BB%80%E4%B9%88%E8%83%BD%E5%81%9A%EF%BC%8C%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E5%81%9A%EF%BC%89"><span class="nav-number">4.1.</span> <span class="nav-text">1. 边界意识（什么能做，什么不能做）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%88%86%E8%A7%A3%E4%B8%8E%E7%BB%84%E5%90%88%E7%9A%84%E7%BB%93%E6%9E%84%E5%8C%96%E6%80%9D%E7%BB%B4"><span class="nav-number">4.2.</span> <span class="nav-text">2. 分解与组合的结构化思维</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E9%9A%90%E6%80%A7%E9%9C%80%E6%B1%82%E7%9A%84%E6%98%BE%E6%80%A7%E5%8C%96%E8%83%BD%E5%8A%9B"><span class="nav-number">4.3.</span> <span class="nav-text">3. 隐性需求的显性化能力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E8%B0%83%E8%AF%95%E4%B8%8E%E8%AF%8A%E6%96%AD%E7%9A%84%E5%85%83%E8%83%BD%E5%8A%9B"><span class="nav-number">4.4.</span> <span class="nav-text">4. 调试与诊断的元能力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E6%8A%80%E6%9C%AF%E5%80%BA%E5%8A%A1%E7%9A%84%E5%97%85%E8%A7%89"><span class="nav-number">4.5.</span> <span class="nav-text">5. 技术债务的嗅觉</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E7%B1%BB%E6%AF%94"><span class="nav-number">5.</span> <span class="nav-text">一个类比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%82%A3%E4%B9%88%EF%BC%8C%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E5%8F%AF%E4%BB%A5%E2%80%9D%E8%B6%8A%E8%BF%87%E2%80%9D%E7%A8%8B%E5%BA%8F%E5%91%98%EF%BC%9F"><span class="nav-number">6.</span> <span class="nav-text">那么，什么情况下可以”越过”程序员？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%99%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86%E7%9A%84%E5%AE%9E%E7%94%A8%E5%BB%BA%E8%AE%AE"><span class="nav-number">7.</span> <span class="nav-text">给产品经理的实用建议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AA%E6%9D%A5%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E6%A0%B8%E5%BF%83%E5%B7%A5%E4%BD%9C%EF%BC%9A%E8%A7%A3%E5%9F%9F%E6%9E%B6%E6%9E%84%E5%B8%88%EF%BC%88Solution-Space-Architect%EF%BC%89"><span class="nav-number">8.</span> <span class="nav-text">未来程序员的核心工作：解域架构师（Solution Space Architect）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%BA%A6%E6%9D%9F%E5%B7%A5%E7%A8%8B%EF%BC%88Constraint-Engineering%EF%BC%89"><span class="nav-number">8.1.</span> <span class="nav-text">1. 约束工程（Constraint Engineering）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%84%8F%E5%9B%BE%E7%B2%BE%E5%8C%96%EF%BC%88Intent-Refinement%EF%BC%89"><span class="nav-number">8.2.</span> <span class="nav-text">2. 意图精化（Intent Refinement）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E7%B3%BB%E7%BB%9F%E5%85%83%E8%AE%BE%E8%AE%A1%EF%BC%88Meta-Design%EF%BC%89"><span class="nav-number">8.3.</span> <span class="nav-text">3. 系统元设计（Meta-Design）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8%E4%B8%8E%E8%BE%B9%E7%BC%98%E6%B2%BB%E7%90%86%EF%BC%88Edge-Case-Governance%EF%BC%89"><span class="nav-number">8.4.</span> <span class="nav-text">异常与边缘治理（Edge Case Governance）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E8%B7%A8%E5%9F%9F%E7%BF%BB%E8%AF%91%E4%B8%8E%E5%AF%B9%E9%BD%90%EF%BC%88Cross-Domain-Alignment%EF%BC%89"><span class="nav-number">8.5.</span> <span class="nav-text">5. 跨域翻译与对齐（Cross-Domain Alignment）</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">车子</p>
+  <div class="site-description" itemprop="description">坐下看看</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">66</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/12/17/%E5%85%B3%E4%BA%8EAI%E5%9C%BA%E6%99%AF%E4%B8%8B%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E6%A0%B8%E5%BF%83%E8%83%BD%E5%8A%9B%E5%92%8C%E8%81%8C%E4%B8%9A%E6%96%B9%E5%90%91%E7%9A%84%E5%AF%B9%E8%AF%9D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="车子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="车子的个人博客">
+      <meta itemprop="description" content="坐下看看">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="关于AI场景下程序员的核心能力和职业方向的对话 | 车子的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          关于AI场景下程序员的核心能力和职业方向的对话
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-12-17 00:00:00" itemprop="dateCreated datePublished" datetime="2025-12-17T00:00:00+08:00">2025-12-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI/LLM/" itemprop="url" rel="index"><span itemprop="name">LLM</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI/LLM/%E9%97%AE%E7%AD%94/" itemprop="url" rel="index"><span itemprop="name">问答</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>用户：在过去，软件工程把产品经理和程序员分隔来了，让产品经理去专注处理需求、给出需求文档，程序员负责把需求落实到代码层面，完成抽象需求进入程序设计里，完成需求落实到程序设计的统一概念里。程序员的这部分工作应该怎么描述更准确。</p>
+<p>我：这个问题涉及软件工程中的角色分工和术语定义，我来帮你梳理一下。</p>
+<h2 id="程序员这部分工作的准确描述"><a href="#程序员这部分工作的准确描述" class="headerlink" title="程序员这部分工作的准确描述"></a>程序员这部分工作的准确描述</h2><p>你描述的是程序员将抽象需求转化为具体技术实现的过程，在软件工程中有几个更精确的术语：</p>
+<h3 id="1-软件设计-Software-Design"><a href="#1-软件设计-Software-Design" class="headerlink" title="1. 软件设计 (Software Design)"></a>1. <strong>软件设计 (Software Design)</strong></h3><p>最通用的说法，包含：</p>
+<ul>
+<li><strong>概要设计&#x2F;架构设计 (Architectural Design)</strong>：确定系统整体结构、模块划分、技术选型</li>
+<li><strong>详细设计 (Detailed Design)</strong>：具体模块的内部逻辑、数据结构、接口定义</li>
+</ul>
+<h3 id="2-技术实现-Technical-Implementation-Implementation"><a href="#2-技术实现-Technical-Implementation-Implementation" class="headerlink" title="2. 技术实现 (Technical Implementation &#x2F; Implementation)"></a>2. <strong>技术实现 (Technical Implementation &#x2F; Implementation)</strong></h3><p>强调将需求文档转化为可运行代码的完整过程，包括：</p>
+<ul>
+<li>理解并分析需求（Requirements Analysis）</li>
+<li>设计技术方案（Solution Design）</li>
+<li>编码实现（Coding）</li>
+<li>单元测试（Unit Testing）</li>
+</ul>
+<h3 id="3-需求工程中的”需求规格说明”→”设计规格说明”转换"><a href="#3-需求工程中的”需求规格说明”→”设计规格说明”转换" class="headerlink" title="3. 需求工程中的”需求规格说明”→”设计规格说明”转换"></a>3. <strong>需求工程中的”需求规格说明”→”设计规格说明”转换</strong></h3><p>在需求工程理论中，这属于：</p>
+<ul>
+<li><strong>从问题域 (Problem Domain) 到解域 (Solution Domain) 的映射</strong></li>
+<li>产品经理输出 <strong>SRS (Software Requirements Specification，软件需求规格说明书)</strong></li>
+<li>程序员输出 <strong>SDS (Software Design Specification，软件设计规格说明书)</strong> 并编码实现</li>
+</ul>
+<h3 id="4-更具体的术语"><a href="#4-更具体的术语" class="headerlink" title="4. 更具体的术语"></a>4. <strong>更具体的术语</strong></h3><table>
+<thead>
+<tr>
+<th>术语</th>
+<th>侧重点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>详细设计</strong></td>
+<td>模块内部的算法、数据结构、接口</td>
+</tr>
+<tr>
+<td><strong>领域建模 (Domain Modeling)</strong></td>
+<td>将业务概念映射为代码中的对象&#x2F;模型</td>
+</tr>
+<tr>
+<td><strong>系统架构 (System Architecture)</strong></td>
+<td>高层技术结构、组件关系</td>
+</tr>
+<tr>
+<td><strong>实现 (Implementation)</strong></td>
+<td>编码和构建的具体工作</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="一句话总结"><a href="#一句话总结" class="headerlink" title="一句话总结"></a>一句话总结</h2><blockquote>
+<p>程序员的核心工作是 <strong>“将需求规格转化为设计规格，并通过编码实现为可运行的软件系统”</strong> —— 这个过程统称为 <strong>软件设计</strong> 或 <strong>技术实现</strong>，本质是完成从<strong>问题空间</strong>到<strong>解空间</strong>的映射。</p>
+</blockquote>
+<p>如果你想强调这个转换过程的桥梁作用，也可以说这是 <strong>“需求的技术解构与重构”</strong> —— 把业务语言翻译成技术语言。</p>
+<hr>
+<p>用户：那么问题来了，不懂技术的产品经理如果想要通过Agent和vibe coding来越过程序员去写代码实现需求。他所欠缺的能力是什么？</p>
+<p>我：这是一个非常有洞察力的问题。让我拆解一下：</p>
+<hr>
+<h2 id="核心结论：他欠缺的是-”解域建模能力”"><a href="#核心结论：他欠缺的是-”解域建模能力”" class="headerlink" title="核心结论：他欠缺的是**”解域建模能力”**"></a>核心结论：他欠缺的是**”解域建模能力”**</h2><p>产品经理通过自然语言描述需求（问题域），而程序员的核心价值在于将问题域映射到解域（技术实现空间）。Agent和vibe coding只是<strong>加速了编码过程</strong>，但并没有消除这个映射鸿沟。</p>
+<hr>
+<h2 id="具体欠缺的能力"><a href="#具体欠缺的能力" class="headerlink" title="具体欠缺的能力"></a>具体欠缺的能力</h2><h3 id="1-边界意识（什么能做，什么不能做）"><a href="#1-边界意识（什么能做，什么不能做）" class="headerlink" title="1. 边界意识（什么能做，什么不能做）"></a>1. <strong>边界意识（什么能做，什么不能做）</strong></h3><table>
+<thead>
+<tr>
+<th>产品经理的盲区</th>
+<th>后果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>不知道技术约束（性能、并发、安全、成本）</td>
+<td>Agent生成代码跑通demo，但无法支撑真实业务负载</td>
+</tr>
+<tr>
+<td>不理解系统耦合性</td>
+<td>改一个需求，Agent改了10个文件，引入隐性bug</td>
+</tr>
+<tr>
+<td>缺乏故障域划分思维</td>
+<td>无法判断”这个功能应该放在服务端还是客户端”</td>
+</tr>
+</tbody></table>
+<p><strong>关键区别</strong>：程序员写代码前会先问”边界在哪里”，产品经理往往只关注”功能是什么”。</p>
+<hr>
+<h3 id="2-分解与组合的结构化思维"><a href="#2-分解与组合的结构化思维" class="headerlink" title="2. 分解与组合的结构化思维"></a>2. <strong>分解与组合的结构化思维</strong></h3><p>产品经理的输入：”用户下单后要发短信通知” 程序员的转换：  ├── 同步调用 or 异步消息队列？  ├── 短信服务挂掉怎么办？（熔断、降级、重试）  ├── 模板变量如何校验？（防止注入）  ├── 频率限制？（防刷）  └── 成本：按条计费还是套餐？</p>
+<p>Agent可以生成”发送短信”的代码，但<strong>无法替你做这些决策</strong>——因为它们依赖于对系统整体的理解。</p>
+<hr>
+<h3 id="3-隐性需求的显性化能力"><a href="#3-隐性需求的显性化能力" class="headerlink" title="3. 隐性需求的显性化能力"></a>3. <strong>隐性需求的显性化能力</strong></h3><p>产品经理写的PRD通常是<strong>正向路径</strong>：</p>
+<blockquote>
+<p>“用户点击购买，扣款成功，显示订单”</p>
+</blockquote>
+<p>程序员会补全<strong>逆向路径和异常路径</strong>：</p>
+<ul>
+<li>余额不足？</li>
+<li>网络超时？</li>
+<li>重复点击？</li>
+<li>支付回调延迟？</li>
+<li>并发扣款冲突？</li>
+</ul>
+<p><strong>Agent只会实现你明确描述的东西</strong>，不会追问”那如果…呢？”</p>
+<hr>
+<h3 id="4-调试与诊断的元能力"><a href="#4-调试与诊断的元能力" class="headerlink" title="4. 调试与诊断的元能力"></a>4. <strong>调试与诊断的元能力</strong></h3><table>
+<thead>
+<tr>
+<th>场景</th>
+<th>产品经理</th>
+<th>程序员</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Agent生成代码报错</td>
+<td>“这句错了，帮我修一下”（循环试错）</td>
+<td>读错误栈、定位根因、理解依赖关系</td>
+</tr>
+<tr>
+<td>功能”好像对了”但数据不对</td>
+<td>难以察觉</td>
+<td>追踪数据流、验证状态一致性</td>
+</tr>
+<tr>
+<td>性能慢</td>
+<td>“优化一下”</td>
+<td>profiling、定位瓶颈、权衡方案</td>
+</tr>
+</tbody></table>
+<p><strong>vibe coding的最大陷阱</strong>：它让”写出代码”变得容易，但让”理解为什么错”变得更难——因为你没有中间过程的mental model。</p>
+<hr>
+<h3 id="5-技术债务的嗅觉"><a href="#5-技术债务的嗅觉" class="headerlink" title="5. 技术债务的嗅觉"></a>5. <strong>技术债务的嗅觉</strong></h3><p>程序员能感知：</p>
+<ul>
+<li>这段硬编码现在方便，下个月会埋雷</li>
+<li>这个表结构设计满足当前需求，但扩展时会锁表</li>
+<li>这个第三方库社区活跃度低，长期维护风险高</li>
+</ul>
+<p><strong>产品经理+Agent的组合倾向于最大化短期交付速度</strong>，而低估长期维护成本。</p>
+<hr>
+<h2 id="一个类比"><a href="#一个类比" class="headerlink" title="一个类比"></a>一个类比</h2><blockquote>
+<p>产品经理用Agent写代码，就像<strong>不懂建筑的人用AI生成施工图纸</strong>。</p>
+<p>你可以描述”我想要一个采光好的三层别墅”，AI能出图。</p>
+<p>但你不知道：地基能不能承重？排水坡度够不够？当地抗震规范是什么？</p>
+<p>房子能盖起来，但住进去后漏水、裂缝、结构隐患——你甚至不知道问题出在哪。</p>
+</blockquote>
+<hr>
+<h2 id="那么，什么情况下可以”越过”程序员？"><a href="#那么，什么情况下可以”越过”程序员？" class="headerlink" title="那么，什么情况下可以”越过”程序员？"></a>那么，什么情况下可以”越过”程序员？</h2><table>
+<thead>
+<tr>
+<th>场景</th>
+<th>可行性</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>原型验证&#x2F;MVP</td>
+<td>✅ 高</td>
+<td>边界清晰，失败成本低</td>
+</tr>
+<tr>
+<td>内部工具&#x2F;自动化脚本</td>
+<td>✅ 高</td>
+<td>用户少，容错率高</td>
+</tr>
+<tr>
+<td>标准化SaaS配置（低代码）</td>
+<td>✅ 高</td>
+<td>解域已被平台封装</td>
+</tr>
+<tr>
+<td>核心业务系统</td>
+<td>❌ 低</td>
+<td>边界复杂，故障影响大</td>
+</tr>
+<tr>
+<td>高并发&#x2F;金融&#x2F;安全敏感场景</td>
+<td>❌ 极低</td>
+<td>隐性约束极多</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="给产品经理的实用建议"><a href="#给产品经理的实用建议" class="headerlink" title="给产品经理的实用建议"></a>给产品经理的实用建议</h2><p>如果想用Agent提效，应该<strong>补齐</strong>而非<strong>绕过</strong>：</p>
+<ol>
+<li><strong>学”计算思维”而非语法</strong>：理解状态、并发、抽象、分层</li>
+<li><strong>强制追问边界</strong>：每个需求问自己”如果失败会怎样？”</li>
+<li><strong>建立反馈循环</strong>：让有工程经验的人review你的Agent产出（不是看代码，是看设计决策）</li>
+<li><strong>从封闭域开始</strong>：选择技术约束明确的场景（如前端页面、固定模板的后端逻辑）</li>
+</ol>
+<hr>
+<p><strong>最终结论</strong>：Agent消除的是<strong>编码的体力成本</strong>，不是<strong>设计的认知成本</strong>。产品经理缺的从来不是”写代码的能力”，而是**”在约束条件下构造可行解”的能力**——这正是软件工程教育的核心，也是目前AI最难以替代的部分。</p>
+<hr>
+<p>用户：我认为软件工程的工程化管理等的细节，未来一定会被程序员落实稳定。AI会在各种约束下写出更合规的代码，reviewcode会自动化，测试会自动化等等。那么，这之后程序员的工作又会变成什么呢</p>
+<p>我：这是一个非常前瞻性的思考。顺着你的逻辑推演，如果工程化、约束合规、review、测试都被AI自动化，程序员的工作会发生<strong>本质性迁移</strong>——从”构建系统”转向”定义系统”。</p>
+<hr>
+<h2 id="未来程序员的核心工作：解域架构师（Solution-Space-Architect）"><a href="#未来程序员的核心工作：解域架构师（Solution-Space-Architect）" class="headerlink" title="未来程序员的核心工作：解域架构师（Solution Space Architect）"></a>未来程序员的核心工作：解域架构师（Solution Space Architect）</h2><h3 id="1-约束工程（Constraint-Engineering）"><a href="#1-约束工程（Constraint-Engineering）" class="headerlink" title="1. 约束工程（Constraint Engineering）"></a>1. <strong>约束工程（Constraint Engineering）</strong></h3><p>不再是写代码，而是<strong>设计和维护AI生成代码的约束边界</strong>：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 未来的&quot;编程&quot;可能长这样</span></span><br><span class="line"><span class="attr">system_constraints:</span></span><br><span class="line">  <span class="attr">performance:</span></span><br><span class="line">    <span class="attr">p99_latency:</span> <span class="string">&lt;</span> <span class="string">200ms</span></span><br><span class="line">    <span class="attr">throughput:</span> <span class="string">&gt;</span> <span class="string">10k</span> <span class="string">QPS</span></span><br><span class="line">  <span class="attr">reliability:</span></span><br><span class="line">    <span class="attr">availability:</span> <span class="number">99.99</span><span class="string">%</span></span><br><span class="line">    <span class="attr">failover:</span> <span class="string">automatic</span></span><br><span class="line">  <span class="attr">security:</span></span><br><span class="line">    <span class="attr">data_classification:</span> <span class="string">PII</span></span><br><span class="line">    <span class="attr">encryption:</span> <span class="string">AES-256-GCM</span></span><br><span class="line">  <span class="attr">cost:</span></span><br><span class="line">    <span class="attr">infra_budget_monthly:</span> <span class="string">$50k</span></span><br><span class="line">    <span class="attr">optimization_target:</span> <span class="string">spot_instances_allowed</span></span><br><span class="line">    </span><br><span class="line"><span class="attr">business_rules:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">&quot;订单金额 &gt; 10000 必须人工审核&quot;</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">&quot;用户敏感操作需二次验证&quot;</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">&quot;退款必须在支付后72小时内发起&quot;</span></span><br></pre></td></tr></table></figure>
+<p>程序员的工作是确保这些约束被AI正确理解、执行、且不冲突。</p>
+<h3 id="2-意图精化（Intent-Refinement）"><a href="#2-意图精化（Intent-Refinement）" class="headerlink" title="2. 意图精化（Intent Refinement）"></a>2. 意图精化（Intent Refinement）</h3><p>产品经理说”用户可以快速下单”，程序员需要将其转化为AI可执行的精化意图：</p>
+<table>
+<thead>
+<tr>
+<th>模糊意图</th>
+<th>精化后的结构化意图</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>“快速下单”</td>
+<td>端到端流程 &lt; 3步，每步加载 &lt; 1s，支持预填充地址</td>
+</tr>
+<tr>
+<td>“高可用”</td>
+<td>定义故障场景（单点故障、依赖降级、脑裂），指定RTO&#x2F;RPO</td>
+</tr>
+<tr>
+<td>“智能推荐”</td>
+<td>明确冷启动策略、多样性约束、业务过滤规则</td>
+</tr>
+</tbody></table>
+<p>关键能力：识别模糊性、消除歧义、补全隐性假设。</p>
+<h3 id="3-系统元设计（Meta-Design）"><a href="#3-系统元设计（Meta-Design）" class="headerlink" title="3. 系统元设计（Meta-Design）"></a>3. 系统元设计（Meta-Design）</h3><p>不再设计具体模块，而是设计系统如何演化：</p>
+<p>扩展契约：新功能如何无损接入现有约束体系？</p>
+<p>反脆弱结构：系统如何在部分组件失效时自愈？</p>
+<p>熵增管理：长期迭代中如何防止约束腐蚀（constraint drift）？<br>类比：从”画建筑图纸”变成”制定建筑规范 + 审核AI生成的图纸是否符合规范”。</p>
+<h3 id="异常与边缘治理（Edge-Case-Governance）"><a href="#异常与边缘治理（Edge-Case-Governance）" class="headerlink" title="异常与边缘治理（Edge Case Governance）"></a>异常与边缘治理（Edge Case Governance）</h3><p>AI擅长主流路径，程序员专注长尾风险<br>AI生成代码覆盖率：95% 常见场景 ✅<br>剩余 5% 边缘场景：</p>
+<ul>
+<li>闰年2月29日的定时任务</li>
+<li>跨时区夏令时切换的日志顺序</li>
+<li>分布式事务在网络分区下的补偿</li>
+<li>法规变更导致的合规逻辑冲突</li>
+</ul>
+<p>程序员工作：识别、建模、验证这些边缘，<br>并确保AI理解”为什么这种边界情况重要”。</p>
+<h3 id="5-跨域翻译与对齐（Cross-Domain-Alignment）"><a href="#5-跨域翻译与对齐（Cross-Domain-Alignment）" class="headerlink" title="5. 跨域翻译与对齐（Cross-Domain Alignment）"></a>5. 跨域翻译与对齐（Cross-Domain Alignment）</h3><p>成为问题域与解域之间的终极翻译者：</p>
+<p>业务方：”我们要做跨境电商”<br>        ↓<br>程序员拆解：</p>
+<ul>
+<li>支付域：多币种、汇率波动、风控规则</li>
+<li>物流域：清关、轨迹追踪、异常处理</li>
+<li>合规域：GDPR、数据本地化、税务</li>
+<li>技术域：全球部署、数据同步、最终一致性<br>↓</li>
+</ul>
+<p>转化为AI可执行的约束包 + 验证策略</p>
+<p>核心价值：看到跨域的隐性依赖和冲突，这是垂直AI难以具备的。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/AI/" rel="tag"># AI</a>
+              <a href="/tags/LLM/" rel="tag"># LLM</a>
+              <a href="/tags/%E6%80%9D%E8%80%83/" rel="tag"># 思考</a>
+              <a href="/tags/%E8%81%8C%E4%B8%9A%E5%8F%91%E5%B1%95/" rel="tag"># 职业发展</a>
+              <a href="/tags/%E6%9C%AA%E6%9D%A5%E8%A7%84%E5%88%92/" rel="tag"># 未来规划</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/11/20/%E5%BD%93AI%E9%81%87%E8%A7%81%E4%BA%BA%E5%91%B3%E4%B8%80%E5%9C%BA%E5%85%B3%E4%BA%8EJava%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%8A%80%E6%9C%AF%E5%AF%B9%E8%AF%9D%E5%AE%9E%E5%BD%95/" rel="prev" title="当AI遇见&quot;人味&quot;：一场关于Java学习的技术对话实录">
+                  <i class="fa fa-angle-left"></i> 当AI遇见"人味"：一场关于Java学习的技术对话实录
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/02/05/OpenClaw%E4%B8%8A%E4%B8%8B%E6%96%87%E8%87%AA%E5%8A%A8%E5%8E%8B%E7%BC%A9%E9%85%8D%E7%BD%AE%E6%95%B4%E7%90%86/" rel="next" title="OpenClaw上下文自动压缩配置整理">
+                  OpenClaw上下文自动压缩配置整理 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">车子</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

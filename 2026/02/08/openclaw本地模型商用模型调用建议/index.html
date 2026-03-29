@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="本地模型 vs 云端 API：端云协同任务分工指南 设备：Apple M3 芯片，18GB 内存策略：成本优先、隐私优先、效率优先的任务交给本地；能力优先、覆盖优先的任务交给商用 API。   🧠 本地模型的”舒适区”这类任务通常不依赖实时更新的外部知识，更看重低延迟、隐私保护和低成本。    任务类型 具体任务举例 为什么适合本地    编程辅助 (中等复杂度) 代码补全、解释复杂代码、编写单">
+<meta property="og:type" content="article">
+<meta property="og:title" content="openclaw本地模型商用模型调用建议">
+<meta property="og:url" content="http://example.com/2026/02/08/openclaw%E6%9C%AC%E5%9C%B0%E6%A8%A1%E5%9E%8B%E5%95%86%E7%94%A8%E6%A8%A1%E5%9E%8B%E8%B0%83%E7%94%A8%E5%BB%BA%E8%AE%AE/index.html">
+<meta property="og:site_name" content="车子的个人博客">
+<meta property="og:description" content="本地模型 vs 云端 API：端云协同任务分工指南 设备：Apple M3 芯片，18GB 内存策略：成本优先、隐私优先、效率优先的任务交给本地；能力优先、覆盖优先的任务交给商用 API。   🧠 本地模型的”舒适区”这类任务通常不依赖实时更新的外部知识，更看重低延迟、隐私保护和低成本。    任务类型 具体任务举例 为什么适合本地    编程辅助 (中等复杂度) 代码补全、解释复杂代码、编写单">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-02-07T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-29T09:01:58.778Z">
+<meta property="article:author" content="车子">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="LLM">
+<meta property="article:tag" content="openclaw">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/02/08/openclaw%E6%9C%AC%E5%9C%B0%E6%A8%A1%E5%9E%8B%E5%95%86%E7%94%A8%E6%A8%A1%E5%9E%8B%E8%B0%83%E7%94%A8%E5%BB%BA%E8%AE%AE/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2026/02/08/openclaw%E6%9C%AC%E5%9C%B0%E6%A8%A1%E5%9E%8B%E5%95%86%E7%94%A8%E6%A8%A1%E5%9E%8B%E8%B0%83%E7%94%A8%E5%BB%BA%E8%AE%AE/","path":"2026/02/08/openclaw本地模型商用模型调用建议/","title":"openclaw本地模型商用模型调用建议"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>openclaw本地模型商用模型调用建议 | 车子的个人博客</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">车子的个人博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">正确的事情通常都是优雅的</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E6%A8%A1%E5%9E%8B-vs-%E4%BA%91%E7%AB%AF-API%EF%BC%9A%E7%AB%AF%E4%BA%91%E5%8D%8F%E5%90%8C%E4%BB%BB%E5%8A%A1%E5%88%86%E5%B7%A5%E6%8C%87%E5%8D%97"><span class="nav-number">1.</span> <span class="nav-text">本地模型 vs 云端 API：端云协同任务分工指南</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%A7%A0-%E6%9C%AC%E5%9C%B0%E6%A8%A1%E5%9E%8B%E7%9A%84%E2%80%9D%E8%88%92%E9%80%82%E5%8C%BA%E2%80%9D"><span class="nav-number">1.1.</span> <span class="nav-text">🧠 本地模型的”舒适区”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%98%81%EF%B8%8F-%E5%95%86%E7%94%A8API%E7%9A%84%E2%80%9D%E4%B8%BB%E6%88%98%E5%9C%BA%E2%80%9D"><span class="nav-number">1.2.</span> <span class="nav-text">☁️ 商用API的”主战场”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%A7%AD-%E5%86%B3%E7%AD%96%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="nav-number">1.3.</span> <span class="nav-text">🧭 决策流程图</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">车子</p>
+  <div class="site-description" itemprop="description">坐下看看</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">66</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/02/08/openclaw%E6%9C%AC%E5%9C%B0%E6%A8%A1%E5%9E%8B%E5%95%86%E7%94%A8%E6%A8%A1%E5%9E%8B%E8%B0%83%E7%94%A8%E5%BB%BA%E8%AE%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="车子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="车子的个人博客">
+      <meta itemprop="description" content="坐下看看">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="openclaw本地模型商用模型调用建议 | 车子的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          openclaw本地模型商用模型调用建议
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-02-08 00:00:00" itemprop="dateCreated datePublished" datetime="2026-02-08T00:00:00+08:00">2026-02-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI/Agent/" itemprop="url" rel="index"><span itemprop="name">Agent</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI/Agent/openclaw/" itemprop="url" rel="index"><span itemprop="name">openclaw</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="本地模型-vs-云端-API：端云协同任务分工指南"><a href="#本地模型-vs-云端-API：端云协同任务分工指南" class="headerlink" title="本地模型 vs 云端 API：端云协同任务分工指南"></a>本地模型 vs 云端 API：端云协同任务分工指南</h1><blockquote>
+<p>设备：Apple M3 芯片，18GB 内存<br>策略：成本优先、隐私优先、效率优先的任务交给本地；能力优先、覆盖优先的任务交给商用 API。</p>
+</blockquote>
+<hr>
+<h2 id="🧠-本地模型的”舒适区”"><a href="#🧠-本地模型的”舒适区”" class="headerlink" title="🧠 本地模型的”舒适区”"></a>🧠 本地模型的”舒适区”</h2><p>这类任务通常<strong>不依赖实时更新的外部知识，更看重低延迟、隐私保护和低成本</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>任务类型</th>
+<th>具体任务举例</th>
+<th>为什么适合本地</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>编程辅助 (中等复杂度)</strong></td>
+<td>代码补全、解释复杂代码、编写单元测试、跨语言代码转换、处理本地代码库的问答。</td>
+<td><strong>隐私安全</strong>：公司或个人的代码资产不会外泄。 <strong>效率</strong>：响应速度极快，无网络延迟。</td>
+</tr>
+<tr>
+<td><strong>文档处理与总结 (RAG基础应用)</strong></td>
+<td>总结长篇PDF、会议纪要、本地笔记；基于个人知识库（如Obsidian、Notion导出）进行问答。</td>
+<td><strong>隐私保护</strong>：敏感的商业文档和个人笔记无需上传。 <strong>长上下文能力</strong>：本地模型（如支持256K上下文的模型）足以一次性处理海量文本。</td>
+</tr>
+<tr>
+<td><strong>文本理解与生成</strong></td>
+<td>文章润色、风格改写、邮件草稿撰写、创意文案 brainstorm、翻译、情感分析。</td>
+<td><strong>成本为零</strong>：无限次调用，无需为每次生成付费。 <strong>可定制性</strong>：可以针对特定写作风格微调模型。</td>
+</tr>
+<tr>
+<td><strong>结构化信息提取</strong></td>
+<td>从非结构化文本中提取关键信息（如姓名、日期、事件）并输出为JSON格式。</td>
+<td><strong>高可靠性</strong>：配合本地框架（如<code>llm-core</code>）可以强制模型输出结构化数据，方便程序处理。</td>
+</tr>
+<tr>
+<td><strong>基础Agent任务</strong></td>
+<td>调用本地工具或脚本，如操作本地文件、管理日历、执行简单的系统命令。</td>
+<td><strong>低延迟闭环</strong>：整个任务执行过程都在本地完成，速度飞快且不受网络影响。</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="☁️-商用API的”主战场”"><a href="#☁️-商用API的”主战场”" class="headerlink" title="☁️ 商用API的”主战场”"></a>☁️ 商用API的”主战场”</h2><p>当任务<strong>需要世界知识、最强的推理能力或处理多模态信息</strong>时，就该云端大模型出场了。</p>
+<table>
+<thead>
+<tr>
+<th>任务类型</th>
+<th>具体任务举例</th>
+<th>为什么适合云端</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>复杂推理与深度思考</strong></td>
+<td>解决复杂的数学证明、逻辑谜题、多步推理的物理&#x2F;化学问题。</td>
+<td><strong>能力天花板</strong>：云端超大模型（如千亿参数以上）的推理能力远非本地模型可比。</td>
+</tr>
+<tr>
+<td><strong>需要实时知识的任务</strong></td>
+<td>查询最新的新闻、股票行情、天气预报，或需要联网搜索才能回答的问题。</td>
+<td><strong>信息时效性</strong>：云端API通常能直接联网或调用实时数据接口。</td>
+</tr>
+<tr>
+<td><strong>高质量内容创作</strong></td>
+<td>生成专业的营销文案、广告语、诗歌、剧本、小说章节。</td>
+<td><strong>创造力和文采</strong>：顶级商业模型在语言的艺术性、创造性和风格模仿上更胜一筹。</td>
+</tr>
+<tr>
+<td><strong>多模态任务</strong></td>
+<td>理解复杂的图表、流程图；根据图片生成详细的描述；对视频内容进行摘要。</td>
+<td><strong>多模态能力</strong>：目前顶尖的多模态模型（如GPT-4V, Claude 3.5 Sonnet）大多部署在云端，本地多模态模型在能力上还有差距。</td>
+</tr>
+<tr>
+<td><strong>高级Agent任务</strong></td>
+<td>需要跨多个网站、应用协同工作的任务，如”帮我规划下周的北京行程，预订酒店和餐厅，并同步到我的日历”。</td>
+<td><strong>生态和工具</strong>：商业平台往往集成了丰富的插件和工具（如MCP协议），能调用的外部服务远超本地环境。</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🧭-决策流程图"><a href="#🧭-决策流程图" class="headerlink" title="🧭 决策流程图"></a>🧭 决策流程图</h2><p>在实际使用中，可以遵循这个简单的判断逻辑：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line">    A[接到任务] --&gt; B&#123;数据敏感？&#125;</span><br><span class="line">    B --&gt;|是| C[优先尝试本地模型]</span><br><span class="line">    B --&gt;|否| D&#123;本地模型能胜任？&#125;</span><br><span class="line">    C --&gt; E&#123;结果满意？&#125;</span><br><span class="line">    E --&gt;|是| F[任务完成]</span><br><span class="line">    E --&gt;|否| G[考虑切换至云端API]</span><br><span class="line">    D --&gt;|能| C</span><br><span class="line">    D --&gt;|不能| H[使用云端API]</span><br><span class="line">    G --&gt; H</span><br><span class="line">    H --&gt; I[评估成本与频率]</span><br><span class="line">    I --&gt; J[优化策略：批量/包月/本地缓存]</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/AI/" rel="tag"># AI</a>
+              <a href="/tags/LLM/" rel="tag"># LLM</a>
+              <a href="/tags/openclaw/" rel="tag"># openclaw</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/02/05/OpenClaw%E4%B8%8A%E4%B8%8B%E6%96%87%E8%87%AA%E5%8A%A8%E5%8E%8B%E7%BC%A9%E9%85%8D%E7%BD%AE%E6%95%B4%E7%90%86/" rel="prev" title="OpenClaw上下文自动压缩配置整理">
+                  <i class="fa fa-angle-left"></i> OpenClaw上下文自动压缩配置整理
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/02/15/OpenClaw%20Agent/" rel="next" title="OpenClaw Agent">
+                  OpenClaw Agent <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">车子</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

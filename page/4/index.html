@@ -140,7 +140,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">105</span>
+          <span class="site-state-item-count">108</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -151,7 +151,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-count">66</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -168,6 +168,457 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/10/JVM%E7%AC%94%E8%AE%B01%E5%86%85%E5%AD%98%E5%88%92%E5%88%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="车子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="车子的个人博客">
+      <meta itemprop="description" content="坐下看看">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 车子的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/10/10/JVM%E7%AC%94%E8%AE%B01%E5%86%85%E5%AD%98%E5%88%92%E5%88%86/" class="post-title-link" itemprop="url">JVM内存划分详解</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-10-10 00:00:00" itemprop="dateCreated datePublished" datetime="2022-10-10T00:00:00+08:00">2022-10-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/java%E8%99%9A%E6%8B%9F%E6%9C%BA/" itemprop="url" rel="index"><span itemprop="name">java虚拟机</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="JVM内存划分详解"><a href="#JVM内存划分详解" class="headerlink" title="JVM内存划分详解"></a>JVM内存划分详解</h1><h2 id="JVM内存区域"><a href="#JVM内存区域" class="headerlink" title="JVM内存区域"></a>JVM内存区域</h2><h3 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h3><ul>
+<li>记录当前线程执行的字节码行号</li>
+<li>线程私有，各线程独立计数</li>
+<li>唯一不会OOM的区域</li>
+</ul>
+<h3 id="虚拟机栈"><a href="#虚拟机栈" class="headerlink" title="虚拟机栈"></a>虚拟机栈</h3><ul>
+<li>描述Java方法执行的内存模型</li>
+<li>每个方法创建一个栈帧</li>
+<li>包含：局部变量表、操作数栈、动态链接、方法返回地址</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 栈深度过深会抛出StackOverflowError</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">deepRecursion</span><span class="params">()</span> &#123;</span><br><span class="line">    deepRecursion();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h3><ul>
+<li>为Native方法服务</li>
+<li>与虚拟机栈类似</li>
+</ul>
+<h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><ul>
+<li>最大内存区域</li>
+<li>存放对象实例</li>
+<li>垃圾回收主要区域</li>
+<li>分代：新生代、老年代</li>
+</ul>
+<h3 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h3><ul>
+<li>存储类信息、静态变量、常量</li>
+<li>JVM规范中的”永久代”</li>
+<li>JDK 8后用元空间替代</li>
+</ul>
+<h2 id="内存分配"><a href="#内存分配" class="headerlink" title="内存分配"></a>内存分配</h2><ul>
+<li>对象优先在Eden区分配</li>
+<li>大对象直接进入老年代</li>
+<li>长期存活对象进入老年代</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>理解JVM内存划分是调优基础，不同区域有不同的存储内容和垃圾回收策略。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/05/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6%E5%8D%81%E4%B8%80%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E4%B8%8E%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="车子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="车子的个人博客">
+      <meta itemprop="description" content="坐下看看">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 车子的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/10/05/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6%E5%8D%81%E4%B8%80%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E4%B8%8E%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" class="post-title-link" itemprop="url">Spring全家桶笔记十一：配置管理与消息队列</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-10-05 00:00:00" itemprop="dateCreated datePublished" datetime="2022-10-05T00:00:00+08:00">2022-10-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">后端</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/spring/" itemprop="url" rel="index"><span itemprop="name">spring</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Spring全家桶笔记十一：配置管理与消息队列"><a href="#Spring全家桶笔记十一：配置管理与消息队列" class="headerlink" title="Spring全家桶笔记十一：配置管理与消息队列"></a>Spring全家桶笔记十一：配置管理与消息队列</h1><h2 id="配置管理"><a href="#配置管理" class="headerlink" title="配置管理"></a>配置管理</h2><h3 id="Spring-Cloud-Config"><a href="#Spring-Cloud-Config" class="headerlink" title="Spring Cloud Config"></a>Spring Cloud Config</h3><h4 id="服务端配置"><a href="#服务端配置" class="headerlink" title="服务端配置"></a>服务端配置</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">config-server</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">config:</span></span><br><span class="line">      <span class="attr">server:</span></span><br><span class="line">        <span class="attr">git:</span></span><br><span class="line">          <span class="attr">uri:</span> <span class="string">https://github.com/your-repo/config-repo</span></span><br><span class="line">          <span class="attr">username:</span> <span class="string">your-username</span></span><br><span class="line">          <span class="attr">default-label:</span> <span class="string">master</span></span><br><span class="line">          <span class="attr">search-paths:</span> <span class="string">&#x27;&#123;application&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@EnableConfigServer</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ConfigServerApplication</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="客户端配置"><a href="#客户端配置" class="headerlink" title="客户端配置"></a>客户端配置</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">config:</span></span><br><span class="line">      <span class="attr">uri:</span> <span class="string">http://localhost:8888</span></span><br><span class="line">      <span class="attr">profile:</span> <span class="string">dev</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">master</span></span><br><span class="line">      <span class="attr">name:</span> <span class="string">application</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="动态刷新"><a href="#动态刷新" class="headerlink" title="动态刷新"></a>动态刷新</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RefreshScope</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestController</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;custom.property&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String property;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>触发刷新：<code>POST /actuator/refresh</code></p>
+<h3 id="Nacos配置中心"><a href="#Nacos配置中心" class="headerlink" title="Nacos配置中心"></a>Nacos配置中心</h3><h4 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">discovery:</span></span><br><span class="line">        <span class="attr">server-addr:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="string">:8848</span></span><br><span class="line">      <span class="attr">config:</span></span><br><span class="line">        <span class="attr">server-addr:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="string">:8848</span></span><br><span class="line">        <span class="attr">file-extension:</span> <span class="string">yaml</span></span><br><span class="line">        <span class="attr">namespace:</span> <span class="string">dev</span></span><br><span class="line">        <span class="attr">group:</span> <span class="string">DEFAULT_GROUP</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="配置优先级"><a href="#配置优先级" class="headerlink" title="配置优先级"></a>配置优先级</h4><ul>
+<li>动态配置 &gt; 本地配置</li>
+<li>规则：服务名+环境 &gt; 服务名 &gt; 默认</li>
+</ul>
+<h4 id="共享配置"><a href="#共享配置" class="headerlink" title="共享配置"></a>共享配置</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">config:</span></span><br><span class="line">        <span class="attr">shared-configs:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="attr">data-id:</span> <span class="string">common.yaml</span></span><br><span class="line">            <span class="attr">group:</span> <span class="string">DEFAULT_GROUP</span></span><br><span class="line">            <span class="attr">refresh:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="消息队列概述"><a href="#消息队列概述" class="headerlink" title="消息队列概述"></a>消息队列概述</h2><h3 id="为什么要用消息队列"><a href="#为什么要用消息队列" class="headerlink" title="为什么要用消息队列"></a>为什么要用消息队列</h3><ul>
+<li><strong>解耦</strong>：生产者和消费者解耦</li>
+<li><strong>异步</strong>：提高系统响应速度</li>
+<li><strong>削峰</strong>：应对高并发流量</li>
+<li><strong>日志处理</strong>：日志收集与分析</li>
+</ul>
+<h3 id="常见消息队列"><a href="#常见消息队列" class="headerlink" title="常见消息队列"></a>常见消息队列</h3><ul>
+<li><strong>ActiveMQ</strong>：老牌 MQ，功能全面</li>
+<li><strong>RabbitMQ</strong>：功能强大，生态丰富</li>
+<li><strong>Kafka</strong>：高性能，日志系统常用</li>
+<li><strong>RocketMQ</strong>：阿里巴巴开源，Java 友好</li>
+</ul>
+<h2 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h2><h3 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h3><ul>
+<li><strong>Producer</strong>：生产者</li>
+<li><strong>Consumer</strong>：消费者</li>
+<li><strong>Exchange</strong>：交换机</li>
+<li><strong>Queue</strong>：队列</li>
+<li><strong>Binding</strong>：绑定</li>
+</ul>
+<h3 id="Exchange-类型"><a href="#Exchange-类型" class="headerlink" title="Exchange 类型"></a>Exchange 类型</h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Direct</td>
+<td>完全匹配</td>
+</tr>
+<tr>
+<td>Fanout</td>
+<td>广播</td>
+</tr>
+<tr>
+<td>Topic</td>
+<td>模式匹配</td>
+</tr>
+<tr>
+<td>Headers</td>
+<td>属性匹配</td>
+</tr>
+</tbody></table>
+<h3 id="Spring-AMQP-集成"><a href="#Spring-AMQP-集成" class="headerlink" title="Spring AMQP 集成"></a>Spring AMQP 集成</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="attr">host:</span> <span class="string">localhost</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">5672</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">guest</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">guest</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="生产者"><a href="#生产者" class="headerlink" title="生产者"></a>生产者</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MessageProducer</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RabbitTemplate rabbitTemplate;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">send</span><span class="params">(String message)</span> &#123;</span><br><span class="line">        rabbitTemplate.convertAndSend(<span class="string">&quot;exchange&quot;</span>, <span class="string">&quot;routing.key&quot;</span>, message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="消费者"><a href="#消费者" class="headerlink" title="消费者"></a>消费者</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MessageConsumer</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@RabbitListener(queues = &quot;queue.name&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">handleMessage</span><span class="params">(String message)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Received: &quot;</span> + message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="消息确认"><a href="#消息确认" class="headerlink" title="消息确认"></a>消息确认</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RabbitListener(queues = &quot;queue.name&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">handleMessage</span><span class="params">(String message, Message message2, Channel channel)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 处理消息</span></span><br><span class="line">        channel.basicAck(message2.getMessageProperties().getDeliveryTag(), <span class="literal">false</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        channel.basicNack(message2.getMessageProperties().getDeliveryTag(), <span class="literal">false</span>, <span class="literal">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h2><h3 id="核心概念-1"><a href="#核心概念-1" class="headerlink" title="核心概念"></a>核心概念</h3><ul>
+<li><strong>Topic</strong>：消息主题</li>
+<li><strong>Partition</strong>：分区</li>
+<li><strong>Replication</strong>：副本</li>
+<li><strong>Consumer Group</strong>：消费者组</li>
+<li><strong>Offset</strong>：偏移量</li>
+</ul>
+<h3 id="Spring-Kafka-集成"><a href="#Spring-Kafka-集成" class="headerlink" title="Spring Kafka 集成"></a>Spring Kafka 集成</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">kafka:</span></span><br><span class="line">    <span class="attr">bootstrap-servers:</span> <span class="string">localhost:9092</span></span><br><span class="line">    <span class="attr">producer:</span></span><br><span class="line">      <span class="attr">key-serializer:</span> <span class="string">org.apache.kafka.common.serialization.StringSerializer</span></span><br><span class="line">      <span class="attr">value-serializer:</span> <span class="string">org.apache.kafka.common.serialization.StringSerializer</span></span><br><span class="line">    <span class="attr">consumer:</span></span><br><span class="line">      <span class="attr">group-id:</span> <span class="string">my-group</span></span><br><span class="line">      <span class="attr">key-deserializer:</span> <span class="string">org.apache.kafka.common.serialization.StringDeserializer</span></span><br><span class="line">      <span class="attr">value-deserializer:</span> <span class="string">org.apache.kafka.common.serialization.StringDeserializer</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="生产者-1"><a href="#生产者-1" class="headerlink" title="生产者"></a>生产者</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> KafkaTemplate&lt;String, String&gt; kafkaTemplate;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">send</span><span class="params">(String topic, String message)</span> &#123;</span><br><span class="line">    kafkaTemplate.send(topic, message);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="消费者-1"><a href="#消费者-1" class="headerlink" title="消费者"></a>消费者</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@KafkaListener(topics = &quot;my-topic&quot;, groupId = &quot;my-group&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">listen</span><span class="params">(ConsumerRecord&lt;String, String&gt; record)</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;Received: &quot;</span> + record.value());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="消息顺序性"><a href="#消息顺序性" class="headerlink" title="消息顺序性"></a>消息顺序性</h3><ul>
+<li>单分区保证顺序</li>
+<li>同一 key 的消息发送到同一分区</li>
+</ul>
+<h2 id="消息队列最佳实践"><a href="#消息队列最佳实践" class="headerlink" title="消息队列最佳实践"></a>消息队列最佳实践</h2><h3 id="1-消息可靠性"><a href="#1-消息可靠性" class="headerlink" title="1. 消息可靠性"></a>1. 消息可靠性</h3><ul>
+<li>消息持久化</li>
+<li>消费者确认机制</li>
+<li>死信队列处理</li>
+</ul>
+<h3 id="2-消息幂等性"><a href="#2-消息幂等性" class="headerlink" title="2. 消息幂等性"></a>2. 消息幂等性</h3><ul>
+<li>唯一标识 + 去重表</li>
+<li>乐观锁&#x2F;版本号</li>
+</ul>
+<h3 id="3-消息顺序性"><a href="#3-消息顺序性" class="headerlink" title="3. 消息顺序性"></a>3. 消息顺序性</h3><ul>
+<li>同一分区</li>
+<li>消息分区key</li>
+</ul>
+<h3 id="4-消息积压"><a href="#4-消息积压" class="headerlink" title="4. 消息积压"></a>4. 消息积压</h3><ul>
+<li>消费者扩容</li>
+<li>临时队列消费</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>配置管理和消息队列是微服务架构的重要组成部分。配置中心实现配置的集中管理和动态刷新，消息队列实现系统间的解耦和异步通信。在实际应用中，需要根据业务场景选择合适的方案。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/01/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6%E5%8D%81%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8%E4%B8%8E%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="车子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="车子的个人博客">
+      <meta itemprop="description" content="坐下看看">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 车子的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/09/01/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6%E5%8D%81%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8%E4%B8%8E%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" class="post-title-link" itemprop="url">Spring全家桶笔记十：服务调用与负载均衡</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-09-01 00:00:00" itemprop="dateCreated datePublished" datetime="2022-09-01T00:00:00+08:00">2022-09-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">后端</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/spring/" itemprop="url" rel="index"><span itemprop="name">spring</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Spring全家桶笔记十：服务调用与负载均衡"><a href="#Spring全家桶笔记十：服务调用与负载均衡" class="headerlink" title="Spring全家桶笔记十：服务调用与负载均衡"></a>Spring全家桶笔记十：服务调用与负载均衡</h1><h2 id="服务调用的演进"><a href="#服务调用的演进" class="headerlink" title="服务调用的演进"></a>服务调用的演进</h2><ol>
+<li><strong>传统方式</strong>：直接通过HTTP或RPC调用</li>
+<li><strong>服务注册发现</strong>：Eureka、Nacos、Consul</li>
+<li><strong>负载均衡</strong>：Ribbon、LoadBalancer</li>
+<li><strong>服务网格</strong>：Istio、Envoy</li>
+</ol>
+<h2 id="RestTemplate服务调用"><a href="#RestTemplate服务调用" class="headerlink" title="RestTemplate服务调用"></a>RestTemplate服务调用</h2><h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestTemplate</span></span><br><span class="line"><span class="meta">@LoadBalanced</span>  <span class="comment">// 开启负载均衡</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RestTemplateConfig</span> &#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> RestTemplate <span class="title function_">restTemplate</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">RestTemplate</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OrderService</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RestTemplate restTemplate;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> Order <span class="title function_">getOrder</span><span class="params">(Long id)</span> &#123;</span><br><span class="line">        <span class="comment">// 通过服务名调用</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> <span class="string">&quot;http://user-service/user/&quot;</span> + id;</span><br><span class="line">        <span class="keyword">return</span> restTemplate.getForObject(url, Order.class);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="拦截器实现认证"><a href="#拦截器实现认证" class="headerlink" title="拦截器实现认证"></a>拦截器实现认证</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AuthInterceptor</span> <span class="keyword">implements</span> <span class="title class_">ClientHttpRequestInterceptor</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> ClientHttpResponse <span class="title function_">intercept</span><span class="params">(</span></span><br><span class="line"><span class="params">            HttpRequest request, </span></span><br><span class="line"><span class="params">            <span class="type">byte</span>[] body, </span></span><br><span class="line"><span class="params">            ClientHttpRequestExecution execution)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        </span><br><span class="line">        request.getHeaders().add(<span class="string">&quot;Authorization&quot;</span>, <span class="string">&quot;Bearer token&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> execution.execute(request, body);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Feign服务调用"><a href="#Feign服务调用" class="headerlink" title="Feign服务调用"></a>Feign服务调用</h2><h3 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FeignClient(name = &quot;user-service&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserClient</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@GetMapping(&quot;/user/&#123;id&#125;&quot;)</span></span><br><span class="line">    User <span class="title function_">getUserById</span><span class="params">(<span class="meta">@PathVariable(&quot;id&quot;)</span> Long id)</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@GetMapping(&quot;/user/list&quot;)</span></span><br><span class="line">    List&lt;User&gt; <span class="title function_">getUsers</span><span class="params">(<span class="meta">@RequestParam(&quot;ids&quot;)</span> List&lt;Long&gt; ids)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置与优化"><a href="#配置与优化" class="headerlink" title="配置与优化"></a>配置与优化</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FeignClient(</span></span><br><span class="line"><span class="meta">    name = &quot;user-service&quot;,</span></span><br><span class="line"><span class="meta">    url = &quot;http://localhost:8080&quot;,</span></span><br><span class="line"><span class="meta">    configuration = FeignConfig.class,</span></span><br><span class="line"><span class="meta">    fallback = UserClientFallback.class</span></span><br><span class="line"><span class="meta">)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserClient</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FeignConfig</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> Logger.Level <span class="title function_">feignLoggerLevel</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> Logger.Level.FULL;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> RequestInterceptor <span class="title function_">requestInterceptor</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> template -&gt; template.header(<span class="string">&quot;X-Request-Id&quot;</span>, UUID.randomUUID().toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="日志配置"><a href="#日志配置" class="headerlink" title="日志配置"></a>日志配置</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">logging:</span></span><br><span class="line">  <span class="attr">level:</span></span><br><span class="line">    <span class="attr">com.example.client:</span> <span class="string">DEBUG</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="负载均衡策略"><a href="#负载均衡策略" class="headerlink" title="负载均衡策略"></a>负载均衡策略</h2><h3 id="常见策略"><a href="#常见策略" class="headerlink" title="常见策略"></a>常见策略</h3><table>
+<thead>
+<tr>
+<th>策略</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>RoundRobinRule</td>
+<td>轮询（默认）</td>
+</tr>
+<tr>
+<td>RandomRule</td>
+<td>随机</td>
+</tr>
+<tr>
+<td>RetryRule</td>
+<td>重试</td>
+</tr>
+<tr>
+<td>WeightedResponseTimeRule</td>
+<td>响应时间加权</td>
+</tr>
+<tr>
+<td>BestAvailableRule</td>
+<td>最空闲服务器</td>
+</tr>
+<tr>
+<td>AvailabilityFilteringRule</td>
+<td>可用性过滤</td>
+</tr>
+</tbody></table>
+<h3 id="自定义策略"><a href="#自定义策略" class="headerlink" title="自定义策略"></a>自定义策略</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyRuleConfig</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> IRule <span class="title function_">myRule</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">MyCustomRule</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="负载均衡原理"><a href="#负载均衡原理" class="headerlink" title="负载均衡原理"></a>负载均衡原理</h3><ol>
+<li>服务注册：提供者向注册中心注册</li>
+<li>服务发现：消费者从注册中心获取服务列表</li>
+<li>负载均衡：根据策略选择服务实例</li>
+<li>服务调用：发起HTTP请求</li>
+</ol>
+<h2 id="Nacos服务发现"><a href="#Nacos服务发现" class="headerlink" title="Nacos服务发现"></a>Nacos服务发现</h2><h3 id="服务注册"><a href="#服务注册" class="headerlink" title="服务注册"></a>服务注册</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">order-service</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">discovery:</span></span><br><span class="line">        <span class="attr">server-addr:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="string">:8848</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="服务消费者"><a href="#服务消费者" class="headerlink" title="服务消费者"></a>服务消费者</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@LoadBalanced</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> RestTemplate <span class="title function_">restTemplate</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">RestTemplate</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="服务元数据"><a href="#服务元数据" class="headerlink" title="服务元数据"></a>服务元数据</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">discovery:</span></span><br><span class="line">        <span class="attr">metadata:</span></span><br><span class="line">          <span class="attr">version:</span> <span class="string">v1</span></span><br><span class="line">          <span class="attr">weight:</span> <span class="number">1.0</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="实际应用建议"><a href="#实际应用建议" class="headerlink" title="实际应用建议"></a>实际应用建议</h2><ol>
+<li>优先使用Feign，代码更简洁</li>
+<li>合理设置超时时间</li>
+<li>配置合理的负载均衡策略</li>
+<li>做好服务降级和熔断</li>
+<li>使用Nacos进行服务治理</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Spring Cloud提供了完整的服务调用解决方案，从服务发现到负载均衡，配合Hystrix&#x2F;Resilience4j实现服务容错，构建稳定的微服务架构。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1006,377 +1457,6 @@
 <h3 id="2-N-1问题"><a href="#2-N-1问题" class="headerlink" title="2. N+1问题"></a>2. N+1问题</h3><p>解决方案：使用JOIN FETCH或@EntityGraph</p>
 <h3 id="3-乐观锁冲突"><a href="#3-乐观锁冲突" class="headerlink" title="3. 乐观锁冲突"></a>3. 乐观锁冲突</h3><p>使用@Version注解实现乐观锁</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Spring数据访问层提供了强大的持久层支持，开发者可以根据项目需求选择合适的持久层方案。Spring Data JPA适合快速开发，JdbcTemplate适合需要精细控制SQL的场景。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/10/Spring%E7%94%9F%E6%80%81JPA%E5%AE%9E%E4%BD%93%E9%87%8D%E5%A4%8D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="车子">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="车子的个人博客">
-      <meta itemprop="description" content="坐下看看">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 车子的个人博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/05/10/Spring%E7%94%9F%E6%80%81JPA%E5%AE%9E%E4%BD%93%E9%87%8D%E5%A4%8D/" class="post-title-link" itemprop="url">JPA实体重复问题解决</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-10 00:00:00" itemprop="dateCreated datePublished" datetime="2022-05-10T00:00:00+08:00">2022-05-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">后端</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%90%8E%E7%AB%AF/spring/" itemprop="url" rel="index"><span itemprop="name">spring</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="JPA实体重复问题解决"><a href="#JPA实体重复问题解决" class="headerlink" title="JPA实体重复问题解决"></a>JPA实体重复问题解决</h1><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>同一实体对象被多个EntityManager管理。</p>
-<h2 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方式1：merge</span></span><br><span class="line"><span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> entityManager.merge(user);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 方式2：clear</span></span><br><span class="line">entityManager.clear();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 方式3：remove + persist</span></span><br><span class="line">entityManager.remove(user);</span><br><span class="line">entityManager.persist(user);</span><br></pre></td></tr></table></figure>
-
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>正确管理实体生命周期可避免重复问题。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/20/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B8%8E%E9%85%8D%E7%BD%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="车子">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="车子的个人博客">
-      <meta itemprop="description" content="坐下看看">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 车子的个人博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/04/20/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B8%8E%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">Spring全家桶笔记：核心概念与配置</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-04-20 00:00:00" itemprop="dateCreated datePublished" datetime="2022-04-20T00:00:00+08:00">2022-04-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">后端</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%90%8E%E7%AB%AF/spring/" itemprop="url" rel="index"><span itemprop="name">spring</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Spring全家桶笔记：核心概念与配置"><a href="#Spring全家桶笔记：核心概念与配置" class="headerlink" title="Spring全家桶笔记：核心概念与配置"></a>Spring全家桶笔记：核心概念与配置</h1><h2 id="Spring概述"><a href="#Spring概述" class="headerlink" title="Spring概述"></a>Spring概述</h2><p>Spring是一个轻量级的Java开发框架，旨在简化企业级应用开发。其核心是<strong>控制反转（IOC）<strong>和</strong>面向切面编程（AOP）</strong>。</p>
-<h2 id="IOC容器"><a href="#IOC容器" class="headerlink" title="IOC容器"></a>IOC容器</h2><h3 id="什么是IOC"><a href="#什么是IOC" class="headerlink" title="什么是IOC"></a>什么是IOC</h3><p>IOC（Inversion of Control）即控制反转，将对象创建和管理权交给Spring容器，由容器负责注入依赖。</p>
-<h3 id="容器实现"><a href="#容器实现" class="headerlink" title="容器实现"></a>容器实现</h3><ul>
-<li><strong>BeanFactory</strong>：基础容器，延迟加载</li>
-<li><strong>ApplicationContext</strong>：增强版容器，继承BeanFactory</li>
-</ul>
-<h3 id="Bean配置方式"><a href="#Bean配置方式" class="headerlink" title="Bean配置方式"></a>Bean配置方式</h3><h4 id="1-XML配置"><a href="#1-XML配置" class="headerlink" title="1. XML配置"></a>1. XML配置</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;userService&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.example.UserService&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;userDao&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;userDao&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">value</span>=<span class="string">&quot;张三&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="2-注解配置"><a href="#2-注解配置" class="headerlink" title="2. 注解配置"></a>2. 注解配置</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserDao userDao;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;app.name&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String appName;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-Java配置"><a href="#3-Java配置" class="headerlink" title="3. Java配置"></a>3. Java配置</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AppConfig</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> UserService <span class="title function_">userService</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">UserService</span> <span class="variable">service</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UserService</span>();</span><br><span class="line">        service.setUserDao(userDao());</span><br><span class="line">        <span class="keyword">return</span> service;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> UserDao <span class="title function_">userDao</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">UserDaoImpl</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Bean作用域"><a href="#Bean作用域" class="headerlink" title="Bean作用域"></a>Bean作用域</h3><table>
-<thead>
-<tr>
-<th>作用域</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>singleton</td>
-<td>单例（默认）</td>
-</tr>
-<tr>
-<td>prototype</td>
-<td>多例</td>
-</tr>
-<tr>
-<td>request</td>
-<td>HTTP请求</td>
-</tr>
-<tr>
-<td>session</td>
-<td>HTTP会话</td>
-</tr>
-<tr>
-<td>application</td>
-<td>ServletContext生命周期</td>
-</tr>
-</tbody></table>
-<h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><ol>
-<li>实例化 → 2. 属性赋值 → 3. 初始化 → 4. 销毁</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserService</span> <span class="keyword">implements</span> <span class="title class_">InitializingBean</span>, DisposableBean &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@PostConstruct</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;初始化&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@PreDestroy</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">destroy</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;销毁&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">afterPropertiesSet</span><span class="params">()</span> &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">destroy</span><span class="params">()</span> &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h2><h3 id="注入方式"><a href="#注入方式" class="headerlink" title="注入方式"></a>注入方式</h3><ul>
-<li><strong>构造器注入</strong>：推荐，清晰表示依赖关系</li>
-<li><strong>Setter注入</strong>：可选注入</li>
-<li><strong>字段注入</strong>：简洁但不利于测试</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OrderService</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> UserService userService;  <span class="comment">// 构造器注入</span></span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> OrderDao orderDao;  <span class="comment">// 字段注入</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setPaymentService</span><span class="params">(PaymentService paymentService)</span> &#123;</span><br><span class="line">        <span class="comment">// Setter注入</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="自动装配"><a href="#自动装配" class="headerlink" title="自动装配"></a>自动装配</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// byType：按类型自动装配</span></span><br><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> UserDao userDao;</span><br><span class="line"></span><br><span class="line"><span class="comment">// byName：按名称自动装配</span></span><br><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> UserDao userDaoImpl;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 构造函数自动装配</span></span><br><span class="line"><span class="keyword">public</span> <span class="title function_">UserService</span><span class="params">(UserDao userDao)</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="AOP面向切面编程"><a href="#AOP面向切面编程" class="headerlink" title="AOP面向切面编程"></a>AOP面向切面编程</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ul>
-<li><strong>Aspect</strong>：切面</li>
-<li><strong>Join Point</strong>：连接点</li>
-<li><strong>Pointcut</strong>：切点</li>
-<li><strong>Advice</strong>：通知（增强）</li>
-<li><strong>Weaving</strong>：织入</li>
-</ul>
-<h3 id="通知类型"><a href="#通知类型" class="headerlink" title="通知类型"></a>通知类型</h3><table>
-<thead>
-<tr>
-<th>类型</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>@Before</td>
-<td>前置通知</td>
-</tr>
-<tr>
-<td>@AfterReturning</td>
-<td>后置通知</td>
-</tr>
-<tr>
-<td>@AfterThrowing</td>
-<td>异常通知</td>
-</tr>
-<tr>
-<td>@After</td>
-<td>最终通知</td>
-</tr>
-<tr>
-<td>@Around</td>
-<td>环绕通知</td>
-</tr>
-</tbody></table>
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LoggingAspect</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Pointcut(&quot;execution(* com.example.service.*.*(..))&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">servicePointcut</span><span class="params">()</span> &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Before(&quot;servicePointcut()&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">before</span><span class="params">(JoinPoint joinPoint)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;方法: &quot;</span> + joinPoint.getSignature());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@AfterReturning(pointcut = &quot;servicePointcut()&quot;, returning = &quot;result&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">afterReturning</span><span class="params">(Object result)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;返回: &quot;</span> + result);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Around(&quot;servicePointcut()&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">around</span><span class="params">(ProceedingJoinPoint pjp)</span> <span class="keyword">throws</span> Throwable &#123;</span><br><span class="line">        <span class="type">long</span> <span class="variable">start</span> <span class="operator">=</span> System.currentTimeMillis();</span><br><span class="line">        <span class="type">Object</span> <span class="variable">result</span> <span class="operator">=</span> pjp.proceed();</span><br><span class="line">        <span class="type">long</span> <span class="variable">end</span> <span class="operator">=</span> System.currentTimeMillis();</span><br><span class="line">        System.out.println(<span class="string">&quot;耗时: &quot;</span> + (end - start) + <span class="string">&quot;ms&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="常用配置"><a href="#常用配置" class="headerlink" title="常用配置"></a>常用配置</h2><h3 id="属性配置"><a href="#属性配置" class="headerlink" title="属性配置"></a>属性配置</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># application.yml</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">myapp</span></span><br><span class="line">  <span class="attr">profiles:</span></span><br><span class="line">    <span class="attr">active:</span> <span class="string">dev</span></span><br><span class="line"></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8080</span></span><br><span class="line"></span><br><span class="line"><span class="attr">custom:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">test</span></span><br><span class="line">  <span class="attr">max:</span> <span class="number">100</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Value(&quot;$&#123;custom.name&#125;&quot;)</span></span><br><span class="line"><span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Value(&quot;$&#123;custom.max&#125;&quot;)</span></span><br><span class="line"><span class="keyword">private</span> Integer max;</span><br></pre></td></tr></table></figure>
-
-<h3 id="多环境配置"><a href="#多环境配置" class="headerlink" title="多环境配置"></a>多环境配置</h3><ul>
-<li>application.yml（默认）</li>
-<li>application-dev.yml</li>
-<li>application-prod.yml</li>
-</ul>
-<h3 id="条件配置"><a href="#条件配置" class="headerlink" title="条件配置"></a>条件配置</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ConditionalOnProperty(name = &quot;feature.enabled&quot;, havingValue = &quot;true&quot;)</span></span><br><span class="line"><span class="meta">@ConditionalOnMissingBean(UserService.class)</span></span><br><span class="line"><span class="meta">@ConditionalOnClass(MongoTemplate.class)</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Spring-Boot自动配置"><a href="#Spring-Boot自动配置" class="headerlink" title="Spring Boot自动配置"></a>Spring Boot自动配置</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>@SpringBootApplication &#x3D; @SpringBootConfiguration + @EnableAutoConfiguration + @ComponentScan</p>
-<p>@EnableAutoConfiguration 通过spring.factories和META-INF&#x2F;spring&#x2F;org.springframework.boot.autoconfigure.AutoConfiguration.imports加载配置。</p>
-<h3 id="自定义-starter"><a href="#自定义-starter" class="headerlink" title="自定义-starter"></a>自定义-starter</h3><ol>
-<li>创建autoconfigure模块</li>
-<li>定义配置类</li>
-<li>创建spring.factories</li>
-<li>创建starter模块依赖autoconfigure</li>
-</ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Spring核心概念包括IOC容器、依赖注入和AOP。理解这些概念是掌握Spring全家桶的基础。Spring Boot通过自动配置简化了开发，需要理解其原理以便更好地定制和调试。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/20/MySQL%E5%A4%96%E9%94%AE%E7%BB%91%E5%AE%9A%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="车子">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="车子的个人博客">
-      <meta itemprop="description" content="坐下看看">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 车子的个人博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/03/20/MySQL%E5%A4%96%E9%94%AE%E7%BB%91%E5%AE%9A%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">MySQL外键绑定问题</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-03-20 00:00:00" itemprop="dateCreated datePublished" datetime="2022-03-20T00:00:00+08:00">2022-03-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">后端</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%90%8E%E7%AB%AF/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%90%8E%E7%AB%AF/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="MySQL外键绑定问题"><a href="#MySQL外键绑定问题" class="headerlink" title="MySQL外键绑定问题"></a>MySQL外键绑定问题</h1><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>外键约束无法创建或绑定失败。</p>
-<h2 id="常见原因"><a href="#常见原因" class="headerlink" title="常见原因"></a>常见原因</h2><ol>
-<li>类型不匹配</li>
-<li>字符集不一致</li>
-<li>索引缺失</li>
-</ol>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 确保关联字段类型一致</span></span><br><span class="line"><span class="keyword">ALTER TABLE</span> child MODIFY parent_id <span class="type">BIGINT</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 确保字符集一致</span></span><br><span class="line"><span class="keyword">ALTER TABLE</span> child <span class="keyword">CONVERT</span> <span class="keyword">TO</span> <span class="keyword">CHARACTER SET</span> utf8mb4;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 手动创建索引</span></span><br><span class="line"><span class="keyword">CREATE</span> INDEX idx_parent_id <span class="keyword">ON</span> child(parent_id);</span><br></pre></td></tr></table></figure>
-
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>外键使用需注意细节。</p>
 
       
     </div>

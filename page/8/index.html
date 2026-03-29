@@ -140,7 +140,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">105</span>
+          <span class="site-state-item-count">108</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -151,7 +151,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-count">66</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -168,6 +168,415 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/25/springInAction%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="车子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="车子的个人博客">
+      <meta itemprop="description" content="坐下看看">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 车子的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/07/25/springInAction%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B01/" class="post-title-link" itemprop="url">springInAction读书笔记1</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-07-25 22:40:00" itemprop="dateCreated datePublished" datetime="2020-07-25T22:40:00+08:00">2020-07-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/springinaction/" itemprop="url" rel="index"><span itemprop="name">springinaction</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="spring-in-action"><a href="#spring-in-action" class="headerlink" title="spring in action"></a>spring in action</h1><p>读了这本书的半本,感觉是一本不错的扫盲书,不是深入的书,没有深入的带你分析spring源码和设计模式.</p>
+<p>spring在日常应用过程中大家都有使用,但是因为spring历经了多个版本,在不熟悉spring的时候,有些解决方案都是百度直接过来的,百度到的代码只是帮你解决了问题,但是并没有帮你正确的解决问题.spring的版本是向下兼容的,很多老版本的spring代码依然可以在新版本上运行,但是很多老代码的解决方案会显得臃肿和笨拙,不但影响代码的可读性,通常也会附带很多鸡肋一样的注释.而新版本的优化可能让你更优雅的使用spring,但是你并不知道这些新的解决方案.这本书就可以帮你了解spring那些新的,coooooooool的解决方案.</p>
+<h2 id="Spring基础"><a href="#Spring基础" class="headerlink" title="Spring基础"></a>Spring基础</h2><h3 id="关于启动类"><a href="#关于启动类" class="headerlink" title="关于启动类"></a>关于启动类</h3><ul>
+<li><p>@SpringBootApplication包含了如下三个注解</p>
+<ul>
+<li>@SpringBootConfig:生命该类是配置类.这个注解实际上是@configuation的特殊形式.</li>
+<li>@EnableAutoConfiguration:启用Spring boot的自动配置.</li>
+<li>@ComponentScan:启动组件扫描.</li>
+</ul>
+</li>
+<li><p>Main方法:</p>
+<p>这个main方法会调用SpringApplication中的静态的run()方法,后者会真正的执行应用的引导过程,也就是创建spring的应用上下文.在传递给run的两个参数中,一个是配置类,另一个是命令行参数.</p>
+</li>
+<li><p>对大多数应用来说,最好还是为没有实现自动配置的功能创建一个单独的配置类.</p>
+</li>
+</ul>
+<h3 id="Controller的单元测试"><a href="#Controller的单元测试" class="headerlink" title="Controller的单元测试"></a>Controller的单元测试</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith(SpringRunner.class)</span></span><br><span class="line"><span class="meta">@WebMvcTest(HomeController.class)</span><span class="comment">//针对HomeController的web测试</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HomeControllerTestTest</span>&#123;</span><br><span class="line">  <span class="meta">@Autowired</span></span><br><span class="line">  <span class="keyword">private</span> MockMvc mockMvc  </span><br><span class="line">  </span><br><span class="line">  <span class="meta">@Test</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testHomePage</span><span class="params">()</span> <span class="keyword">throws</span> Exxception&#123;</span><br><span class="line">    <span class="built_in">this</span>.mockMvc.perform(<span class="string">&quot;/&quot;</span>)   <span class="comment">//发起对&quot;/&quot;的Get</span></span><br><span class="line">        .addExpect(status().isOk())    <span class="comment">//期望得到HTTP200</span></span><br><span class="line">        .addExpect(view().name(<span class="string">&quot;home&quot;</span>)) <span class="comment">//期望得到home视图</span></span><br><span class="line">        .addExpect(content().string(containsString(<span class="string">&quot;welcome to ...&quot;</span>))) <span class="comment">//期望包含&quot;welcome to&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Spring-DevTools"><a href="#Spring-DevTools" class="headerlink" title="Spring DevTools"></a>Spring DevTools</h3><ul>
+<li><p>热部署</p>
+<p>DevTool运行的时候,应用程序会加载到JVM两个独立的类加载器中.其中一个类加载器会加载你的Java代码&#x2F;属性文件以及项目中”src&#x2F;main&#x2F;“路径下的几乎所有内容.另一个类加载器加载依赖的库.</p>
+</li>
+<li><p>面向浏览器的资源(模板,JS,css等)发生变化时自动刷新浏览器</p>
+</li>
+<li><p>自动禁用模板缓存</p>
+<p>需要浏览器的LiveReload插件</p>
+</li>
+<li><p>内置了H2控制台</p>
+</li>
+</ul>
+<h3 id="Spring构成"><a href="#Spring构成" class="headerlink" title="Spring构成"></a>Spring构成</h3><ul>
+<li>spirng核心框架</li>
+<li>Spring Boot</li>
+<li>Spring Data </li>
+<li>Spring Security</li>
+<li>Spring Integration和Spring Batch</li>
+<li>Spring cloud</li>
+</ul>
+<h3 id="领域"><a href="#领域" class="headerlink" title="领域"></a>领域</h3><p>应用的领域指的是他所要解决的主体范围:也就是会影响到应用理解的理念和概念.(深入了解看&lt;领域驱动设计&gt;)</p>
+<h3 id="Thymeleaf"><a href="#Thymeleaf" class="headerlink" title="Thymeleaf"></a>Thymeleaf</h3><ul>
+<li>展示校验错误</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;validationError&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">th:if</span>=<span class="string">&quot;$&#123;#fields.hasEorrors(&#x27;ccnumber&#x27;)&#125;&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">th:errors</span>=<span class="string">&quot;*&#123;ccNumber&#125;&quot;</span>&gt;</span>CC Number Error<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>模板缓存</p>
+<table>
+<thead>
+<tr>
+<th>模板</th>
+<th>配置项</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FreeMaker</td>
+<td>spring.freemaker.cache</td>
+</tr>
+<tr>
+<td>Groovy Templates</td>
+<td>spring.groovy.template.cache</td>
+</tr>
+<tr>
+<td>Mustache</td>
+<td>spring.mustache.cache</td>
+</tr>
+<tr>
+<td>Thymeleaf</td>
+<td>spring.thymeleaf.cache</td>
+</tr>
+</tbody></table>
+<p>true为启用,false为禁止</p>
+</li>
+</ul>
+<h3 id="spring-Data"><a href="#spring-Data" class="headerlink" title="spring Data"></a>spring Data</h3><ul>
+<li>spring data 替换jpa实现库  (P73,只是一个maven配置)</li>
+<li>@PrePersist标注一个方法,对象在持久化之前,会调用这个方法,给某些字段加默认值.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Prepersist</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">createAt</span><span class="params">()</span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.createAt=<span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>repository方法由一个动词,一个可选的主题(subject)&#x2F;关键词by以及一个断言所组成的</li>
+<li>repository方法的操作符,见P79.例如IsAfter&#x2F;After等等..</li>
+</ul>
+<h3 id="Spring-Security"><a href="#Spring-Security" class="headerlink" title="Spring Security"></a>Spring Security</h3><ul>
+<li>配置和加密</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableWebSecurity</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SecurityConfig</span> <span class="keyword">extends</span> <span class="title class_">WebSecurityConfigurerAdapter</span>()&#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">configure</span> <span class="params">(AuthenticationManagerBuilder auth)</span>&#123;</span><br><span class="line">    auth.jdbcAuthentication()</span><br><span class="line">      .dataSource(dataSource)</span><br><span class="line">      .userByUserNameQuery(</span><br><span class="line">    			<span class="string">&quot;select userName,.....&quot;</span>)</span><br><span class="line">      .authoritiesByUsernameQuery(<span class="string">&quot;select ...&quot;</span>)</span><br><span class="line">      .passwordEncoder(<span class="keyword">new</span> <span class="title class_">StandaardPasswordEncoder</span>(<span class="string">&quot;111111&quot;</span>))</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>passwordEncoder()方法可以接受Spring Security中PasswordEncoder接口的任意实现.Spring Security的加密模块包括了多个这样的实现.</p>
+<ul>
+<li>BCryptPasswordEncoder:使用bcrypt强哈希加密</li>
+<li>NoOpPasswordEncoder:不进行任何转码</li>
+<li>Pbkdf2PasswordEncoder:使用PBKDF2加密</li>
+<li>ScryptPasswordEncoder:使用scrypt哈希加密</li>
+<li>StandardPasswordEncoder:使用SHA-256哈希加密</li>
+</ul>
+<h3 id="spring的配置"><a href="#spring的配置" class="headerlink" title="spring的配置"></a>spring的配置</h3><ul>
+<li>属性源:<ul>
+<li>JVM系统属性</li>
+<li>操作系统环境变量</li>
+<li>命令行参数</li>
+<li>application.properties</li>
+<li>application.yml</li>
+</ul>
+</li>
+<li>@ConfigurationProperties (prefix&#x3D;”taco.orders”),比如要给A类的pageSize配置属性,配置文件中需要是taco.orders.pageSize</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/25/spring-Async%E5%BC%82%E6%AD%A5%E8%8E%B7%E5%8F%96%E7%BB%93%E6%9E%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="车子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="车子的个人博客">
+      <meta itemprop="description" content="坐下看看">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 车子的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/07/25/spring-Async%E5%BC%82%E6%AD%A5%E8%8E%B7%E5%8F%96%E7%BB%93%E6%9E%9C/" class="post-title-link" itemprop="url">spring@Async异步获取结果</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-07-25 18:40:00" itemprop="dateCreated datePublished" datetime="2020-07-25T18:40:00+08:00">2020-07-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">后端</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/spring/" itemprop="url" rel="index"><span itemprop="name">spring</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="spring-Async异步获取结果"><a href="#spring-Async异步获取结果" class="headerlink" title="spring@Async异步获取结果"></a>spring@Async异步获取结果</h1><p>涉及到两个问题：</p>
+<ul>
+<li>解决同类调用@Async方法无效问题。</li>
+<li>用completableFuture替换Future，解决Future.get()获取结果阻塞的问题。</li>
+</ul>
+<p>这里只提供利用@Async注解的解决方案，因为使用了spring,更倾向于用spring的注解来解决问题.把线程池注册成bean交给spring管理,比自己每次生成销毁或者自己控制全局线程池要优雅的多.</p>
+<p>另一种解决方案，因为线程池是通过@bean方式注册成bean，直接@autowied线程池，然后利用正常的线程池+countDownLatch也可以解决(未验证）。</p>
+<p>以下是基于@async的解决方案：</p>
+<p>代码不连续，这里只贴一下关键代码，以免非关键代码干扰思路，不懂的留言或者邮件我<a href="mailto:&#x63;&#104;&#x65;&#121;&#97;&#x6e;&#116;&#x61;&#111;&#x40;&#102;&#x6f;&#120;&#109;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#x6f;&#109;">cheyantao@foxmail.com</a>，看见了及时回你。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line"><span class="comment">//spring上下文用来获取当前类的代理</span></span><br><span class="line"><span class="meta">@Autowired</span> <span class="keyword">private</span> ApplicationContext applicationContext;</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line"><span class="comment">//就是一个普通的方法，无视之，不要被干扰视线</span></span><br><span class="line"><span class="keyword">public</span> Page&lt;SourceVo&gt; <span class="title function_">page</span><span class="params">(Pageable pageable, String selectId, String keyword)</span> &#123;</span><br><span class="line"> .</span><br><span class="line"> .</span><br><span class="line"> <span class="comment">//需要countDownLatch阻塞等待结果。</span></span><br><span class="line"> <span class="type">CountDownLatch</span> <span class="variable">countDownLatch</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CountDownLatch</span>(sourceDo.getContent().size());</span><br><span class="line"> <span class="keyword">for</span> (Source source : sourceDo.getContent()) &#123;</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  <span class="comment">//这里通过applicationContext获取代理类，解决调用同类方法@Async不生效</span></span><br><span class="line">   <span class="type">SourceService</span> <span class="variable">serviceProxy</span> <span class="operator">=</span> applicationContext.getBean(SourceService.class);</span><br><span class="line">   <span class="comment">//在这里调用了@Aysnc的方法，看不懂建议瞅一眼completableFuture的相关知识。</span></span><br><span class="line">   serviceProxy</span><br><span class="line">      .requestDataByte(source, component)</span><br><span class="line">      .thenAccept(</span><br><span class="line">          s -&gt; &#123;</span><br><span class="line">            sourceVo.setDataByte(s);</span><br><span class="line">            content.add(sourceVo);</span><br><span class="line">            countDownLatch.countDown();</span><br><span class="line">          &#125;);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">try</span> &#123;</span><br><span class="line">   countDownLatch.await(<span class="number">5</span>, TimeUnit.SECONDS);</span><br><span class="line"> &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">   log.error(<span class="string">&quot;获取数据量线程阻塞异常&quot;</span>, e); </span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line"><span class="comment">//@Async注解的方法，这里是异步获取的字符串</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="meta">@Async(&quot;fetchExecutor&quot;)</span></span><br><span class="line"><span class="keyword">public</span> CompletableFuture&lt;String&gt; <span class="title function_">requestDataByte</span><span class="params">(Source source, Component component)</span> &#123;</span><br><span class="line">  <span class="type">String</span> <span class="variable">metricName</span> <span class="operator">=</span> <span class="built_in">this</span>.buildMetricNames(source);</span><br><span class="line">  <span class="keyword">if</span> (StringUtils.isBlank(metricName)) &#123;</span><br><span class="line">    <span class="comment">//返回空字符串结果</span></span><br><span class="line">    <span class="keyword">return</span> AsyncResult.forValue(<span class="string">&quot;&quot;</span>).completable();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">   .</span><br><span class="line">   .</span><br><span class="line">   .</span><br><span class="line">   <span class="comment">//AsyncResult.forValue(字符串).completable()返回正确结果，不要被forValue（）里的句子干扰实现了，就是一个             普通的业务逻辑方法</span></span><br><span class="line">    <span class="keyword">return</span> AsyncResult.forValue(<span class="built_in">this</span>.getValueFromMetric(response.getMetrics().get(<span class="number">0</span>)))</span><br><span class="line">        .completable();</span><br><span class="line">  &#125; <span class="keyword">catch</span> (Exception ex) &#123;</span><br><span class="line">    log.error(<span class="string">&quot;获取数据量失败,sourceId:&#123;&#125;&quot;</span>, source.getId(), ex);</span><br><span class="line">    <span class="keyword">return</span> AsyncResult.forValue(<span class="string">&quot;&quot;</span>).completable();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>OK ,以上.</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/25/2020%E5%B9%B4%E4%B8%AD%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="车子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="车子的个人博客">
+      <meta itemprop="description" content="坐下看看">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 车子的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/07/25/2020%E5%B9%B4%E4%B8%AD%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">2020年中总结</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-07-25 16:14:20" itemprop="dateCreated datePublished" datetime="2020-07-25T16:14:20+08:00">2020-07-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E5%88%92%E4%B8%8E%E5%A4%8D%E7%9B%98/" itemprop="url" rel="index"><span itemprop="name">计划与复盘</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E5%88%92%E4%B8%8E%E5%A4%8D%E7%9B%98/2020/" itemprop="url" rel="index"><span itemprop="name">2020</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="2020年中总结"><a href="#2020年中总结" class="headerlink" title="2020年中总结"></a>2020年中总结</h1><p>烂牌烂打.2019魔兽怀旧服一个放纵,加上疫情直接到了五月份,时间刷的一下就让自己浪费掉了,回过神的时候满是对自己的懊恼,但是也无济于事了.</p>
+<p>打烂了在打回去吧,总归自己是不能放弃自己的.</p>
+<h2 id="关于2020已过去的上半年"><a href="#关于2020已过去的上半年" class="headerlink" title="关于2020已过去的上半年"></a>关于2020已过去的上半年</h2><p>首先,想一个积极词来总结—-<strong>明确</strong>.上半年是一个有模糊到明确的过程.年初的时候还处在沉迷魔兽怀旧服的状态,二月份又赶上疫情,在家办公就跟放了一个长假一样.这段时间先是从最初的懒散,慢慢过渡到对生活状态的质疑.然后开始复工,复工的567三个月份,面临了巨大的项目周期压力,这期间个人价值观跟公司的氛围产生了巨大的冲突,这个冲突带给了自己心理压力和不愉快的心情,但是同时也带给了自己关于跳槽和人生的思考,慢慢明确了今年的主要事项和目标.</p>
+<p>上半年主要干了那些事:</p>
+<ul>
+<li>涨了二十斤肉.囧.</li>
+<li>赵哥那里接了个私活,赚了6000块钱.</li>
+<li>读完了富爸爸穷爸爸和GTD</li>
+<li>看完了spring全家桶的课,虽然做了些笔记,但是没有上手,理解不够深刻.</li>
+<li>A股港股开了号,A股开始做网格和打新可转债,港股准备打新,还没碰到机会.因为低估的时候攒了足够的筹码,7月费倒是赚了几千块钱的收益.</li>
+<li>魔兽耗费了三四个月时间,期间几乎没有干任何事情,十分可惜.</li>
+<li>虽然很少,但是还在坚持写读书笔记.</li>
+<li>记账和理财的目标依然在有条不紊的执行着.</li>
+</ul>
+<h2 id="继续挖硬性坑"><a href="#继续挖硬性坑" class="headerlink" title="继续挖硬性坑."></a>继续挖硬性坑.</h2><ul>
+<li><p>准备跳槽的知识</p>
+<blockquote>
+<p>这部分放在一开始,因为时间节点赶到了.(再次默哀自己耗费在魔兽怀旧服的一年时间1秒).11月份合同到期,绝迹不会留在这家公司了.所以准备知识是今年的重中之重.相关的知识点整理在滴答清单上.另外的<strong>好好整理自己的简历</strong></p>
+</blockquote>
+</li>
+<li><p>跳槽</p>
+<blockquote>
+<p>今年给自己的跳槽时间是三个月(不包含试用期),每周至少面试一家,跳进一家互联网公司,不管它是几线的,不管他加不加班,只要他有高并发场景.失败了就准备面试知识,看完了再战,知道达成目标.</p>
+<p>不能再像17年一样,浑浑噩噩进一家公司,再浑浑噩噩过三年了.</p>
+<p>接下来的三年希望能保持一个持续学习的好习惯.</p>
+</blockquote>
+</li>
+<li><p>减肥</p>
+<blockquote>
+<p>2019又是减肥失败的一年.2019的减肥结果其实还能接受的.然而一波疫情吃了睡睡了吃的,体重直接从八十多飙到了95.今年下半年,尽量把体重押进85.</p>
+</blockquote>
+</li>
+<li><p>关于游戏</p>
+<blockquote>
+<p>魔兽怀旧服依旧维持着,但是保持每周只跟一个团本.每周最多两个晚上时间放在魔兽上,再多不能了.玩游戏的时候要开直播.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="记一些软坑-只当记录-有空就去做"><a href="#记一些软坑-只当记录-有空就去做" class="headerlink" title="记一些软坑,只当记录,有空就去做"></a>记一些软坑,只当记录,有空就去做</h2><ul>
+<li>社交.维护一些社交,花费一些时间.</li>
+<li>行动力.注意自己的行动力,港股打新就是例子.再麻烦的事情,去执行,其实都是可以做到的.</li>
+<li>穿衣搭配.</li>
+<li>年初定的6本书还有三本半.</li>
+<li>跳槽的时候去修一下键盘</li>
+<li>给家里买点东西.</li>
+<li>保持记录的习惯.</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1581,654 +1990,6 @@
 <li>**计划需要详细到什么程度?**足够让你的大脑拜托事务的纠缠就可以 了.</li>
 <li><strong>需要让事务更加清楚么?</strong>.人们大多每天忙忙碌碌(行动),总感觉找不到奋斗的方向,所以他们需要通过计划来知道自己的工作(组织管理).</li>
 <li>**需要采取更多的行动么?**如果需要做的是落实更多行动,顺着自然计划法的思考模式”向下”走.”要达到的愿景”-&gt;”头脑风暴”-&gt;”下一步行动”.</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/07/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B07/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="车子">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="车子的个人博客">
-      <meta itemprop="description" content="坐下看看">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 车子的个人博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2019/07/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B07/" class="post-title-link" itemprop="url">计算机网络读书笔记7</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-07-17 07:32:22" itemprop="dateCreated datePublished" datetime="2019-07-17T07:32:22+08:00">2019-07-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="计算机网络读书笔记7"><a href="#计算机网络读书笔记7" class="headerlink" title="计算机网络读书笔记7"></a>计算机网络读书笔记7</h1><h2 id="计算机网络中的安全"><a href="#计算机网络中的安全" class="headerlink" title="计算机网络中的安全"></a>计算机网络中的安全</h2><ul>
-<li><p>计算机网络中的安全问题包括：恶意软件攻击、拒绝服务、嗅探、源伪装以及报文的修改和删除等。</p>
-</li>
-<li><p>安全通信的特性：机密性（confidentiality）、报文的完整性（messageintegrity）、端点鉴别（end-point authentication）、运行时安全（operational security）</p>
-</li>
-<li><p>密码学是网络安全的基石</p>
-</li>
-<li><p>对称密钥系统:在对称密钥系统中,通信双方具有相同的密钥并且是秘密的</p>
-</li>
-<li><p>公开密钥系统:使用一对密钥:一个密钥为双方两人所知,另一个密钥只有某一方自己知道了</p>
-</li>
-<li><p>块密码:块密码是对称加密技术的一种宽泛类型,用在多种因特网技术的机密中,包括PGP(用于安全电子邮件)&#x2F;SSL(用于使TCP链接更安全)&#x2F;IPses(用于使网络层传输更安全)</p>
-</li>
-<li><p>在块密码中,要加密的报文被处理成k比特的块,每块报文独立加密,将k比特的明文加密成k比特的密文.</p>
-</li>
-<li><p>目前一些流行的块密码包括DES(数据加密标准)&#x2F;3DES和AES(高级加密标准).</p>
-</li>
-<li><p>RSA算法是公开密钥密码的常用算法.因为RSA所要求的的指数运算是相当耗费时间的过程,所以在实际应用中,RSA通常与对称密码结合使用.例如Alice要向Bob发送大量的加密数据.首先,Alice选择一个用于加密数据本身的密钥,称为为会话密钥.Alice使用Bob的公钥加密该会话密钥.Bob接收到RSA加密的会话密钥后解密获得该会话密钥.</p>
-</li>
-<li><p><strong>密码散列函数</strong>附加要求:找不到任意两个不同的报文x和y使得H(x)&#x3D;H(y),在计算是不可能的.MD5是目前广泛使用的一种散列算法.</p>
-</li>
-<li><p><strong>报文鉴别码(MAC)</strong>。为了执行报文完整性,除了使用散列函数外,Alice和Bob需要共享一个比特串s(称为<strong>鉴定密钥</strong>),Alice将报文m与s级联生成m+s,并计算散列H(m+s).H(m+s)被称为<strong>报文鉴别码（MAC）</strong>.</p>
-</li>
-<li><p><strong>数字签名</strong>:在数字领域,人们通常需要指出一个文件的所有者或创造者,或者表明某人认可一个文件的内容,数字签名就是一种在数字领域实现这些目标的密码技术.</p>
-</li>
-<li><p>因为加密和解密的计算过于昂贵,通常对报文散列签名而不是对报文本身签名.</p>
-</li>
-<li><p><strong>公钥认证</strong>:数字签名的一个重要应用是公钥认证,证实一个公钥属于某个特定实体.</p>
-</li>
-<li><p>将公钥和特定实体绑定通常是由<strong>认证中心(CA)</strong> 完成的,CA的职责就是使识别和发行证书合法化.</p>
-</li>
-<li><p>CA的作用:</p>
-<ul>
-<li>CA证实一个实体(一个人&#x2F;一台路由器等)的真实身份.</li>
-<li>一旦CA验证了某个实体的身份,这个CA会生成一个将其身份和实体的公钥绑定起来的证书.</li>
-</ul>
-</li>
-<li><p><strong>端点鉴别</strong>:一个实体经过计算机网络向另一个实体证明其身份的过程.</p>
-</li>
-<li><p><strong>不重数</strong>:在一个协议的生存期只使用一次的数.不重数和对称密钥加密是鉴别协议的基础.</p>
-</li>
-<li><p><strong>安全套接字(SSL)</strong>:安全性服务加强的TCP,该安全性包括机密性&#x2F;数据完整性&#x2F;端点鉴别.</p>
-</li>
-<li><p>SSL将数据流分割成记录,对每个记录附加一个MAC用于完整性检查,然后加密该”记录+MAC”</p>
-</li>
-<li><p><strong>IP安全协议</strong>被称为IPsec,为网络层提供安全性.</p>
-</li>
-<li><p>许多机构使用IPsec创建了运行在公共因特网之上的虚拟专用网(VPN)</p>
-</li>
-<li><p>IPsec提供了安全性&#x2F;源鉴别&#x2F;数据完整性&#x2F;重放攻击防护这些安全服务的机制.</p>
-</li>
-<li><p>IPsec协议族中,有两个主要的协议:<strong>鉴别首部</strong>协议(AH)和<strong>封装安全性载荷</strong>协议(ESP).AH协议提供别和数据完整性服务,但不提供机密性服务.因机密性通常对VPN和其他IPsec应用过至关重要，所以ESP协议的使用比AH协议要广泛的多。</p>
-</li>
-<li><p><strong>安全关联</strong>。在从源实体想目标实体发送IPsec数据之前，源和目的实体创建了一个网络层逻辑连接。这个逻辑连接称为安全关联（SA）。SA是一个单工逻辑连接；也就是说，它是从源到目的单向的。如果两个实体互相发送安全数据报，需要创建两个SA。</p>
-</li>
-<li><p>一个IPsec实体在它的**安全关联数据库（SAD）**中存储所有SA的状态信息，SAD的实体操作系统内核中的一个数据结构。</p>
-</li>
-<li><p>除了SAD外，IPSec实体也维护另一个数据结构，成为**安全策略库（SPD）。**该SPD指示哪些类型的数据报（作为源IP地址、目的IP地址和协议类型的函数）将被IPsec处理；并且对这些将被IPsec处理的数据报应当使用哪个SA。</p>
-</li>
-<li><p>防火墙是一个硬件和软件的结合体，它将一个机构的内部网络与整个因特网隔离开，允许一些数据分组通过而阻止另一些数据分组通过。防火墙的三个目标</p>
-<ul>
-<li>从外部到内部和从内部到外部的所有流量都通过防火墙。</li>
-<li>仅被授权的流量（由本地安全策略定义）允许通过。</li>
-<li>防火墙自身免于渗透。</li>
-</ul>
-</li>
-<li><p>防火墙能够分为三类：传统分组过滤器、状态过滤器、应用程序网关。</p>
-</li>
-<li><p>分组过滤器独立的检查每个数据报，然后基于管理员特定的规则决定数据报应当允许通过还是应当丢弃。过滤决定通常基于下列因素：</p>
-<ul>
-<li>IP源和目的地址</li>
-<li>在IP数据报中的协议类型字段：TCP、UDP、ICMP、OSPF等。</li>
-<li>TCP或UDP的源和目的端口。</li>
-<li>TCP标志比特：SYN、ACK等。</li>
-<li>ICMP报文类型</li>
-<li>数据报离开和进入网络的不同规则</li>
-<li>对不同路由器接口的不同规则</li>
-</ul>
-</li>
-<li><p>当观察到潜在恶意流量时能产生警告的设备车成卫<strong>入侵检测系统（IDS）</strong>，滤除可疑流量的设备称为<strong>入侵防止系统（IPS）</strong>。因为这些系统最为有趣的 技术方面是它们检测可以流量的原理。因此将IPS和IDS统称为IDS系统。</p>
-</li>
-<li><p>IDS系统大致可分为<strong>基于特征的系统</strong>和<strong>基于异常的系统</strong>。</p>
-</li>
-<li><p>基于特征的系统维护了一个范围广泛的攻击特征数据库。每个特征是和一个入侵活动相关联的规则集。</p>
-</li>
-<li><p>基于异常的系统最大的特点是他们不依赖现有攻击的以前知识。</p>
-</li>
-<li><p>迄今为止，大多数部署的IDS系统都是基于特征的。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/07/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B06/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="车子">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="车子的个人博客">
-      <meta itemprop="description" content="坐下看看">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 车子的个人博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2019/07/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B06/" class="post-title-link" itemprop="url">计算机网络读书笔记6</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-07-07 18:02:40" itemprop="dateCreated datePublished" datetime="2019-07-07T18:02:40+08:00">2019-07-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="计算机网络读书笔记6"><a href="#计算机网络读书笔记6" class="headerlink" title="计算机网络读书笔记6"></a>计算机网络读书笔记6</h1><h2 id="链路层和局域网"><a href="#链路层和局域网" class="headerlink" title="链路层和局域网"></a>链路层和局域网</h2><ul>
-<li><p>链路层提供的服务</p>
-<blockquote>
-<ul>
-<li>成帧.在每个网络层数据报经链路层传送前,几乎所有的链路层协议都要将其用链路层帧封装起来.</li>
-<li>链路接入.媒体访问控制(MAC)协议规定了帧在链路上的传输规则.</li>
-<li>可靠交付.当链路层协议提供可靠交付服务时,它保证无差错的经链路层移动每个网络层数据报.链路层的可靠交付服务通常是通过确认和重传取得的.</li>
-<li>差错检测和纠正.链路层的差错纠正,接收方不进能检测帧中出现的比特差错,而且能够准确地明确帧中的差错出现的位置(并因此纠正这些差错).</li>
-</ul>
-</blockquote>
-</li>
-<li><p>差错检测的三种技术:奇偶校验&#x2F;检验和方法&#x2F;循环冗余检测</p>
-</li>
-<li><p>奇偶校验:发送的信息有d个比特,发送方附加一个附加比特,使得这这d+1比特中1的总数总是偶(奇)数</p>
-</li>
-<li><p>二维奇偶校验，D中的d个比特被换分成了i行j列。对每行每类计算就只。产生的i+j+1奇偶比特构成了链路层帧的差错校验比特。</p>
-</li>
-<li><p>如果d比特中才出现了单个的比特差错，二维奇偶校验包含比特值改变的行和列的校验值都会出现差错。因此街搜房不但可以检测到出现单个比特差错的事实，还可以利用存在奇偶校验差错的列和行的索引来实际识别发生差错的比特并纠正它。</p>
-</li>
-<li><p>接收方监测和纠正差错的能力成为前向纠错（FEC）.这项技术通常被用于音频CD这样的音频存储和回放设备中。</p>
-</li>
-<li><p>FEC避免了不得不等待的往返时延，而这些时延是发送方收到NAK分组冰箱接收方重传分组所需要的，这对实时网络应用或者具有长传播时延的链路可能是一种非常重要的有点。</p>
-</li>
-<li><p>检测和 方法：d比特数据被作为一个k比特整数的序列处理。一个简单的校验和方法就是将这k比特整数加起来，并用得到的和作为差错检验比特。因特网校验和就是基于这种方法，即数据的字节作为16比特的整数对待并求和。</p>
-</li>
-<li><p>循环冗余检测（CRC）:发送方和接收方首先必须协商一个r+1比特模式，成为生成多项式，我们将其表示为G。G的最高有效位比特（最左边）是1。对于一个给定的数据段D，发送方要选择r个附加比特R，并将它们附加到D上，使得得到的d+r比特模式（被解释为一种二进制数）用模2算术恰好能被G整除（没有余数）。接收方用G去除接收到的d+r比特。如果余数为非0，接收方就知道出现了差错，否则认为数据正确。</p>
-</li>
-<li><p>两种网络链路类型：</p>
-<ul>
-<li>点对点链路：由链路一段的单个发送方和链路另一端的单个接收方组成。</li>
-<li>广播链路：它能让多个发送方和接收节点都连接相同的、单一的、共享的广播信道上。</li>
-</ul>
-</li>
-<li><p>多路访问协议，即节点通过这些协议来规范他们在共享的广播信道上的行为。</p>
-</li>
-<li><p>多路访问协议的三种类型：信道划分协议、随机接入协议、轮流协议。</p>
-</li>
-<li><p>信道划分协议</p>
-<ul>
-<li>时分多路复用（TDM）和频分多路复用（FDM）是两种能够用于在所有共享信道节点之间划分广播信道贷款的技术。TDM和FDM有相同的优缺点。它避免了碰撞，在N个节点之间公平的划分了带宽；但是闲着了一个节点只能使用R&#x2F;N的带宽，及时它是唯一一个有分组要发送的节点时。</li>
-<li>码分多址（CDMA）：CDMA对每个节点分配一种不同的编码。然后每个节点用它唯一的编码来对他发送的数据进行编码。不同的节点能够同时传输，并且它们各自相应的接收方仍然能够正确接收发送方编码的数据比特，而不在乎其他节点的干扰传输。</li>
-</ul>
-</li>
-<li><p>随机接入协议。</p>
-<p>  在随机接入协议中，一个传输节点总是以信道的全部速率（即R bps）进行发送。当有碰撞时，涉及碰撞的每个节点反复的重发它的帧（也就是分组），到该帧无碰撞地通过为止。但是当一个节点经历一次碰撞时，它不必立刻重发该帧。相反，它在重发该帧之前等待一个随机时延。</p>
-<ul>
-<li><p>时隙ALOHA</p>
-<p>这个协议的优点在于，当只有一个节点在传输的时候，它可以独占信道，即R bps。缺点为，它的最大效率为1&#x2F;e&#x3D;0.37，当有大量节点有很多帧要传输时，则最多仅有37%的时隙在做有用的工作，即 0.37R bps。</p>
-</li>
-<li><p>载波侦听多路访问协议（CSMA）与具有碰撞检测的CSMA（CSMA&#x2F;CD）</p>
-<p>以太网是一种流行并广泛部署的CSMA协议。</p>
-<p>两个协议的规则如下：</p>
-<ul>
-<li>说话之前先听。即<strong>载波侦听</strong>，一个节点在传输之前先听信道。当来自另一个节点的帧正在传输时，节点等待知道检测到一段时间内没有传输再开始传输。</li>
-<li>如果与他人同时说话，停止说话。即<strong>碰撞检测</strong>，当一个节点在传输时一直在侦听此信道。如果它检测到另一个节点正在传输，它就停止传输，等待一个随机时间（采用<strong>二进制指数后退</strong>）后再执行载波监听。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>轮流协议</p>
-<ul>
-<li>轮询协议。轮询协议要求这些节点之一被制定为主节点。主节点以循环的方式轮询每个节点。</li>
-<li>令牌传递协议。这种协议中没有主节点。一个成为<strong>令牌</strong>（token）的小德特殊帧在节点之间以某种固定的次序进行交换。</li>
-</ul>
-</li>
-<li><p>链路层地址：事实上，并不是主机或者路由器具有链路层地址，而是它们的适配器（即网络接口）具有链路层地址。这个地址被称为LAN地址、物理地址、或MAC地址。特别的，链路层交换机并不具有 <em>与它们的接口（这些接口与主机和路由器相连的）相关联的</em> 链路层地址。链路层交换机的任务是主机和路由器之间承载数据报，交换机透明地执行该项任务，主机或路由器不必明确地将帧寻址到其间的交换机。</p>
-</li>
-<li><p>IEEE分配2^24个MAC地址的方式是：固定一个MAC地址的钱24比特，让公司自己为每个适配器生成后24比特的唯一组合。</p>
-</li>
-<li><p>MAC广播地址为48个连续的1，16进制表示法为FF-FF-FF-FF-FF-FF。</p>
-</li>
-<li><p>地址解析协议（ARP）：将网络地址（如IP）和链路层地址（MAC地址）进行转换。</p>
-</li>
-<li><p>DNS为互联网中任何地方的主机解析主机名，而ARP只为在同一子网上的主机和路由器接口解析IP地址。</p>
-</li>
-<li><p>每台主机或路由器在其内存中具有一个ARP表，这张表包含IP地址到MAC地址的映射关系。</p>
-</li>
-<li><p>查询ARP保卫是在广播帧中发送，而相应ARP报文是在一个标准帧中发送；ARP是即插即用的，一个ARP表是自动建立的，不需要系统管理员来配置，如果某主机与子网断开，它的表项最终会从留在子网的节点中删除。</p>
-</li>
-<li><p>ARP可以看成是跨越链路层和网络层边界两边的协议。</p>
-</li>
-<li><p>以太网成功的原因：</p>
-<ul>
-<li>以太网是第一个广泛部署的高速局域网。</li>
-<li>相较于其他协议（令牌环、FDDI、ATM）简单。</li>
-<li>产生与其他协议相同或者更高的数据速率。</li>
-<li>以太网硬件已经成为一个普通商品，极其便宜。</li>
-</ul>
-</li>
-<li><p>集线器（hub）是一种物理层设备，它作用于各个比特而不是帧。当表示一个0后者一个1的比特到达一个接口时集线器只是重新生成这个比特，将其能量强度放大，并将该比特向其他所有接口传输出去。</p>
-</li>
-<li><p>21世纪初，集线器被交换机取代。交换机仅运行于第二层。</p>
-</li>
-<li><p>以太网帧结构：</p>
-<ul>
-<li>数据字段（46~1500字节）：这个字段承载了IP数据报。以太网的最大传输单元（MTU）是1500字节。这意味着IP数据报不能超过1500字节，则主机必须将数据报分片。数据字段的最小长度为46字节。这意味着如果IP数据报小鱼46字节，数据报就被填充到46自己。</li>
-<li>目的地址（6字节）：这个字段包含目的适配器的MAC地址。当适配器接收到一个以太网帧，如果目的地址是本身的MAC地址或者广播地址，它将该帧的数据字段的内容传递给网络层，否则丢弃。</li>
-<li>源地址（6字节）：这个字段包含了传输该帧到局域网上的适配器的MAC地址。</li>
-<li>类型字段（2字节）:类型字段允许以太网复用多种网络层协议。</li>
-<li>CRC（4字节）。CRC（循环冗余检测）字段的目的是使得接收适配器检测帧中是否引入了差错。</li>
-<li>前同步码（8字节）。以太网帧以一个8字节的前同步码字段开始。该前同步码的前7个字节值都是10101010；最后一个字节是10101011。前同步码的前7个字节用于唤醒接收适配器，并且将它们的时钟与发送方的时钟同步。</li>
-</ul>
-</li>
-<li><p>所有的以太网技术都向网络层提供无连接服务。</p>
-</li>
-<li><p>以太网技术都想网络层提供不可靠服务。</p>
-</li>
-<li><p>经过30的发展，在现行的基于交换机的以太局域网中，交换机协调传输，不会有碰撞，因此没有必要使用MAC协议了（CSMA&#x2F;CD协议）。但是以太网的帧格式保留下来。</p>
-</li>
-<li><p>交换机对于子网中的主机和路由器是透明地。</p>
-</li>
-<li><p>交换机输出接口设有缓存。</p>
-</li>
-<li><p>交换机转发和过滤</p>
-<ul>
-<li>过滤：决定一个帧应该转发到某个接口还是应当将其丢弃的交换机功能</li>
-<li>转发。决定一个帧应该被导向 哪个接口，并把该帧移动到那些接口的交换机功能。</li>
-</ul>
-</li>
-<li><p>交换机表。交换机的过滤和转发是借助于交换机表完成的。交换机表包含：1.一个MAC地址;2.通向该MAC地址的交换机接口；3.表项放置在表中的时间。</p>
-</li>
-<li><p>交换机为自学习的、即插即用设备。</p>
-<ul>
-<li>交换机表初始为空。</li>
-<li>对于每个接口接收的每个入帧，该交换机在其表中存储：1.在该帧源地址字段中的MAC地址；2.该帧到达接口；3.当前时间。</li>
-<li>如果在一段时间（称为老化期（aging time））后，交换机没有接收到以该地址作为源地址的帧，就在表中删除这个地址。</li>
-</ul>
-</li>
-<li><p>链路层交换机的性质</p>
-<ul>
-<li>消除碰撞。交换机缓存帧并且决不会在网段上同时传输一个帧</li>
-<li>异质的链路。交换机将链路彼此隔离，因此局域网中的不同链路能够以不同的速率运行并且能够在不同的媒体上运行。</li>
-<li>管理。除了提供强化的安全性，交换机也易于进行网络管理。</li>
-</ul>
-</li>
-<li><p>交换机和路由器的比较</p>
-<ul>
-<li>交换机的优点<ul>
-<li>交换机是即插即用的</li>
-<li>交换机能够具有相对高的分组过滤和转发。（交换机只需要处理到第二层的帧，路由器必须处理高至第三次的数据报）</li>
-</ul>
-</li>
-<li>交换机的缺点<ul>
-<li>为了防止广播帧循环，交换网络的活跃拓扑限制为一棵生成树。</li>
-<li>一个大型网络将要求主机和路由器中有大的ARP表，这将生成可观的ARP流量和处理量。</li>
-<li>交换机对于广播风暴不提供任何保护措施，可能使得整个以太网崩溃。</li>
-</ul>
-</li>
-<li>路由器的优点：<ul>
-<li>路由器没有生成树限制，允许以丰富的拓扑结构构建因特网。</li>
-<li>路由器对第二层的广播风暴提供防火墙保护</li>
-</ul>
-</li>
-<li>路由器的缺点<ul>
-<li>非即插即用的，需要人为配置IP地址。</li>
-<li>路哟器对每个分组的处理时间更长。</li>
-</ul>
-</li>
-</ul>
-<p>  通常，由几百台主机组成的小网络通常有几个局域网网段。对于这些小网络，交换机就足够了。几千台主机组成的更大的网络，路由器能够提供更健壮的流量隔离方式和对广播风暴的控制。</p>
-</li>
-<li><p>虚拟局域网（Virtula Local Network,VLAN）:支持VLAN的交换机允许经过一个单一的物理局域网基础设施定义多个虚拟局域网。</p>
-</li>
-<li><p>多协议标签交换（MPLS）目标：对于基于固定长度的标签和虚电路技术，在不放弃基于目的地IP数据报转发的基础设施的前提下，当可能时通过选择性地表示数据报并允许路由器基于固定长度的标签（而不是目的地IP地址）转发数据报来增强其功能。</p>
-</li>
-<li><p>多协议标签交换可以改善IP路由器的转发速度。</p>
-</li>
-<li><p>一个MPLS加强帧仅能在两个均为MPLS使能的路由器之间发送。</p>
-</li>
-<li><p>一个MPLS路由器通常被称作标签交换路由器，因为它功过在其转发表中查找MPLS标签，然后立即将数据报传递给适当的输出接口赚翻MPLS帧。因此MPLS使能的路由器不需要提取目的IP地址和在转发表中执行最长前缀匹配的查找。</p>
-</li>
-<li><p>MPLS能够并且已经被用于实现所谓的虚拟专用网（VPN）</p>
-</li>
-<li><p>WEB页面请求历程</p>
-<p>  假设Bob携带便携机以一根以太网电缆连接到学校的以太网，并且下载一个web页面（<a target="_blank" rel="noopener" href="http://www.google.com),经历如下过程./">www.google.com）,经历如下过程。</a></p>
-<p>  <img src="http://img.bigbear.site/network/6/IMG_2258.JPG" alt="网络图"></p>
-<ul>
-<li><p>准备DHCP、UDP、IP和以太网。</p>
-<ul>
-<li>Bob的便携机生成一个<strong>DHCP请求报文</strong>（应用层协议），该报文被放入了包含目的端口67（DHCP服务器）和源端口68（DHCP客户）的<strong>UDP报文段</strong>（运输层），该UDP报文段被放入了具有广播IP目的地址（255.255.255.255）和源IP地址0.0.0.0（当前IP待分配）的<strong>IP数据报</strong>中（网络层）。</li>
-<li>包含DHCP请求报文的IP数据报被放入<strong>以太网帧</strong>中（链路层）。该以太网帧具有目的MAC地址FF:FF:FF:FF:FF:FF(广播地址)和源MAC地址(Bob的便携机的MAC地址，00:16:D3:23:68:8A)</li>
-<li>包含DHCP请求的广播以太帧是第一个由Bob便携机发送到以太网交换机的帧，该交换机在所有出端口广播入帧，包括连接到路由器的端口。</li>
-<li>路由器在它的具有MAC地址00:22:6B:45:1F:1B的接口接收到包含DHCP请求的广播以太帧，并从该帧中提取IP数据报。该数据报的广播IP目的地址指示了IP数据报应由该节点的高层协议处理，所以IP数据报的载荷（UDP报文段）被分解上达UDP。DHCP请求报文被从UDP报文段抽取出来。DCHP服务器有了DHCP请求报文</li>
-<li>DHCP服务器决定分配68.86.2.101给Bob的便携机。DHCP服务器生成<strong>DCHP ACH报文</strong>，该报文包括：分配给Bob的IP地址（68.86.2.101）、DNC服务器的IP地址（68.87.71.226）、默认网关路由器的IP地址（68.85.2.1）和子网块（68.85.2.0&#x2F;24）（等价于子网掩码）。该报文被放入一个UDP报文段中，UDP报文段被放入一个IP数据报中，IP数据报被放入一个以太网帧中。这个以太网帧的源MAP地址是路由器连接到归属网络时的接口MAC地址（00:22:6B:45:1F:1B），目的地址是Bob便携机的MAC地址（00:16:D3:23:68:8A）.</li>
-</ul>
-</li>
-<li><p>包含DHCP ACK的以太网帧由路由器发送给交换机。因为交换机是自学习的，交换机将该帧转发给通向Bob便携机的输出端口。</p>
-<ul>
-<li>Bob便携机接收到包含DHCP ACK的以太网帧，从该帧中抽取IP数据报，从IP数据报中抽取UDP报文段，从UDP报文段中抽取DHCP ACK报文。Bob的DHCP客户端记录下它的IP地址和他的DNS服务器的IP地址，并在其<strong>IP转发表</strong>中安装默认网关的地址。此时，Bob便携机已经从初始化好了它的网络组建，并开始准备处理Web网页的获取。</li>
-</ul>
-</li>
-<li><p>准备DNS和ARP</p>
-<p>  Bob在讲<a target="_blank" rel="noopener" href="http://www.google.com键入web浏览器,开启一连串时间,最终谷歌的页面显示在web浏览器上./">www.google.com键入web浏览器，开启一连串时间，最终谷歌的页面显示在web浏览器上。</a></p>
-<ul>
-<li>Bob便携机上单操作系统生成一个DNS查询报文，将字符串<a target="_blank" rel="noopener" href="http://www.google.com放入dns报文的问题段中.该报文被放置在一个具有53号(dns服务器)目的端口的udp报文段中.该报文段则被放入具有ip目的地址68.87.71.226(dhcp/">www.google.com放入DNS报文的问题段中。该报文被放置在一个具有53号（DNS服务器）目的端口的UDP报文段中。该报文段则被放入具有IP目的地址68.87.71.226（DHCP</a> ACK中的DNS服务器IP地址）和源地址68.86.2.101（便携机IP）的IP数据报中。</li>
-<li>Bob便携机将包含DNS请求报文的数据报放入一个以太网帧中，准备发送给（链路层）Bob学校的路由器。但是，当前只知道学校网管路由器的IP地址，MAC地址未知。所以需要进行ARP查询。</li>
-<li>Bob便携机生成一个具有目的地址68.85.2.1（默认网关）的ARP查询报文，将该报文放置在一个具有广播目的地址（FF:FF:FF:FF:FF:FF）的以太网帧中，向交换机发送该帧，叫环境将该帧交付给所有设备。</li>
-<li>网关路由器在与学校连接的接口上接收到包含该ARP报文的帧，发现其中的目标地址匹配其接口的IP地址。网关路由器准备一个ARP回答，指示它的MAC地址为00:22:6B:45:1F:1B对应IP 68.85.2.1。它将该ARP回答放入以太网帧中，并将目的地址设置为Bob便携机，向交换机发送该帧，交换机将该帧交付给Bob便携机。</li>
-<li>Bob便携机接收到包含ARP回答报文的帧之后，从该帧中抽取网关的MAC地址。</li>
-<li>Bob将包含DNS查询的以太网帧发送给交换机，并由交换机交付给路由器。该帧中的IP数据报的目的地址是68.87.71.226（DNS服务器），而该帧的目的地址是00:22:6B:45:1F:1B（网关路由器）。</li>
-</ul>
-</li>
-<li><p>仍在准备：域内路由选择到DNS服务器。</p>
-<ul>
-<li>学校的网关路由器从该帧中抽取DNS查询报文的IP数据报，获取其目的地址68.87.71.226（DNS服务器）。路由器通过查询自己的转发表，决定该数据报应当发送到图中Comcast网络的最左边路由器。IP数据被放置到链路层帧中，该链路连接学校路由器和Comcast最左边路由器，发送给Comcast最左边的路由器。</li>
-<li>Comcast接收到该帧，并提取IP数据报，检查数据报的目的地址（DNS服务器地址），根据转发表确定存储接口，经过该接口向DNS服务器转发数据报。</li>
-<li>最终DNS查询的IP数据报到达了DNS服务器。DNS服务器抽取出DNS查询报文，在它的DNS数据库中查找包含<a target="_blank" rel="noopener" href="http://www.google.com的ip地址的dns源记录.这个缓存记录源自google.com的权威dns服务器.dns服务器生成一个**dns回答报文**,将dns回答报文放入udp报文段中,将报文段放入寻址到bob便携机的ip数据报中,将该数据报通过comcast网络反向转发到学校的路由器中,再通过以太网交换机到bob便携机/">www.google.com的IP地址的DNS源记录。这个缓存记录源自google.com的权威DNS服务器。DNS服务器生成一个**DNS回答报文**，将DNS回答报文放入UDP报文段中，将报文段放入寻址到Bob便携机的IP数据报中，将该数据报通过Comcast网络反向转发到学校的路由器中，再通过以太网交换机到Bob便携机</a></li>
-<li>Bob便携机从DNS回答报文中臭气<a target="_blank" rel="noopener" href="http://www.google.com的ip地址./">www.google.com的IP地址。</a></li>
-</ul>
-</li>
-<li><p>Web客户-服务器交互：TCP和HTTP</p>
-<ul>
-<li>Bob便携机获取<a target="_blank" rel="noopener" href="http://www.google.com的ip地址之后,就能够生成tcp套接字,用于向www.google.com发送http/">www.google.com的IP地址之后，就能够生成TCP套接字，用于向www.google.com发送HTTP</a> GET报文。在Bob便携机生成TCP套接字时，它的TCP必须先与<a target="_blank" rel="noopener" href="http://www.google.com的tcp执行三次握手.bob便携机首先生成一个具有目的端口80(针对http)的tcp/">www.google.com的TCP执行三次握手。Bob便携机首先生成一个具有目的端口80（针对HTTP）的TCP</a> SYN报文段，将该报文的放置在具有目的IP地址64.233.169.105（<a target="_blank" rel="noopener" href="http://www.google.com)的ip数据报中,将该数据报放在mac地址为学校网关路由器的地址的帧中,向交换机发送该帧./">www.google.com）的IP数据报中，将该数据报放在MAC地址为学校网关路由器的地址的帧中，向交换机发送该帧。</a></li>
-<li>在学校网络、Comcast网络和谷歌网络中的路由器朝着<a target="_blank" rel="noopener" href="http://www.google.com转发把汗tcp/">www.google.com转发把汗TCP</a> SYN的数据报，使用每台路由器中的转发表。</li>
-<li>最终包含TCP SYN的数据报到达<a target="_blank" rel="noopener" href="http://www.google.com.从数据报中抽取tcp/">www.google.com。从数据报中抽取TCP</a> SYN报文并分解到与端口80相联系的欢迎套接字。产生一个TCP SYNACK报文段，将其放入想Bob便携机寻址的一个数据报中，最后放入链路层帧中，该链路适合将<a target="_blank" rel="noopener" href="http://www.google.com连接到第一跳路由器./">www.google.com连接到第一跳路由器。</a></li>
-<li>包含TCP SYNACK报文段的数据报通过谷歌、Comcast和学校网络，最终到达Bob便携机的以太网卡。数据报在操作系统分解，生成TCP套接字，进入连接状态。</li>
-<li>Bob的浏览器生成包含要获取URL的HTTP GET报文。HTTP GET报文写入套接字，其中GET报文生成一个TCP报文段的载荷。该TCP报文段被放置在一个数据报中，并交付给<a target="_blank" rel="noopener" href="http://www.google.com./">www.google.com。</a></li>
-<li>在ww.google.com的HTTP服务器从TCP套接字中读取HTTP GET报文，生成一个HTTP相应报文，将请求的Web页内容放入HTTP相应体重，并将报文发送进TCP套接字中。</li>
-<li>包含HTTP回答报文的数据报通过谷歌、Comcast和学校网络抓饭，到达Bob便携机。Bob的浏览器从套接字中读取HTTP相应，从HTTP相应中抽取Web页面的HTML，最终显示了Web页面。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/06/30/2019%E5%B9%B4%E4%B8%AD%E5%A4%8D%E7%9B%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="车子">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="车子的个人博客">
-      <meta itemprop="description" content="坐下看看">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 车子的个人博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2019/06/30/2019%E5%B9%B4%E4%B8%AD%E5%A4%8D%E7%9B%98/" class="post-title-link" itemprop="url">2019年中复盘</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-06-30 15:44:20" itemprop="dateCreated datePublished" datetime="2019-06-30T15:44:20+08:00">2019-06-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AE%A1%E5%88%92%E4%B8%8E%E5%A4%8D%E7%9B%98/" itemprop="url" rel="index"><span itemprop="name">计划与复盘</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AE%A1%E5%88%92%E4%B8%8E%E5%A4%8D%E7%9B%98/2019/" itemprop="url" rel="index"><span itemprop="name">2019</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="2019年中复盘"><a href="#2019年中复盘" class="headerlink" title="2019年中复盘"></a>2019年中复盘</h1><h2 id="关于年初挖坑的填补状况"><a href="#关于年初挖坑的填补状况" class="headerlink" title="关于年初挖坑的填补状况"></a>关于年初挖坑的填补状况</h2><h3 id="关于硬性坑"><a href="#关于硬性坑" class="headerlink" title="关于硬性坑"></a>关于硬性坑</h3><ul>
-<li>减肥(目标调整:75kg)<blockquote>
-<p>年后到现在整体体重从105kg-&gt;85kg,整体来说还比较满意.7月底的目标是80kg。今年的目标75，能到70就更完美了。上半年其实并没有太大的运动量,保持的只有每天的微信步数在15000步左右以及节食.暂时先保持现在的节奏,如果进入平台期的话可以试着加大运动量或者进健身房之类的操作.10月底如果体重距离目标很大的话,就加大运动量.</p>
-</blockquote>
-</li>
-<li>作息规律,晚上23点以前必须关灯睡觉.(下半年目标量化:120天)<blockquote>
-<p>二月份三月份的作息还比较正常.四五月到现在明显作息又回到了之前.用六月份和七月份两个月纠正过来.</p>
-</blockquote>
-</li>
-<li><del>需要跟父母敞开心扉畅谈一次,把彼此间的事情说明白了.</del><blockquote>
-<p>跟爹妈谈了很多回,初步已经答应了少在我买房之类的事情上操心了.不过惯性估计还在,需要平常多谈谈.</p>
-</blockquote>
-</li>
-<li>给父母养老钱.(目标不变:1000&#x2F;月) 跟父母多联系&#x2F;多回家几次(量化:下半年回两趟家)<blockquote>
-<p>电话联系比较少&#x2F;回家给母亲过了60大寿，母亲还是很开心的.父母的养老钱放在了且慢里单独开了一个账号,初步打算货币基金:债券(50:50)的比例,因为钱没有多少,赔了我就给他们填上窟窿,赚了就给他们.平时回家的时候分批给他们.</p>
-</blockquote>
-</li>
-<li>捣鼓自己的公众号,不用去写程序,只做简单的信息流,写写文章之类的.(量化:3篇有价值的文章)<blockquote>
-<p>没有过多的去捣鼓。主要是输出太少，需要把零散的东西整理一下。琐碎的想法应该在博客上维护。然后进行整合，搞到公众号上。</p>
-</blockquote>
-</li>
-<li>每周回来看一次这个2019的挖坑,督促自己来完成工作.(最完美执行的计划)(不变)</li>
-<li><del>买个电竞椅.</del>(伪需求,已经放弃)</li>
-<li><del>金三银四面试一下,不跳槽,跳槽在交了保险以后再作考虑</del>.<blockquote>
-<p>接了多个面试。有空需要整理下面试的注意事项。</p>
-</blockquote>
-</li>
-<li>尝试构建知识体系,不一定要构建完成,但是一定要有构建的过程.</li>
-<li>尝试构建自己的人生方向或者职业方向.不一定要清晰,可以有多个方向,多条描述,但是一定要有这个思考的过程.</li>
-<li>尝试构建自己的planB.</li>
-</ul>
-<h3 id="关于软性坑"><a href="#关于软性坑" class="headerlink" title="关于软性坑"></a>关于软性坑</h3><p>软坑作为对硬坑的填充,都是有空时可以去做的事情.</p>
-<ul>
-<li>身体带动思想的方法只坚持了一部分时间.还没有养成习惯.</li>
-<li>工作状态&#x2F;游戏消费&#x2F;游戏时间&#x2F;学习相比18年都有了很大的改观,但是依然不到理想的程度.希望下半年能够再接再厉.</li>
-<li>blog整理的大都是记录和读书笔记。年初的5篇blog要求变更一下。每周至少有一篇blog,复盘也好，读书笔记也好，记录也好，总之周必须有迹可循，在blog上记录下来。然后争取能够细心的整理3-5篇精华的东西,同步更新到公众号上.</li>
-<li>技术类书籍上半年读完了图解算法、敏捷开发读完了。在读计算机网络和clean code.计划下半年读高性能mysql、redis相关、微服务相关，还有剩余的话考虑中间件相关的知识补充。因为上半年看的敏捷开发、计算机网络、cleancode都是偏基础和工作流相关的，偏虚的一些知识。完成以后下半年把学习重点放到具体一点的技术上去。</li>
-<li>年初相关理财的知识没到，定了一个攒5w块钱的目标.这个目标更改一下。今年的目标是存够36000的紧急备用金。管理理财的目标下面需要详细整理下。</li>
-<li>春夏的衣服都是去店里买的.下半年继续保持.</li>
-<li>数据结构和算法的问题推后一下，是重要不紧急的知识点。</li>
-<li>阿里云的服务器先养着吧.目前没有能跑上去的项目.</li>
-<li>多参加一些非工作相关的社交活动.</li>
-<li>看一下理财相关的书,第一本是富爸爸穷爸爸.</li>
-<li>还有一些目标管理&#x2F;精力管理&#x2F;人生管理的一些知识,暂且记下.如果在日常的互联网信息获取中获取到碎片,就记录下来.没有机会就放在这,今年时间不够,就明年来.</li>
-<li>涨薪也好.跳槽也要,下半年把自己月薪提升到17K.并且,是在稳定的大前提下.</li>
-<li>周末去大学看看&#x2F;去参见点同城活动.</li>
-</ul>
-<h2 id="心情"><a href="#心情" class="headerlink" title="心情"></a>心情</h2><p>上半年的主要心情是焦虑,其次是成就感.</p>
-<p>焦虑主要来自于自身的层次太低,达不到心中满意的程度.这期间又涉及到跟其他人作比较,加重了焦虑的问题.另外就是自制力的不足导致预期计划没完成,会带来挫败感和焦虑.<br>焦虑的产生主要原因可以归结为”目标未达产生的落差”以及”比较”.因为目标在这里已经挖坑出来,所以克服焦虑的方法,即为填上这些软硬坑,不去过多关心的自己内心的&#x2F;环境的&#x2F;朋友圈的噪音.去做,打断自己想的习惯.</p>
-<p>要理解自己并不是一个牛逼的人,只是一个普通的,甚至在很多方面因为偏执还不如普通人.所以17&#x2F;18两年荒废了两年时间,不及别人是肯定的.所有人都在进步,不要奢望一年半载的改变就能够把这方面的差距补上,在这个补偿的过程中,一方面保持适当焦虑带给自己的急迫感,一方面注意控制不要让焦虑带坏心情,消耗太多心力精力.</p>
-<p>下半年要在降低焦虑方面做一些努力.</p>
-<p>成就感主要来自于减肥和部分的自我管理.体重的明显减少&#x2F;自我规则的明确和积累&#x2F;知识的积累都能带来成就感.</p>
-<h2 id="理财"><a href="#理财" class="headerlink" title="理财"></a>理财</h2><p>去年年末的时候开始接触一些基金投资,今年年初开始接触一些理财相关的管理知识.通过且慢和一些公众号,大概了解了一些个人理财相关的东西.</p>
-<p>所以年初的简单的存3w或者5w的目标随即变得没有意义.</p>
-<p>因为理财相关的知识都是碎片化获得的,没有系统性.本来是想在专业知识储备满意以后,再去系统的接触一些理财的知识.但是之前玩财富游戏的时候,感觉理财的知识并不能往后放.可以按照重要级放在专业知识之后,但是不能简单的完全不接触.</p>
-<p>所以,软性坑里的理财知识,相较于专业知识要低一级,相比其他的知识可能要高一级.</p>
-<p>另外重新规整一下今年的理财目标:</p>
-<ul>
-<li><p>备用金36000~40000(6000*6)</p>
-<blockquote>
-<p>这部分可以分散到余额宝,且慢货币三佳或者招行朝朝盈里.一定是货币基金的配置.在财务方面,这部分钱是放在第一位的,下半年主要的财务目标就是保存这部分钱.</p>
-</blockquote>
-</li>
-<li><p>自己养老金:1w</p>
-<blockquote>
-<p>这部分当前是4k,每个月1k,年底按计划正好是1w.已经在且慢单独开了账户,这部分按照货:股50:50~25:75,每年的七月份和一月份做定期再平衡.这是一个长期账号,作为退休后对养老保险的补充,非万不得已不从这个账户中取钱.可以激进一些.</p>
-</blockquote>
-</li>
-<li><p>保险账户:7k</p>
-<blockquote>
-<p>这部分暂且是为了应付每年五月份的保险.今年六月份刚开,目前1k,每月存入1k,这部分钱只能用于保险.以后会随着保险配置的补充而增加每月份额.这部分钱属于定期理财的钱,暂时打算购入且慢的”稳稳地幸福”策略,追求稳定的&#x2F;略大约货币基金的收益.</p>
-</blockquote>
-</li>
-<li><p>主动理财账户:2W</p>
-<blockquote>
-<p>目前投入1.5w.当前是每个月不到1000~1300的样子.下半年看情况,在上涨月份降低投入,多的钱放到紧急备用金里.因为没有多少积蓄,当前的1.5w其实是从紧急备用金抽调过来的,没有紧急备用金的情况下,不是敢干太多有风险的生活决策.所以下半年在上涨行情的时候,尝试吧金额分配进紧急备用金.</p>
-</blockquote>
-<blockquote>
-<p>另外的,相关的螺丝钉的钱,就依然按照现在每个月1%的强度继续存吧.</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="关于人生和其他方面的想法"><a href="#关于人生和其他方面的想法" class="headerlink" title="关于人生和其他方面的想法"></a>关于人生和其他方面的想法</h2><ul>
-<li>不要傲慢.如果收到朋友&#x2F;师长的建议,把他们记录下来,然后去思考建议合适不合适,应不应该执行.不要简单的去执行,不要简单的去否定,一定是有过自己思考的.</li>
-<li>不要怕错误.一个丰富的人生,比正确的人生更有意义.这个观点,自始至终,已经至少贯穿了八年的时间,甚至更早的,在没听过这段话的时候,也按照类似的生活方式在对待人生.所以并不要怕自己失误,如果不喜欢就去尝试新的.不要以稳定的名义在生活里得过且过,也不要头脑发热的就没头没脑的尝试改变.</li>
-<li>身体远比金钱重要.</li>
-<li>把大学弄丢的习惯重新找回来吧.把工作里弄丢的习惯重新找回来吧.比如早睡早起&#x2F;比如记录&#x2F;比如专注.</li>
-<li>一个人的氛围更适合自己.没必要为了别人的看法就融进一个团体里.但是人是有社会的,人类是群体动物,不可能偏执的离开社会去存在.但是并不矛盾,一方面要理解人与人相处的处世之道,处理好大家之间的利益关系,尝试和大家愉快的配合工作或者生活;另一方面没必要为了一些利益去做自己不喜欢的事情,生活还没有逼迫你到一定要选择生存的地步,所以就一边为生存做好容灾准备,一边拒绝那些让自己不开心的工作社交活动.</li>
-<li>多接触一下非工作相关的社交活动,说不定能碰见爱情呢.当然就现在这个体重,碰见的概率会明显变低的.</li>
-<li>关于时间和金钱等资源倾斜.学习那段任正非的采访内容:”在距离我们目标二十亿光年的地方，投一颗“芝麻”；距离目标两万公里的地方，投一个“苹果”；距离目标几千公里的地方，投一个“西瓜”；距离目标五公里的地方，我们投“范弗里特弹药量”，扑上去、撕开这个口子”.所以要避免极端,不要在重要但是不紧急的事情上不投入,不要把资源集中在眼前,不要把资源过多投放在太远的地方.</li>
 </ul>
 
       
