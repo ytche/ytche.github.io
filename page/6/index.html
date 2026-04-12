@@ -140,18 +140,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-count">109</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">37</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">66</span>
+        <span class="site-state-item-count">67</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -168,6 +168,97 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/18/Java8%E6%97%B6%E9%97%B4%E6%A0%BC%E5%BC%8F%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="车子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="车子的个人博客">
+      <meta itemprop="description" content="坐下看看">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 车子的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/08/18/Java8%E6%97%B6%E9%97%B4%E6%A0%BC%E5%BC%8F%E5%8C%96/" class="post-title-link" itemprop="url">Java8时间格式化详解</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-08-18 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-18T00:00:00+08:00">2021-08-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">后端</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Java8时间格式化详解"><a href="#Java8时间格式化详解" class="headerlink" title="Java8时间格式化详解"></a>Java8时间格式化详解</h1><h2 id="新时间API"><a href="#新时间API" class="headerlink" title="新时间API"></a>新时间API</h2><p>Java 8引入了java.time包，提供了全新日期时间API。</p>
+<h2 id="LocalDateTime"><a href="#LocalDateTime" class="headerlink" title="LocalDateTime"></a>LocalDateTime</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">LocalDateTime</span> <span class="variable">now</span> <span class="operator">=</span> LocalDateTime.now();</span><br><span class="line"><span class="type">LocalDateTime</span> <span class="variable">of</span> <span class="operator">=</span> LocalDateTime.of(<span class="number">2024</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">12</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 格式化</span></span><br><span class="line"><span class="type">DateTimeFormatter</span> <span class="variable">formatter</span> <span class="operator">=</span> DateTimeFormatter.ofPattern(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>);</span><br><span class="line"><span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> now.format(formatter);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 解析</span></span><br><span class="line"><span class="type">LocalDateTime</span> <span class="variable">parse</span> <span class="operator">=</span> LocalDateTime.parse(<span class="string">&quot;2024-01-01 12:00:00&quot;</span>, formatter);</span><br></pre></td></tr></table></figure>
+
+<h2 id="DateTimeFormatter"><a href="#DateTimeFormatter" class="headerlink" title="DateTimeFormatter"></a>DateTimeFormatter</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 常用格式</span></span><br><span class="line">DateTimeFormatter.ofPattern(<span class="string">&quot;yyyy-MM-dd&quot;</span>);</span><br><span class="line">DateTimeFormatter.ofPattern(<span class="string">&quot;HH:mm:ss&quot;</span>);</span><br><span class="line">DateTimeFormatter.ofPattern(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>);</span><br><span class="line">DateTimeFormatter.ofPattern(<span class="string">&quot;yyyy年MM月dd日&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="时间计算"><a href="#时间计算" class="headerlink" title="时间计算"></a>时间计算</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">LocalDateTime</span> <span class="variable">plus</span> <span class="operator">=</span> now.plusDays(<span class="number">1</span>).plusHours(<span class="number">2</span>);</span><br><span class="line"><span class="type">LocalDateTime</span> <span class="variable">minus</span> <span class="operator">=</span> now.minusMonths(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="与旧API互转"><a href="#与旧API互转" class="headerlink" title="与旧API互转"></a>与旧API互转</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Date -&gt; LocalDateTime</span></span><br><span class="line"><span class="type">Date</span> <span class="variable">date</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line"><span class="type">Instant</span> <span class="variable">instant</span> <span class="operator">=</span> date.toInstant();</span><br><span class="line"><span class="type">LocalDateTime</span> <span class="variable">ldt</span> <span class="operator">=</span> LocalDateTime.ofInstant(instant, ZoneId.systemDefault());</span><br><span class="line"></span><br><span class="line"><span class="comment">// LocalDateTime -&gt; Date</span></span><br><span class="line"><span class="type">LocalDateTime</span> <span class="variable">ldt</span> <span class="operator">=</span> LocalDateTime.now();</span><br><span class="line"><span class="type">Instant</span> <span class="variable">instant</span> <span class="operator">=</span> ldt.atZone(ZoneId.systemDefault()).toInstant();</span><br><span class="line"><span class="type">Date</span> <span class="variable">date</span> <span class="operator">=</span> Date.from(instant);</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Java 8时间API更加清晰易用，建议替换掉旧的Date和Calendar。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1269,101 +1360,6 @@
 <h2 id="注解方式"><a href="#注解方式" class="headerlink" title="注解方式"></a>注解方式</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@One(@Result(column = &quot;order_id&quot;, property = &quot;order&quot;, </span></span><br><span class="line"><span class="meta">    one = @One(select = &quot;com.example.mapper.OrderMapper.findById&quot;)))</span></span><br><span class="line"><span class="keyword">private</span> Order order;</span><br></pre></td></tr></table></figure>
 
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>一对一映射是关联查询的基础。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/15/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B05/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="车子">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="车子的个人博客">
-      <meta itemprop="description" content="坐下看看">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 车子的个人博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/01/15/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B05/" class="post-title-link" itemprop="url">Java并发编程笔记：线程池与并发集合</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-01-15 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-15T00:00:00+08:00">2021-01-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/java%E5%B9%B6%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">java并发</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Java并发编程笔记：线程池与并发集合"><a href="#Java并发编程笔记：线程池与并发集合" class="headerlink" title="Java并发编程笔记：线程池与并发集合"></a>Java并发编程笔记：线程池与并发集合</h1><h2 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ExecutorService</span> <span class="variable">pool</span> <span class="operator">=</span> Executors.newFixedThreadPool(<span class="number">10</span>);</span><br><span class="line">pool.execute(() -&gt; &#123;&#125;);</span><br><span class="line">pool.submit(() -&gt; &#123;&#125;);</span><br><span class="line">pool.shutdown();</span><br></pre></td></tr></table></figure>
-
-<h2 id="线程池参数"><a href="#线程池参数" class="headerlink" title="线程池参数"></a>线程池参数</h2><ul>
-<li>corePoolSize：核心线程数</li>
-<li>maximumPoolSize：最大线程数</li>
-<li>keepAliveTime：空闲线程存活时间</li>
-<li>workQueue：任务队列</li>
-</ul>
-<h2 id="并发集合"><a href="#并发集合" class="headerlink" title="并发集合"></a>并发集合</h2><ul>
-<li>ConcurrentHashMap：并发HashMap</li>
-<li>CopyOnWriteArrayList：写时复制List</li>
-<li>BlockingQueue：阻塞队列</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>线程池和并发集合是提升并发性能的重要工具。</p>
 
       
     </div>

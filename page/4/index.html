@@ -140,18 +140,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-count">109</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">37</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">66</span>
+        <span class="site-state-item-count">67</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -168,6 +168,125 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/25/JVM%E7%AC%94%E8%AE%B02%E5%AF%B9%E8%B1%A1%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="车子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="车子的个人博客">
+      <meta itemprop="description" content="坐下看看">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 车子的个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/10/25/JVM%E7%AC%94%E8%AE%B02%E5%AF%B9%E8%B1%A1%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/" class="post-title-link" itemprop="url">类加载过程详解</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-10-25 00:00:00" itemprop="dateCreated datePublished" datetime="2022-10-25T00:00:00+08:00">2022-10-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/java%E8%99%9A%E6%8B%9F%E6%9C%BA/" itemprop="url" rel="index"><span itemprop="name">java虚拟机</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="类加载过程详解"><a href="#类加载过程详解" class="headerlink" title="类加载过程详解"></a>类加载过程详解</h1><h2 id="类的生命周期"><a href="#类的生命周期" class="headerlink" title="类的生命周期"></a>类的生命周期</h2><p>加载 → 验证 → 准备 → 解析 → 初始化 → 使用 → 卸载</p>
+<h2 id="加载阶段"><a href="#加载阶段" class="headerlink" title="加载阶段"></a>加载阶段</h2><ol>
+<li>通过类全名获取类的二进制字节流</li>
+<li>将字节流转化为方法区数据结构</li>
+<li>在堆中生成java.lang.Class对象</li>
+</ol>
+<h2 id="验证阶段"><a href="#验证阶段" class="headerlink" title="验证阶段"></a>验证阶段</h2><ul>
+<li>文件格式验证</li>
+<li>元数据验证</li>
+<li>字节码验证</li>
+<li>符号引用验证</li>
+</ul>
+<h2 id="准备阶段"><a href="#准备阶段" class="headerlink" title="准备阶段"></a>准备阶段</h2><ul>
+<li>分配内存</li>
+<li>初始化零值</li>
+<li>设置类变量初始值</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 准备阶段后 public static int value = 123; value = 0</span></span><br><span class="line"><span class="comment">// 初始化阶段后 value = 123</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="解析阶段"><a href="#解析阶段" class="headerlink" title="解析阶段"></a>解析阶段</h2><ul>
+<li>将符号引用转为直接引用</li>
+<li>类或接口解析</li>
+<li>字段解析</li>
+<li>方法解析</li>
+</ul>
+<h2 id="初始化阶段"><a href="#初始化阶段" class="headerlink" title="初始化阶段"></a>初始化阶段</h2><ul>
+<li>执行<clinit>()方法</li>
+<li>赋值static变量</li>
+<li>执行static代码块</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Init</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;初始化&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h2><ul>
+<li>启动类加载器（Bootstrap）</li>
+<li>扩展类加载器（Extension）</li>
+<li>应用类加载器（App）</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>类加载是JVM运行时的基础，理解加载过程有助于解决类冲突和优化启动性能。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1325,138 +1444,6 @@
 <li><strong>金融类业务</strong>：SERIALIZABLE 或结合锁</li>
 </ol>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>理解事务隔离级别是数据库并发控制的基础。在实际开发中，需要根据业务场景选择合适的隔离级别，在数据一致性和并发性能之间取得平衡。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/15/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6%E5%85%AD%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE%E5%B1%82/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="车子">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="车子的个人博客">
-      <meta itemprop="description" content="坐下看看">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 车子的个人博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/05/15/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6%E5%85%AD%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE%E5%B1%82/" class="post-title-link" itemprop="url">Spring全家桶笔记六：数据访问层</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-15 00:00:00" itemprop="dateCreated datePublished" datetime="2022-05-15T00:00:00+08:00">2022-05-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">后端</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%90%8E%E7%AB%AF/spring/" itemprop="url" rel="index"><span itemprop="name">spring</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Spring全家桶笔记六：数据访问层"><a href="#Spring全家桶笔记六：数据访问层" class="headerlink" title="Spring全家桶笔记六：数据访问层"></a>Spring全家桶笔记六：数据访问层</h1><h2 id="Spring数据访问概述"><a href="#Spring数据访问概述" class="headerlink" title="Spring数据访问概述"></a>Spring数据访问概述</h2><p>Spring提供了统一的数据访问抽象，简化了JDBC、Hibernate、MyBatis等持久层框架的使用。</p>
-<h2 id="JDBC模板"><a href="#JDBC模板" class="headerlink" title="JDBC模板"></a>JDBC模板</h2><h3 id="JdbcTemplate基本使用"><a href="#JdbcTemplate基本使用" class="headerlink" title="JdbcTemplate基本使用"></a>JdbcTemplate基本使用</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserDao</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> JdbcTemplate jdbcTemplate;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> User <span class="title function_">findById</span><span class="params">(Long id)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;SELECT * FROM user WHERE id = ?&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> jdbcTemplate.queryForObject(sql, <span class="keyword">new</span> <span class="title class_">BeanPropertyRowMapper</span>&lt;&gt;(User.class), id);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> List&lt;User&gt; <span class="title function_">findAll</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;SELECT * FROM user&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> jdbcTemplate.query(sql, <span class="keyword">new</span> <span class="title class_">BeanPropertyRowMapper</span>&lt;&gt;(User.class));</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">insert</span><span class="params">(User user)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;INSERT INTO user(name, email) VALUES(?, ?)&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> jdbcTemplate.update(sql, user.getName(), user.getEmail());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="命名参数"><a href="#命名参数" class="headerlink" title="命名参数"></a>命名参数</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用Map</span></span><br><span class="line">Map&lt;String, Object&gt; params = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">params.put(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;张三&quot;</span>);</span><br><span class="line">params.put(<span class="string">&quot;email&quot;</span>, <span class="string">&quot;zhangsan@example.com&quot;</span>);</span><br><span class="line">namedParameterJdbcTemplate.update(sql, params);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用BeanPropertySqlParameterSource</span></span><br><span class="line">namedParameterJdbcTemplate.update(sql, <span class="keyword">new</span> <span class="title class_">BeanPropertySqlParameterSource</span>(user));</span><br></pre></td></tr></table></figure>
-
-<h2 id="Spring-Data-JPA"><a href="#Spring-Data-JPA" class="headerlink" title="Spring Data JPA"></a>Spring Data JPA</h2><h3 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@Table(name = &quot;t_user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">User</span> &#123;</span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="meta">@GeneratedValue(strategy = GenerationType.IDENTITY)</span></span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// getters and setters</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserRepository</span> <span class="keyword">extends</span> <span class="title class_">JpaRepository</span>&lt;User, Long&gt; &#123;</span><br><span class="line">    <span class="comment">// 自动实现CRUD</span></span><br><span class="line">    <span class="comment">// 自定义查询</span></span><br><span class="line">    User <span class="title function_">findByName</span><span class="params">(String name)</span>;</span><br><span class="line">    List&lt;User&gt; <span class="title function_">findByEmailContaining</span><span class="params">(String email)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="自定义查询"><a href="#自定义查询" class="headerlink" title="自定义查询"></a>自定义查询</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Query(&quot;SELECT u FROM User u WHERE u.name = ?1&quot;)</span></span><br><span class="line">User <span class="title function_">findByNameCustom</span><span class="params">(String name)</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Query(value = &quot;SELECT * FROM user WHERE name = :name&quot;, nativeQuery = true)</span></span><br><span class="line">User <span class="title function_">findByNameNative</span><span class="params">(<span class="meta">@Param(&quot;name&quot;)</span> String name)</span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="复杂查询"><a href="#复杂查询" class="headerlink" title="复杂查询"></a>复杂查询</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserRepository</span> <span class="keyword">extends</span> <span class="title class_">JpaRepository</span>&lt;User, Long&gt;, JpaSpecificationExecutor&lt;User&gt; &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Specification&lt;User&gt; spec = (root, query, cb) -&gt; &#123;</span><br><span class="line">    List&lt;Predicate&gt; predicates = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    <span class="keyword">if</span> (name != <span class="literal">null</span>) &#123;</span><br><span class="line">        predicates.add(cb.like(root.get(<span class="string">&quot;name&quot;</span>), <span class="string">&quot;%&quot;</span> + name + <span class="string">&quot;%&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> cb.and(predicates.toArray(<span class="keyword">new</span> <span class="title class_">Predicate</span>[<span class="number">0</span>]));</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h2 id="事务管理"><a href="#事务管理" class="headerlink" title="事务管理"></a>事务管理</h2><h3 id="声明式事务"><a href="#声明式事务" class="headerlink" title="声明式事务"></a>声明式事务</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Transactional(isolation = Isolation.READ_COMMITTED, timeout = 30)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">transfer</span><span class="params">(Long fromId, Long toId, BigDecimal amount)</span> &#123;</span><br><span class="line">        <span class="comment">// 扣款</span></span><br><span class="line">        accountDao.decrease(fromId, amount);</span><br><span class="line">        <span class="comment">// 加款</span></span><br><span class="line">        accountDao.increase(toId, amount);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="事务传播行为"><a href="#事务传播行为" class="headerlink" title="事务传播行为"></a>事务传播行为</h3><table>
-<thead>
-<tr>
-<th>传播行为</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>REQUIRED</td>
-<td>如果有事务则加入，没有则创建</td>
-</tr>
-<tr>
-<td>REQUIRES_NEW</td>
-<td>总是创建新事务</td>
-</tr>
-<tr>
-<td>SUPPORTS</td>
-<td>有事务则加入，没有则非事务</td>
-</tr>
-<tr>
-<td>NOT_SUPPORTED</td>
-<td>非事务执行</td>
-</tr>
-<tr>
-<td>MANDATORY</td>
-<td>必须有事务，否则抛异常</td>
-</tr>
-<tr>
-<td>NEVER</td>
-<td>必须没有事务，否则抛异常</td>
-</tr>
-</tbody></table>
-<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="1-懒加载异常"><a href="#1-懒加载异常" class="headerlink" title="1. 懒加载异常"></a>1. 懒加载异常</h3><p>解决方案：开启spring.jpa.open-in-view（但影响性能）或使用EntityGraph</p>
-<h3 id="2-N-1问题"><a href="#2-N-1问题" class="headerlink" title="2. N+1问题"></a>2. N+1问题</h3><p>解决方案：使用JOIN FETCH或@EntityGraph</p>
-<h3 id="3-乐观锁冲突"><a href="#3-乐观锁冲突" class="headerlink" title="3. 乐观锁冲突"></a>3. 乐观锁冲突</h3><p>使用@Version注解实现乐观锁</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Spring数据访问层提供了强大的持久层支持，开发者可以根据项目需求选择合适的持久层方案。Spring Data JPA适合快速开发，JdbcTemplate适合需要精细控制SQL的场景。</p>
 
       
     </div>
